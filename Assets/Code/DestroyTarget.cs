@@ -16,6 +16,7 @@ public class DestroyTarget : MonoBehaviour {
 	}
 
     void OnTriggerEnter(Collider col) {
+        Debug.Log("destroy : entered trigger");
         if (col.CompareTag(tag)) {
             Destroy(col.gameObject);
         }

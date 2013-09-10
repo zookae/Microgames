@@ -13,50 +13,91 @@ public class TargetGenerator : MonoBehaviour {
     /// </summary>
     public List<string> tags;
     /// <summary>
-    /// Speed of newly spawned objects
-    /// </summary>
-    public float moveSpeed = 10.0f;
-    /// <summary>
     /// Timing between spawns
     /// </summary>
-    public float serialSpacing = 1.0f;    /// <summary>
+    public float serialSpacing = 1.0f;
+    /// <summary>
+    /// Time before starting spawns
+    /// </summary>
+    public float serialDelay = 0.0f;
+    /// <summary>
     /// Whether to use randomly timed delays between spawns
     /// </summary>
-    public bool isRandomlySpaced = false;
+    public bool isRandomlySpaced = false; // TODO : fix to ensure no overlaps
+    /// <summary>
+    /// Speed for objects to move
+    /// </summary>
+    public float moveSpeed = 5.0f;
+    /// <summary>
+    /// Direction for the objects to move
+    /// </summary>
+    public MoveDirection moveDirection;
 
     /// <summary>
     /// Track time spent
     /// </summary>
-    public float ticker = 0.0f;
+    private float ticker = 0.0f;
+    /// <summary>
+    /// Internal tracking of spacing for use with randomization
+    /// </summary>
+    private float serialSeparation;
 
 	// Use this for initialization
 	void Start () {
+        ticker -= serialDelay;
+        serialSeparation = serialSpacing;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        ticker += Time.deltaTime;
-        if (Mathf.Round(ticker / serialSpacing) == 0) {
+        if (GameState.Singleton.CurrentState == State.Running) {
+            ticker += Time.deltaTime;
             if (isRandomlySpaced) {
-                ticker -= serialSpacing * (Random.Range(0, 100) / 100.0f);
-            } else {
-                ticker -= serialSpacing;
+                serialSeparation = serialSpacing * (Random.Range(50, 100) / 100.0f);
             }
-            SpawnTarget(target, moveSpeed);
+            if (ticker > serialSeparation) {
+                ticker -= serialSeparation;
+                //SpawnTarget();
+                SpawnMovingTarget();
+            }
         }
 	}
 
-    void SpawnTarget(Transform spawnObj, float moveSpeed) {
-        // create new instance of prefab
-        Transform newTarget = (Transform)GameObject.Instantiate(spawnObj, transform.position, transform.rotation);
-
-        // 
+    void SpawnMovingTarget() {
+        Transform newTarget = (Transform)GameObject.Instantiate(target, transform.position, transform.rotation);
         newTarget.gameObject.AddComponent<Rigidbody>();
         newTarget.GetComponent<Rigidbody>().useGravity = false;
         newTarget.GetComponent<Rigidbody>().isKinematic = true;
+        //newTarget.GetComponent<Rigidbody>().velocity = transform.TransformDirection(Vector3.forward * moveSpeed);
+        newTarget.gameObject.AddComponent<MoveInDirection>();
+        newTarget.GetComponent<MoveInDirection>().dir = moveDirection;
+        newTarget.GetComponent<MoveInDirection>().moveRate = moveSpeed;
 
+        newTarget.GetComponent<BoxCollider>().isTrigger = true;
 
-        newTarget.GetComponent<Rigidbody>().velocity = transform.TransformDirection(Vector3.forward * moveSpeed);
+        // assign set of tags for other components to use
+        foreach (string tag in tags) {
+            newTarget.tag = tag;
+        }
+    }
+
+    void SpawnTarget() {
+        // create new instance of prefab
+        Transform newTarget = (Transform)GameObject.Instantiate(target, transform.position, transform.rotation);
+
+        // assign Rigidbody to place in space and apply physics
+        //newTarget.gameObject.AddComponent<Rigidbody>();
+        //newTarget.GetComponent<Rigidbody>().useGravity = false;
+        //newTarget.GetComponent<Rigidbody>().isKinematic = true;
+        
+        // assign MoveInDirection to dictate movement behavior
+        //newTarget.gameObject.AddComponent<MoveInDirection>();
+        //newTarget.GetComponent<MoveInDirection>().moveRate = moveSpeed;
+        //newTarget.GetComponent<MoveInDirection>().dir = moveDirection;
+
+        //newTarget.GetComponent<Rigidbody>().velocity = transform.TransformDirection(Vector3.forward * moveSpeed);
+
+        // assign set of tags for other components to use
         foreach (string tag in tags) {
             newTarget.tag = tag;
         }
