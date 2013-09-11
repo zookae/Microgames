@@ -11,14 +11,6 @@ public class ProgressBar : MonoBehaviour {
 	public Texture2D progressBarEmpty;
 	public Texture2D progressBarFull;
 	
-	public GameObject GameObj;
-    private GameState GameStatus;
-
-
-    void Awake() {
-		GameStatus = GameObj.GetComponent<GameState>();
-    }
-	
 	void OnGUI() {
 		/*
 		// create a GUI group @ width of bar and 2x height for room for text
@@ -46,6 +38,8 @@ public class ProgressBar : MonoBehaviour {
 	}
 	
 	void Update() {
-		barDisplay = GameStatus.TimeUsed / Termination.maxTime;
+        if (GameState.Singleton.CurrentState == State.Running) {
+            barDisplay = GameState.Singleton.TimeUsed / Termination.maxTime;
+        }
 	}
 }

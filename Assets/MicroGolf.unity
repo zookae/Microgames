@@ -186,7 +186,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca25a6d29b7de7b41b3fd81ce1631ac1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameObj: {fileID: 321748642}
 --- !u!1 &321748642
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,7 +241,6 @@ MonoBehaviour:
   barDisplay: 0
   progressBarEmpty: {fileID: 2800000, guid: 66d0b1060f1263748aaa24b917861f3d, type: 3}
   progressBarFull: {fileID: 2800000, guid: 4c86ac4639b24f24bb598c0d75a3828a, type: 3}
-  GameObj: {fileID: 321748642}
 --- !u!1 &460394785
 GameObject:
   m_ObjectHideFlags: 0
@@ -275,7 +273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038105ae8e4731048b84943d41ac9221, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveRate: 1
+  moveRate: 12.04
   minDist: .5
   moveTarget: {x: 0, y: 0, z: 0}
   isRunning: 1
@@ -356,7 +354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d6223c1e26667a44a804422e17f2989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveRate: 1
+  moveRate: 10
   minDist: .5
   moveTarget: {x: 0, y: 0, z: 0}
   isRunning: 1
@@ -1484,7 +1482,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82b6f59e6ef4b6941b2d31a297fcfefc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameObj: {fileID: 321748642}
 --- !u!1 &651949234
 GameObject:
   m_ObjectHideFlags: 0
@@ -1579,7 +1576,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d6223c1e26667a44a804422e17f2989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveRate: 1
+  moveRate: 5
   minDist: .5
   moveTarget: {x: 0, y: 0, z: 0}
   isRunning: 1
@@ -1595,6 +1592,7 @@ GameObject:
   - 4: {fileID: 952867752}
   - 108: {fileID: 952867751}
   - 114: {fileID: 952867753}
+  - 114: {fileID: 952867754}
   m_Layer: 0
   m_Name: BasicLight
   m_TagString: Untagged
@@ -1659,7 +1657,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83d6f8b2517bbd04bb7f60026aefdc5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameObj: {fileID: 321748642}
+  gameState: 1
+  tintColor: {r: .960153878, g: .970588207, b: .214100316, a: 0}
+--- !u!114 &952867754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 952867750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83d6f8b2517bbd04bb7f60026aefdc5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameState: 2
+  tintColor: {r: 1, g: 0, b: 0, a: 0}
 --- !u!1 &1259808715
 GameObject:
   m_ObjectHideFlags: 0

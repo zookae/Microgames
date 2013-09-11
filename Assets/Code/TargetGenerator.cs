@@ -63,6 +63,8 @@ public class TargetGenerator : MonoBehaviour {
         }
 	}
 
+
+
     void SpawnMovingTarget() {
         Transform newTarget = (Transform)GameObject.Instantiate(target, transform.position, transform.rotation);
         newTarget.gameObject.AddComponent<Rigidbody>();

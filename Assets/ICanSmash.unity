@@ -150,6 +150,7 @@ GameObject:
   - 4: {fileID: 67138593}
   - 108: {fileID: 67138592}
   - 114: {fileID: 67138594}
+  - 114: {fileID: 67138595}
   m_Layer: 0
   m_Name: MainLight
   m_TagString: Untagged
@@ -214,7 +215,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83d6f8b2517bbd04bb7f60026aefdc5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameObj: {fileID: 0}
+  gameState: 2
+  tintColor: {r: 1, g: 0, b: 0, a: 0}
+--- !u!114 &67138595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 67138591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83d6f8b2517bbd04bb7f60026aefdc5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameState: 1
+  tintColor: {r: .960153878, g: .970588207, b: .214100316, a: 0}
 --- !u!1 &474271295
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,9 +283,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   barDisplay: 0
-  progressBarEmpty: {fileID: 0}
-  progressBarFull: {fileID: 0}
-  GameObj: {fileID: 0}
+  progressBarEmpty: {fileID: 2800000, guid: 66d0b1060f1263748aaa24b917861f3d, type: 3}
+  progressBarFull: {fileID: 2800000, guid: 4c86ac4639b24f24bb598c0d75a3828a, type: 3}
 --- !u!1 &565152382
 GameObject:
   m_ObjectHideFlags: 0
@@ -772,7 +786,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca25a6d29b7de7b41b3fd81ce1631ac1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameObj: {fileID: 474271295}
 --- !u!114 &1974501242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -803,4 +816,3 @@ MonoBehaviour:
   gainPoints: 10
   losePoints: 5
   score: 0
-  GameObj: {fileID: 474271295}

@@ -3,17 +3,12 @@ using System.Collections;
 
 public class Termination : MonoBehaviour {
 
-    public GameObject GameObj;
-    private GameState GameStatus;
-	public static float maxTime = 7;
+    public static float maxTime = 7;
 
-    void Awake() {
-        GameStatus = GameObj.GetComponent<GameState>();
-    }
 	
 	void Update() {
-        if (GameStatus.TimeUsed > maxTime && GameStatus.CurrentState == State.Running) {
-			GameStatus.CurrentState = State.Lose;
+        if (GameState.Singleton.TimeUsed > maxTime && GameState.Singleton.CurrentState == State.Running) {
+			GameState.Singleton.CurrentState = State.Lose;
 			DisableRunning();
 		}
 	}
@@ -22,22 +17,21 @@ public class Termination : MonoBehaviour {
         Debug.Log("collided");
         if (col.gameObject.name == "Blocker") {
             Debug.Log("FAILURE!");
-            GameStatus.CurrentState = State.Lose;
+            GameState.Singleton.CurrentState = State.Lose;
             DisableRunning();
         }
     }
 
 
-    // TODO probably better to have objects with "Goal" tag to allow many targets
     void OnTriggerEnter(Collider otherObj) {
         Debug.Log("triggered");
         if (otherObj.gameObject.name == "Goal") {
             Debug.Log("GOOOAAAAAL!");
-            GameStatus.CurrentState = State.Win;
+            GameState.Singleton.CurrentState = State.Win;
             DisableRunning();
         } else if (otherObj.gameObject.name == "Blocker") {
             Debug.Log("FAILURE!");
-            GameStatus.CurrentState = State.Lose;
+            GameState.Singleton.CurrentState = State.Lose;
             DisableRunning();
         }
 

@@ -3,7 +3,7 @@ using System.Collections;
 
 public class DestroyTarget : MonoBehaviour {
 
-    public string tag;
+    public string destroyTag;
 
 	// Use this for initialization
 	void Start () {
@@ -17,7 +17,7 @@ public class DestroyTarget : MonoBehaviour {
 
     void OnTriggerEnter(Collider col) {
         Debug.Log("destroy : entered trigger");
-        if (col.CompareTag(tag)) {
+        if (col.CompareTag(destroyTag)) {
             Destroy(col.gameObject);
         }
         

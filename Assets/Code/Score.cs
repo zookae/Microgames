@@ -12,14 +12,9 @@ public class Score : MonoBehaviour {
 
     public float score = 0.0f;
 
-    public GameObject GameObj;
-    private GameState GameStatus;
-
-    void Awake() {
-        GameStatus = GameObj.GetComponent<GameState>();
-    }
-
     void OnTriggerEnter(Collider col) {
+
+        // NOTE : 
         if (GameState.Singleton.CurrentState == State.Running) {
             Debug.Log("score : entered trigger");
             foreach (string gt in goodTag) {
@@ -34,4 +29,11 @@ public class Score : MonoBehaviour {
             }
         }
     }
+	
+	/// <summary>
+	/// Draws score on screen
+	/// </summary>
+	void OnGUI() {
+		GUI.Box(new Rect(10, 10, 100, 20), "score : "+score);
+	}
 }
