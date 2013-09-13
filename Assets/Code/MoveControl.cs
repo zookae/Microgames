@@ -31,15 +31,15 @@ public abstract class MoveControl : MonoBehaviour {
     public bool isRunning = true;
 
     
-	// Use this for initialization
-	void Start () {
+    //// Use this for initialization
+    //void Start () {
 	
-	}
+    //}
 	
-	// Update is called once per frame
-	void Update () {
+    //// Update is called once per frame
+    //void Update () {
 	
-	}
+    //}
 
     /// <summary>
     /// Patrol in straight line between two points
@@ -57,28 +57,6 @@ public abstract class MoveControl : MonoBehaviour {
             moveTarget = pointA;
         }
     }
-
-
-    /// <summary>
-    /// Move in a straight line at constant rate toward a given mouse position
-    /// </summary>
-    /// <param name="mousePos"></param>
-    public void moveToMouse(Vector3 mousePos) {
-        Plane playerPlane = new Plane(Vector3.up, transform.position);
-        //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Ray ray = Camera.main.ScreenPointToRay(mousePos);
-
-        float hitdistance = 0.0f;
-
-        if (playerPlane.Raycast(ray, out hitdistance)) {
-            Vector3 targetPoint = ray.GetPoint(hitdistance);
-            moveTarget = ray.GetPoint(hitdistance);
-            Quaternion targetRotation = Quaternion.LookRotation(moveTarget - transform.position);
-            transform.rotation = targetRotation;
-        }
-        transform.position = Vector3.MoveTowards(transform.position, moveTarget, moveRate * Time.deltaTime);
-    }
-
 
 
     /// <summary>
