@@ -1,6 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+using System.Xml;
+using System.Xml.Serialization;
+using System.Text;
+
+[System.Serializable]
 public class ClickFireTarget : ShootAtTarget {
 
     public Camera cam;
@@ -27,4 +32,5 @@ public class ClickFireTarget : ShootAtTarget {
 
         return p;
     }
+
 }

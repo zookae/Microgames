@@ -1,0 +1,7 @@
+<Component>
+  <!-- fire bullet at given target -->
+  <name>ClickFireObject</name>
+  <spawn>ClickFireObject</spawn>
+  <moveSpeed>3.0</moveSpeed>
+  <moveDirection>Left</moveDirection>
+</Component>

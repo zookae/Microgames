@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
+
 public abstract class Spawn : MonoBehaviour {
 
     /// <summary>
@@ -59,5 +60,7 @@ public abstract class Spawn : MonoBehaviour {
         
         return newTarget;
     }
+
+
 
 }
