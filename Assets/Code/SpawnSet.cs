@@ -32,7 +32,7 @@ public class SpawnSet : MonoBehaviour {
 	/// <summary>
 	/// Target object to move toward
 	/// </summary>
-	public GameObject movementTarget; // TODO : replace with generic script to attach
+	public Vector3 movementTarget; // TODO : replace with generic script to attach
 	/// <summary>
 	/// Speed for spawned objects to move toward target
 	/// </summary>
@@ -69,6 +69,8 @@ public class SpawnSet : MonoBehaviour {
 				newTarget.gameObject.AddComponent<MoveToTarget>();
 				newTarget.GetComponent<MoveToTarget>().movementTarget = movementTarget;
 				newTarget.GetComponent<MoveToTarget>().moveRate = movementRate * Random.Range(0.75f, 1.25f); // give some randomness to speed
+
+                newTarget.gameObject.AddComponent<DestroyPrint>();
 				
                 spawn.Add(newTarget); // add to list of generated
             }

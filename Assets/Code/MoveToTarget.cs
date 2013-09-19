@@ -3,7 +3,7 @@ using System.Collections;
 
 public class MoveToTarget : MoveControl {
 
-    public GameObject movementTarget;
+    public Vector3 movementTarget;
 
 	// Use this for initialization
 	void Start () {
@@ -12,10 +12,10 @@ public class MoveToTarget : MoveControl {
 	
 	// Update is called once per frame
 	void Update () {
-        float distance = Vector3.Distance(transform.position, movementTarget.transform.position);
+        float distance = Vector3.Distance(transform.position, movementTarget);
         //Debug.Log("distance to target : " + distance);
         if (distance > minDist) {
-            transform.position = Vector3.MoveTowards(transform.position, movementTarget.transform.position, moveRate * Time.deltaTime); // direct bouncing
+            transform.position = Vector3.MoveTowards(transform.position, movementTarget, moveRate * Time.deltaTime); // direct bouncing
         }
 	}
 

@@ -7,11 +7,11 @@ public abstract class Spawn : MonoBehaviour {
     /// <summary>
     /// Prefab for targets to generate
     /// </summary>
-    public GameObject target;
+    public GameObject spawn;
     /// <summary>
     /// Tag to assign to new targets
     /// </summary>
-    public List<string> tags;
+    public string tag;
     /// <summary>
     /// Whether to spawn targets that obey gravity or are kinematic
     /// </summary>
@@ -27,16 +27,17 @@ public abstract class Spawn : MonoBehaviour {
     /// <summary>
     /// List of spawned objects
     /// </summary>
-    private List<GameObject> spawn;
+    private List<GameObject> spawned;
 
 
     /// <summary>
     /// Spawns a target configred to fire triggers using a kinematic Rigidbody
     /// </summary>
     /// <returns></returns>
-    GameObject SpawnTriggerable() {
+    public GameObject SpawnTriggerable() {
+        Debug.Log("called SpawnTriggerable");
         // create the object
-        GameObject newTarget = (GameObject)GameObject.Instantiate(target, transform.position, transform.rotation);
+        GameObject newTarget = (GameObject)GameObject.Instantiate(spawn, transform.position, transform.rotation);
 
         // attach a Rigidbody for collisions
         newTarget.gameObject.AddComponent<Rigidbody>();
@@ -54,9 +55,8 @@ public abstract class Spawn : MonoBehaviour {
         newTarget.GetComponent<BoxCollider>().isTrigger = true;
 
         // assign set of tags for other components to use
-        foreach (string tag in tags) {
-            newTarget.tag = tag;
-        }
+        newTarget.tag = tag;
+        
         return newTarget;
     }
 

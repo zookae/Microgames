@@ -30,17 +30,6 @@ public abstract class MoveControl : MonoBehaviour {
     /// </summary>
     public bool isRunning = true;
 
-    
-    //// Use this for initialization
-    //void Start () {
-	
-    //}
-	
-    //// Update is called once per frame
-    //void Update () {
-	
-    //}
-
     /// <summary>
     /// Patrol in straight line between two points
     /// </summary>
