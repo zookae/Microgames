@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-
 using System.Xml;
 using System;
 
@@ -15,7 +14,6 @@ public class LoadComponent : MonoBehaviour {
 	}
 
     private void readComponents() {
-        Debug.Log("loading xml");
 
         // loading
         //TextAsset txt = (TextAsset)Resources.Load(componentXml.text, typeof(TextAsset));
@@ -23,34 +21,50 @@ public class LoadComponent : MonoBehaviour {
         xml.LoadXml(componentXml.text);
 
         Debug.Log("raw text: " + componentXml.text);
-
-        Debug.Log("reading xml");
-
+        
         // reading
         XmlNode root = xml.FirstChild;
-
-        gameObject.AddComponent<ClickFireDirection>();
-        ClickFireDirection cft = gameObject.GetComponent<ClickFireDirection>();
-        cft.spawn = GameObject.Find("Bullet");
-        cft.moveDir = MoveDirection.Down;
-
+        
         foreach (XmlNode node in root.ChildNodes) {
-            if (node.NodeType == XmlNodeType.Element) {
-                Debug.Log(node.Name + " : " + node.InnerText);
-                switch(node.Name) {
-                    //case "spawn":
-                    //    Debug.Log("parsed spawn: " + node.InnerText);
-                    //    cft.spawn = GameObject.Find(node.InnerText);
-                    //    break;
-                    case "moveDirection":
-                        Debug.Log("parsed move direction: " + Enum.Parse(typeof(MoveDirection), node.InnerText));
-                        cft.moveDir = (MoveDirection)Enum.Parse(typeof(MoveDirection), node.InnerText);
-                        break;
-                    case "moveSpeed":
-                        Debug.Log("parsed move speed: " + float.Parse(node.InnerText));
-                        cft.moveSpeed = float.Parse(node.InnerText);
-                        break;
-                }
+            // skip if node has no name
+            if (node.NodeType == XmlNodeType.Comment || node.Attributes["cname"] == null) {
+                continue;
+            }
+
+            // parse each node according to type
+            switch (node.Attributes["cname"].Value) {
+                // controls for firing
+                case "ClickFireDirection":
+                    Debug.Log("parsing a ClickFireDirection component");
+                    ClickFireDirection.ParseFromXML(node);
+                    break;
+                case "ClickFireMouse":
+                    Debug.Log("parsing a ClickFireMouse component");
+                    ClickFireMouse.ParseFromXML(node);
+                    break;
+                case "ClickFireObject":
+                    Debug.Log("parsing a ClickFireObject component");
+                    ClickFireObject.ParseFromXML(node);
+                    break;
+
+                // controls for movement
+                case "MoveByKeyForce":
+                    Debug.Log("parsing a MoveByKeyForce component");
+                    MoveByKeyForce.ParseFromXML(node);
+                    break;
+
+                // movement behavior
+                case "MoveInDirection":
+                    Debug.Log("parsing a MoveInDirection component");
+                    MoveInDirection.ParseFromXML(node);
+                    break;
+
+
+
+                    // oops
+                default:
+                    Debug.Log("saw and ignored a " + node.Attributes["cname"].Value + " component");
+                    break;
             }
         }
     }

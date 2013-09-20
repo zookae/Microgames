@@ -86,7 +86,6 @@ GameObject:
   - 65: {fileID: 324003206}
   - 23: {fileID: 324003205}
   - 54: {fileID: 324003210}
-  - 114: {fileID: 324003209}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -142,22 +141,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
---- !u!114 &324003209
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 324003204}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee7c9b282507ab347b651d1cf9931f8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveRate: 1
-  minDist: .00999999978
-  moveTarget: {x: 0, y: 0, z: 0}
-  isRunning: 1
-  dir: 3
 --- !u!54 &324003210
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -251,7 +234,6 @@ GameObject:
   - 33: {fileID: 943641135}
   - 65: {fileID: 943641134}
   - 23: {fileID: 943641133}
-  - 114: {fileID: 943641137}
   - 114: {fileID: 943641138}
   m_Layer: 0
   m_Name: Player
@@ -308,25 +290,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
---- !u!114 &943641137
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 943641132}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f162d1883b5a3924e8bba740adddde5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawn: {fileID: 324003204}
-  tag: 
-  haveGravity: 0
-  numObjects: 0
-  maxDistance: 0
-  moveSpeed: 5
-  moveTarget: {x: 0, y: 0, z: 0}
-  cam: {fileID: 1872827633}
 --- !u!114 &943641138
 MonoBehaviour:
   m_ObjectHideFlags: 0

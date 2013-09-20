@@ -1,7 +1,37 @@
-<Component>
-  <!-- fire bullet at given target -->
-  <name>ClickFireObject</name>
-  <spawn>ClickFireObject</spawn>
-  <moveSpeed>3.0</moveSpeed>
-  <moveDirection>Left</moveDirection>
-</Component>
+<Components>
+  <Component cname="MoveInDirection">
+    <target>Bullet</target>
+    <moveSpeed>5.0</moveSpeed>
+    <moveDirection>Right</moveDirection>
+  </Component>
+
+  <!--
+  <Component cname="ClickFireObject">
+    <target>Player</target>
+    <spawn>Bullet</spawn>
+    <fireTarget>Bullet</fireTarget>
+    <moveSpeed>7.0</moveSpeed>
+  </Component>
+  -->
+
+  <Component cname="ClickFireMouse">
+    <target>Player</target>
+    <spawn>Bullet</spawn>
+    <moveSpeed>7.0</moveSpeed>
+  </Component>
+
+  <Component cname="MoveByKeyForce">
+    <target>Player</target>
+    <moveForce>10.0</moveForce>
+    <maxVelocity>5.0,5.0,0</maxVelocity>
+  </Component>
+  
+  <!--
+  <Component cname="ClickFireDirection">
+    <target>Player</target>
+    <spawn>Bullet</spawn>
+    <moveSpeed>3.0</moveSpeed>
+    <moveDirection>Left</moveDirection>
+  </Component>
+  -->
+</Components>

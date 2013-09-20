@@ -17,18 +17,6 @@ public abstract class Spawn : MonoBehaviour {
     /// Whether to spawn targets that obey gravity or are kinematic
     /// </summary>
     public bool haveGravity = false;
-    /// <summary>
-    /// Number of objects to spawn in the set
-    /// </summary>
-    public int numObjects;
-    /// <summary>
-    /// Maximum distance of any object from spawner center
-    /// </summary>
-    public float maxDistance;
-    /// <summary>
-    /// List of spawned objects
-    /// </summary>
-    private List<GameObject> spawned;
 
 
     /// <summary>
@@ -41,7 +29,9 @@ public abstract class Spawn : MonoBehaviour {
         GameObject newTarget = (GameObject)GameObject.Instantiate(spawn, transform.position, transform.rotation);
 
         // attach a Rigidbody for collisions
-        newTarget.gameObject.AddComponent<Rigidbody>();
+        if (newTarget.gameObject.GetComponent<Rigidbody>() == null) {
+            newTarget.gameObject.AddComponent<Rigidbody>();
+        }
 
         // set properties to either obey gravity OR float in space
         if (haveGravity) {
