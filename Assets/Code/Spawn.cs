@@ -12,7 +12,7 @@ public abstract class Spawn : MonoBehaviour {
     /// <summary>
     /// Tag to assign to new targets
     /// </summary>
-    public string tag;
+    public string assignTag;
     /// <summary>
     /// Whether to spawn targets that obey gravity or are kinematic
     /// </summary>
@@ -46,7 +46,7 @@ public abstract class Spawn : MonoBehaviour {
         newTarget.GetComponent<BoxCollider>().isTrigger = true;
 
         // assign set of tags for other components to use
-        newTarget.tag = tag;
+        newTarget.tag = assignTag;
         
         return newTarget;
     }

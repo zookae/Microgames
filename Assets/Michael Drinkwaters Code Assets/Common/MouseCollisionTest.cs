@@ -45,7 +45,7 @@ public class MouseCollisionTest : MonoBehaviour {
     /// </summary>
     private void MouseCast() {
         //Get mouse ray.
-        Ray ray = Camera.mainCamera.ScreenPointToRay(Input.mousePosition);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         //Get ray collision with the mask.
         this.MouseHit = Physics.Raycast(ray, out this.MouseRaycast, 128f, this.Mask);

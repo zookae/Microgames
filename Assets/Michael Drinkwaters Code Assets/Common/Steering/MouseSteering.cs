@@ -93,7 +93,7 @@ public class MouseSteering : Steering {
     /// </summary>
     private Vector3? MouseCast() {
         //Get mouse ray.
-        Ray ray = Camera.mainCamera.ScreenPointToRay(Input.mousePosition);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         //Get ray collision with the mask.
         RaycastHit raycast;
