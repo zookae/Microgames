@@ -40,6 +40,26 @@ public class GameState : MonoBehaviour {
     public Dictionary<Resource, float> resources = new Dictionary<Resource, float>();
 
     /// <summary>
+    /// Record of history of objects clicked on by player
+    /// </summary>
+    public List<Triple<double, string, string>> clickTrace = new List<Triple<double,string,string>>();
+
+    /// <summary>
+    /// Record of history of objects clicked on by partner
+    /// </summary>
+    public List<Triple<double, string, string>> partnerTrace = new List<Triple<double, string, string>>();
+
+    /// <summary>
+    /// Tags this game instance uses for blocking
+    /// </summary>
+    public List<string> blockTags = new List<string>();
+
+    /// <summary>
+    /// Tags this game instance uses for labeling
+    /// </summary>
+    public List<string> labelTags = new List<string>();
+
+    /// <summary>
     /// Track resources amounts by owner of resource
     /// </summary>
     //public Dictionary<int, Dictionary<Resource, float>> resourceOwners = new Dictionary<int, Dictionary<Resource, float>>();

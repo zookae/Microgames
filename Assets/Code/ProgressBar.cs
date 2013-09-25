@@ -4,6 +4,8 @@ using System.Collections;
 public class ProgressBar : MonoBehaviour {
 	
 	public float barDisplay;
+
+    public float maxTime;
 	
 	Vector2 pos = new Vector2(Screen.width/2,Screen.height-100);
 	Vector2 size = new Vector2(100,20);
@@ -39,7 +41,8 @@ public class ProgressBar : MonoBehaviour {
 	
 	void Update() {
         if (GameState.Singleton.CurrentState == State.Running) {
-            barDisplay = GameState.Singleton.TimeUsed / Termination.maxTime;
+            //barDisplay = GameState.Singleton.TimeUsed / Termination.maxTime;
+            barDisplay = GameState.Singleton.TimeUsed / maxTime;
         }
 	}
 }
