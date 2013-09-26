@@ -85,9 +85,9 @@ GameObject:
   - 33: {fileID: 40795525}
   - 23: {fileID: 40795523}
   - 54: {fileID: 40795528}
-  - 114: {fileID: 40795527}
   - 65: {fileID: 40795524}
   - 114: {fileID: 40795529}
+  - 114: {fileID: 40795527}
   m_Layer: 0
   m_Name: GolfBall
   m_TagString: Untagged
@@ -151,15 +151,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 40795522}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b06de5e312c2df44b11bf0a5711b2b0, type: 3}
+  m_Script: {fileID: 11500000, guid: 3f490d227dfad8c439736bc0dfa31253, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveRate: 4.21000004
-  minDist: .100000001
+  moveRate: 10
+  minDist: .00999999978
   moveTarget: {x: 0, y: 0, z: 0}
   isRunning: 1
-  hasTarget: 0
-  mouseTarget: {x: 0, y: 0, z: 0}
+  AimTarget: {fileID: 460394791}
 --- !u!54 &40795528
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -225,8 +224,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2732e0bc5395ca24991c3a33b0197f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentState: 0
   TimeUsed: 0
+  MaxTime: 7
+  CurrentState: 0
+  score: 0
+  blockTags: []
+  labelTags: []
 --- !u!114 &321748646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,7 +256,6 @@ GameObject:
   - 65: {fileID: 460394789}
   - 23: {fileID: 460394788}
   - 54: {fileID: 460394787}
-  - 114: {fileID: 460394786}
   - 114: {fileID: 460394792}
   m_Layer: 0
   m_Name: GolfPutter
@@ -262,24 +264,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &460394786
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 460394785}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 038105ae8e4731048b84943d41ac9221, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveRate: 12.04
-  minDist: .5
-  moveTarget: {x: 0, y: 0, z: 0}
-  isRunning: 1
-  ballObj: {fileID: 40795522}
-  patrolA: {x: -10, y: 0, z: 10}
-  patrolB: {x: -10, y: 0, z: -10}
 --- !u!54 &460394787
 Rigidbody:
   m_ObjectHideFlags: 0

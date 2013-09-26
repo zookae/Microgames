@@ -12,7 +12,7 @@ public class Termination : MonoBehaviour {
 	}
 
     void OnCollisionEnter(Collision col) {
-        Debug.Log("collided");
+        //Debug.Log("collided");
         if (col.gameObject.name == "Blocker") {
             Debug.Log("FAILURE!");
             GameState.Singleton.CurrentState = State.Lose;
