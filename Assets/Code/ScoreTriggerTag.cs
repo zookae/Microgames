@@ -4,12 +4,24 @@ using System.Collections.Generic;
 
 public class ScoreTriggerTag : MonoBehaviour {
 
-    
-
+    /// <summary>
+    /// List of tags that are "good" / give score
+    /// </summary>
     public List<string> goodTag;
+
+    /// <summary>
+    /// List of tags that are "bad" / lose score
+    /// </summary>
     public List<string> badTag;
 
+    /// <summary>
+    /// Points gained for colliding with good tag
+    /// </summary>
     public float gainPoints;
+
+    /// <summary>
+    /// Points lost for colliding with bad tag
+    /// </summary>
     public float losePoints;
 
     void OnTriggerEnter(Collider col) {

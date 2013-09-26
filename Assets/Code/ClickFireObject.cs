@@ -11,14 +11,14 @@ public class ClickFireObject : ShootAtTarget {
     public GameObject fireTarget;
 
     void Start() {
-        moveTarget = fireTarget.transform.position;
+        moveTarget = fireTarget.transform;
     }
 
 	
 	// Update is called once per frame
 	void Update () {
         if (Input.GetMouseButtonDown(0)) {
-            moveTarget = fireTarget.transform.position;
+            moveTarget = fireTarget.transform;
             ShootAtTar();
         }
 	}

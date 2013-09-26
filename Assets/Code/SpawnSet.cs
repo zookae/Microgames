@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class SpawnSet : MonoBehaviour {
+public class SpawnSet : Spawn {
 
     /// <summary>
     /// Prefab for targets to generate
@@ -15,7 +15,7 @@ public class SpawnSet : MonoBehaviour {
     /// <summary>
     /// Whether to spawn targets that obey gravity or are kinematic
     /// </summary>
-    public bool haveGravity = false;
+    //public bool haveGravity = false;
     /// <summary>
     /// Number of objects to spawn in the set
     /// </summary>
@@ -27,12 +27,12 @@ public class SpawnSet : MonoBehaviour {
     /// <summary>
     /// List of spawned objects
     /// </summary>
-    private List<GameObject> spawn;
+    private List<GameObject> spawnList;
 	
 	/// <summary>
 	/// Target object to move toward
 	/// </summary>
-	public Vector3 movementTarget; // TODO : replace with generic script to attach
+	public Transform movementTarget; // TODO : replace with generic script to attach
 	/// <summary>
 	/// Speed for spawned objects to move toward target
 	/// </summary>
@@ -40,7 +40,7 @@ public class SpawnSet : MonoBehaviour {
 	
     // Use this for initialization
 	void Start () {
-        spawn = new List<GameObject>();
+        spawnList = new List<GameObject>();
 		
 		float xmin = this.transform.position.x - maxDistance;
 		float xmax = this.transform.position.x + maxDistance;
@@ -51,7 +51,7 @@ public class SpawnSet : MonoBehaviour {
         float targetSize = Vector3.Distance(target.transform.collider.bounds.min, target.transform.collider.bounds.max);
         
         // repeatedly try to generate
-        while (spawn.Count < numObjects) {
+        while (spawnList.Count < numObjects) {
             // 1. pick point
             Vector3 position = new Vector3(Random.Range(xmin, xmax), 1, Random.Range(zmin, zmax)); // x,z plane
 						
@@ -72,44 +72,38 @@ public class SpawnSet : MonoBehaviour {
 
                 newTarget.gameObject.AddComponent<DestroyPrint>();
 				
-                spawn.Add(newTarget); // add to list of generated
+                spawnList.Add(newTarget); // add to list of generated
             }
         }
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	    
-        
-	}
-
     /// <summary>
     /// Spawns a target configred to fire triggers using a kinematic Rigidbody
     /// </summary>
     /// <returns></returns>
-    GameObject SpawnTriggerable() {
-        // create the object
-        GameObject newTarget = (GameObject)GameObject.Instantiate(target, transform.position, transform.rotation);
+    //GameObject SpawnTriggerable() {
+    //    // create the object
+    //    GameObject newTarget = (GameObject)GameObject.Instantiate(target, transform.position, transform.rotation);
 
-        // attach a Rigidbody for collisions
-        newTarget.gameObject.AddComponent<Rigidbody>();
+    //    // attach a Rigidbody for collisions
+    //    newTarget.gameObject.AddComponent<Rigidbody>();
 
-        // set properties to either obey gravity OR float in space
-        if (haveGravity) {
-            newTarget.GetComponent<Rigidbody>().useGravity = true;
-            newTarget.GetComponent<Rigidbody>().isKinematic = false;
-        } else {
-            newTarget.GetComponent<Rigidbody>().useGravity = false;
-            newTarget.GetComponent<Rigidbody>().isKinematic = true;
-        }
+    //    // set properties to either obey gravity OR float in space
+    //    if (haveGravity) {
+    //        newTarget.GetComponent<Rigidbody>().useGravity = true;
+    //        newTarget.GetComponent<Rigidbody>().isKinematic = false;
+    //    } else {
+    //        newTarget.GetComponent<Rigidbody>().useGravity = false;
+    //        newTarget.GetComponent<Rigidbody>().isKinematic = true;
+    //    }
         
-        // set trigger property so it can be noticed by OnTriggerEnter
-        newTarget.GetComponent<BoxCollider>().isTrigger = true;
+    //    // set trigger property so it can be noticed by OnTriggerEnter
+    //    newTarget.GetComponent<BoxCollider>().isTrigger = true;
 
-        // assign set of tags for other components to use
-        foreach (string tag in tags) {
-            newTarget.tag = tag;
-        }
-        return newTarget;
-    }
+    //    // assign set of tags for other components to use
+    //    foreach (string tag in tags) {
+    //        newTarget.tag = tag;
+    //    }
+    //    return newTarget;
+    //}
 }

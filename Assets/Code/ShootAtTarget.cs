@@ -11,7 +11,7 @@ public class ShootAtTarget : Spawn {
     /// <summary>
     /// Object to fire toward
     /// </summary>
-    public Vector3 moveTarget;
+    public Transform moveTarget;
 
     /// <summary>
     /// Create a bullet and set it to move in a given direction
@@ -21,7 +21,7 @@ public class ShootAtTarget : Spawn {
         GameObject bullet = SpawnTriggerable();
         bullet.AddComponent<MoveToTarget>();
         bullet.GetComponent<MoveToTarget>().movementTarget = moveTarget;
-        bullet.GetComponent<MoveToTarget>().moveTarget = moveTarget;
+        bullet.GetComponent<MoveToTarget>().moveTarget = moveTarget.position;
         bullet.GetComponent<MoveToTarget>().moveRate = moveSpeed;
 
         return bullet;

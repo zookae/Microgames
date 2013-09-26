@@ -25,6 +25,11 @@ public class GameState : MonoBehaviour {
     public float TimeUsed = 0.0f;
 
     /// <summary>
+    /// Maximum length for the game to run.
+    /// </summary>
+    public float MaxTime = 7.0f;
+
+    /// <summary>
     /// Alternative states for game to be in
     /// </summary>
     public State CurrentState = State.Running;
@@ -64,26 +69,31 @@ public class GameState : MonoBehaviour {
     /// </summary>
     //public Dictionary<int, Dictionary<Resource, float>> resourceOwners = new Dictionary<int, Dictionary<Resource, float>>();
 
-    static GameState singleton;
 
+    // cf: http://clearcutgames.net/home/?p=437
+    // (v1) Allow manipulation in editor and prevent duplicates
+    // static singleton property
+    public static GameState Singleton { get; private set; }
 
-    public static GameState Singleton {
-        get {
-            if (singleton == null) {
-                singleton = FindObjectOfType(typeof(GameState)) as GameState;
+    // instantiate on game start
+    void Awake() {
 
-                if (singleton != null) {
-                    return singleton;
-                }
-
-                GameObject client = new GameObject("Global Game State");
-                singleton = client.AddComponent<GameState>();
-                singleton.Start();
-            }
-
-            return singleton;
+        // check for conflicting instances
+        if (Singleton != null && Singleton != this) {
+            Destroy(gameObject); // destroy others that conflict
         }
+
+        Singleton = this; // save singleton instance
+
+        DontDestroyOnLoad(gameObject); // ensure not destroyed b/t scenes
     }
+
+    // cf: http://clearcutgames.net/home/?p=437
+    // (v2) Instantiate lazily
+    //public static GameState singleton;
+    //public static GameState Singleton {
+    //    get { return singleton ?? (singleton = new GameObject("GlobalState").AddComponent<GameState>()); }
+    //}
 	
 	// Use this for initialization
 	void Start () {

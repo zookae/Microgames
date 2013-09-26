@@ -4,8 +4,7 @@ using System.Collections;
 using System.Xml;
 using System;
 
-[System.Serializable]
-public class ClickFireMouse : ShootAtTarget {
+public class ClickFireMouse : ShootAtPoint {
 
     public Camera cam;
 

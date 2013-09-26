@@ -23,17 +23,17 @@ public class ClickSelectParent : MonoBehaviour {
     /// </summary>
     public float scoreLabeled = 10;
 
-    //void Start() {
-    //    GameState.Singleton.partnerTrace.Add(new Triple<double, string, string>(0.0f, "Object-Cabbage", "Tag1"));
-    //}
+    void Start() {
+        GameState.Singleton.partnerTrace.Add(new Triple<double, string, string>(0.0f, "Object-Cabbage", "Tag1"));
+    }
     
 	// Update is called once per frame
 	void Update () {
         if (GameState.Singleton.CurrentState == State.Running) { // make sure game isn't over
             if (Input.GetMouseButtonDown(0)) {
                 ObjectClicked();
-                Debug.Log("clicked on : " + clickObj.name);
-                Debug.Log("parent object: " + clickObj.transform.parent.gameObject.name);
+                //Debug.Log("clicked on : " + clickObj.name);
+                //Debug.Log("parent object: " + clickObj.transform.parent.gameObject.name);
 
                 // triples of: (time, object, tag)
 

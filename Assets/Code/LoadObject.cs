@@ -9,10 +9,14 @@ public class LoadObject : MonoBehaviour {
     /// </summary>
     public GameObject prefab;
 
-    // list of objects
+    /// <summary>
+    /// List of object names to instantiate
+    /// </summary>
     public List<string> objectNames = new List<string>();
 
-    // 2 tags
+    /// <summary>
+    /// List of tag labels to assign to object selectors
+    /// </summary>
     public List<string> tagNames = new List<string>();
 
 	// Use this for initialization

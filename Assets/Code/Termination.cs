@@ -2,12 +2,10 @@
 using System.Collections;
 
 public class Termination : MonoBehaviour {
-
-    public static float maxTime = 7;
-
 	
 	void Update() {
-        if (GameState.Singleton.TimeUsed > maxTime && GameState.Singleton.CurrentState == State.Running) {
+        if (GameState.Singleton.TimeUsed > GameState.Singleton.MaxTime &&
+            GameState.Singleton.CurrentState == State.Running) {
 			GameState.Singleton.CurrentState = State.Lose;
 			DisableRunning();
 		}

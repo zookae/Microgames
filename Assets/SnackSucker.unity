@@ -74,47 +74,6 @@ NavMeshSettings:
     widthInaccuracy: 16.666666
     heightInaccuracy: 10
   m_NavMesh: {fileID: 0}
---- !u!1 &101488972
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 101488974}
-  - 114: {fileID: 101488973}
-  m_Layer: 0
-  m_Name: Global Game State
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &101488973
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 101488972}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2732e0bc5395ca24991c3a33b0197f6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TimeUsed: 0
-  CurrentState: 0
-  score: 0
---- !u!4 &101488974
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 101488972}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
 --- !u!1 &137030252
 GameObject:
   m_ObjectHideFlags: 0
@@ -247,8 +206,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimeUsed: 0
+  MaxTime: 7
   CurrentState: 0
   score: 0
+  blockTags: []
+  labelTags: []
 --- !u!114 &244009827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -634,13 +596,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b0233bb69a6a984ebba9bcf71afa23d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawn: {fileID: 1117194769}
+  assignTag: 
+  haveGravity: 0
   target: {fileID: 1117194769}
   tags:
   - Blocker
-  haveGravity: 0
   numObjects: 3
   maxDistance: 5
-  movementTarget: {fileID: 1445821276}
+  movementTarget: {fileID: 1445821280}
   movementRate: 3
 --- !u!114 &1662832541
 MonoBehaviour:
@@ -653,13 +617,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b0233bb69a6a984ebba9bcf71afa23d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawn: {fileID: 1026303184}
+  assignTag: 
+  haveGravity: 0
   target: {fileID: 1026303184}
   tags:
   - Target
-  haveGravity: 0
   numObjects: 2
   maxDistance: 5
-  movementTarget: {fileID: 1445821276}
+  movementTarget: {fileID: 1445821280}
   movementRate: 3
 --- !u!1 &2113584918
 GameObject:

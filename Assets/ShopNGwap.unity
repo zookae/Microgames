@@ -962,7 +962,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1588099212}
   - 114: {fileID: 1588099213}
-  - 114: {fileID: 1588099214}
   - 114: {fileID: 1588099215}
   - 114: {fileID: 1588099216}
   - 114: {fileID: 1588099217}
@@ -997,17 +996,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreBlocked: 10
   scoreLabeled: 10
---- !u!114 &1588099214
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1588099211}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 478827816904fc045bea35499df12a66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1588099215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1020,6 +1008,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimeUsed: 0
+  MaxTime: 15
   CurrentState: 0
   score: 0
   blockTags:
@@ -1049,7 +1038,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   barDisplay: 0
-  maxTime: 30
   progressBarEmpty: {fileID: 2800000, guid: 66d0b1060f1263748aaa24b917861f3d, type: 3}
   progressBarFull: {fileID: 2800000, guid: 4c86ac4639b24f24bb598c0d75a3828a, type: 3}
 --- !u!1001 &1770859805

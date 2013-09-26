@@ -269,8 +269,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2732e0bc5395ca24991c3a33b0197f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentState: 0
   TimeUsed: 0
+  MaxTime: 7
+  CurrentState: 0
+  score: 0
+  blockTags: []
+  labelTags: []
 --- !u!114 &474271299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -815,4 +819,3 @@ MonoBehaviour:
   - Blocker
   gainPoints: 10
   losePoints: 5
-  score: 0
