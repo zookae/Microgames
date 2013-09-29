@@ -5,10 +5,18 @@ using System;
 
 public class ClickFireDirection : ShootInDirection {
 
+    /// <summary>
+    /// [optional] Boundary to destroy projectile if it passes.
+    /// </summary>
+    public GameObject bulletBounds;
 
     void Update() {
         if (Input.GetMouseButtonDown(0)) {
-            ShootInDir();
+            if (bulletBounds != null) {
+                ShootInDir(bulletBounds);
+            } else {
+                ShootInDir();
+            }
         }
     }
 
