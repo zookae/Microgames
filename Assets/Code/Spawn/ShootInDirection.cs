@@ -1,17 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ShootInDirection : Spawn {
-
-    /// <summary>
-    /// Speed for shot object to move
-    /// </summary>
-    public float moveSpeed;
+public class ShootInDirection : Shoot {
 
     /// <summary>
     /// Direction for bullet to move in
     /// </summary>
     public MoveDirection moveDir;
+
+
+    public override GameObject Fire() {
+        Debug.Log("called Fire from ShootInDirection");
+        GameObject bullet = SpawnTriggerable();
+        bullet.AddComponent<MoveInDirection>();
+        bullet.GetComponent<MoveInDirection>().dir = moveDir;
+        bullet.GetComponent<MoveInDirection>().moveRate = moveSpeed;
+
+        return bullet;
+    }
 
 	/// <summary>
 	/// Create a bullet and set it to move in a given direction
