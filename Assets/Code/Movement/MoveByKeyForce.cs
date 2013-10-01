@@ -8,6 +8,7 @@ public class MoveByKeyForce : MonoBehaviour {
 
     private Rigidbody rbody;
     public float force;
+    public float drag=0.0f;
 
     public Vector3 maxVelocity;
 
@@ -20,7 +21,8 @@ public class MoveByKeyForce : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        MoveByForceClamped();
+        MoveByForceClamped(); // apply force from key press
+        MoveDrag(); // apply drag
 	}
 
 
@@ -37,6 +39,11 @@ public class MoveByKeyForce : MonoBehaviour {
         clamp.x = Mathf.Clamp(rbody.velocity.x, -maxVelocity.x, maxVelocity.x);
         clamp.y = Mathf.Clamp(rbody.velocity.y, -maxVelocity.y, maxVelocity.y);
         rbody.velocity = clamp;
+    }
+
+    void MoveDrag() {
+        Vector3 oppositeForce = drag * -rbody.velocity;
+        rbody.AddRelativeForce(oppositeForce);
     }
 
 

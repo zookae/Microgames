@@ -438,7 +438,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1003462383}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.83840275, y: 3.18084669, z: -1}
+  m_LocalPosition: {x: -5.94623756, y: 3.18084669, z: -1}
   m_LocalScale: {x: .600000024, y: .600000024, z: .600000024}
   m_Children: []
   m_Father: {fileID: 0}
@@ -574,7 +574,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 389ba1501f24dab4eb549d661ebe48c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 5
+  force: 10
+  drag: 0
   maxVelocity: {x: 10, y: 10, z: 0}
 --- !u!114 &1131612262
 MonoBehaviour:
@@ -620,6 +621,7 @@ GameObject:
   - 114: {fileID: 1698286408}
   - 114: {fileID: 1698286406}
   - 114: {fileID: 1698286409}
+  - 114: {fileID: 1698286410}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -739,6 +741,21 @@ MonoBehaviour:
   paramName: Enemy Firing Rate
   paramArray: []
   entity: Enemy
+--- !u!114 &1698286410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1698286401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d801e0eec5473f42bfc5475c6ad28a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  paramMin: 0
+  paramMax: 5
+  paramName: Drag
+  param: {fileID: 0}
 --- !u!1 &1784311597
 GameObject:
   m_ObjectHideFlags: 0
@@ -855,7 +872,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1784311597}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.339633465, y: 3.18084669, z: -1}
+  m_LocalPosition: {x: -6.84888554, y: 3.18084669, z: -1}
   m_LocalScale: {x: .600000024, y: .600000024, z: .600000024}
   m_Children: []
   m_Father: {fileID: 0}
