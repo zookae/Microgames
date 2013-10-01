@@ -76,34 +76,4 @@ public class SpawnSet : Spawn {
             }
         }
 	}
-	
-    /// <summary>
-    /// Spawns a target configred to fire triggers using a kinematic Rigidbody
-    /// </summary>
-    /// <returns></returns>
-    //GameObject SpawnTriggerable() {
-    //    // create the object
-    //    GameObject newTarget = (GameObject)GameObject.Instantiate(target, transform.position, transform.rotation);
-
-    //    // attach a Rigidbody for collisions
-    //    newTarget.gameObject.AddComponent<Rigidbody>();
-
-    //    // set properties to either obey gravity OR float in space
-    //    if (haveGravity) {
-    //        newTarget.GetComponent<Rigidbody>().useGravity = true;
-    //        newTarget.GetComponent<Rigidbody>().isKinematic = false;
-    //    } else {
-    //        newTarget.GetComponent<Rigidbody>().useGravity = false;
-    //        newTarget.GetComponent<Rigidbody>().isKinematic = true;
-    //    }
-        
-    //    // set trigger property so it can be noticed by OnTriggerEnter
-    //    newTarget.GetComponent<BoxCollider>().isTrigger = true;
-
-    //    // assign set of tags for other components to use
-    //    foreach (string tag in tags) {
-    //        newTarget.tag = tag;
-    //    }
-    //    return newTarget;
-    //}
 }

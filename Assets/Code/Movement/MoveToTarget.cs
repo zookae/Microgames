@@ -10,11 +10,13 @@ public class MoveToTarget : MoveControl {
 
 	// Update is called once per frame
 	void Update () {
-        float distance = Vector3.Distance(transform.position, movementTarget.position);
-        //Debug.Log("distance to target : " + distance);
-        if (distance > minDist) {
-            transform.position = Vector3.MoveTowards(transform.position, 
-                movementTarget.position, moveRate * Time.deltaTime); // direct bouncing
+        if (movementTarget != null) {
+            float distance = Vector3.Distance(transform.position, movementTarget.position);
+            //Debug.Log("distance to target : " + distance);
+            if (distance > minDist) {
+                transform.position = Vector3.MoveTowards(transform.position,
+                    movementTarget.position, moveRate * Time.deltaTime); // direct bouncing
+            }
         }
 	}
 }

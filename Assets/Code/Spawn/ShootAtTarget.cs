@@ -20,8 +20,13 @@ public class ShootAtTarget : Spawn {
         Debug.Log("called ShootAtTar");
         GameObject bullet = SpawnTriggerable();
         bullet.AddComponent<MoveToTarget>();
-        bullet.GetComponent<MoveToTarget>().movementTarget = moveTarget;
-        bullet.GetComponent<MoveToTarget>().moveTarget = moveTarget.position;
+        if (moveTarget != null) {
+            bullet.GetComponent<MoveToTarget>().movementTarget = moveTarget;
+        } else {
+            // default to silly behavior of not moving
+            bullet.GetComponent<MoveToTarget>().movementTarget = transform;
+        }
+
         bullet.GetComponent<MoveToTarget>().moveRate = moveSpeed;
 
         return bullet;

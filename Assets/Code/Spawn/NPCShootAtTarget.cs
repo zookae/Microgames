@@ -18,8 +18,6 @@ public class NPCShootAtTarget : ShootAtTarget {
     /// </summary>
     public float bulletLife;
 
-    public GameObject shootTarget;
-
     private float timeDelta;
 
     private Random rng = new Random();
@@ -43,6 +41,7 @@ public class NPCShootAtTarget : ShootAtTarget {
             } else {
                 ShootAtTar();
             }
+
             timeDelta = 0; // reset time since fired
         }
 	}
