@@ -13,6 +13,9 @@ public class SpawnWave : Spawn {
 
     //public ShootAtTarget shootBehavior;
 
+    public MoveControl MovementOnX;
+    public MoveControl MovementOnY;
+
     public float spawnFrequency;
 
     private float runningTime;

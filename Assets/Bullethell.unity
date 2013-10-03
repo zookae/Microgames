@@ -446,7 +446,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1003462383}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.94623756, y: 3.18084669, z: -1}
+  m_LocalPosition: {x: -9.05494404, y: 3.18084669, z: -1}
   m_LocalScale: {x: .600000024, y: .600000024, z: .600000024}
   m_Children: []
   m_Father: {fileID: 0}
@@ -515,6 +515,7 @@ GameObject:
   - 114: {fileID: 1131612261}
   - 114: {fileID: 1131612262}
   - 114: {fileID: 1131612265}
+  - 114: {fileID: 1131612263}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -567,7 +568,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1131612256}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.164536, z: -1}
+  m_LocalPosition: {x: 0, y: -1.65709734, z: -1}
   m_LocalScale: {x: 1, y: .5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -602,6 +603,23 @@ MonoBehaviour:
   moveSpeed: 5
   moveDir: 0
   bulletBounds: {fileID: 1698286401}
+--- !u!114 &1131612263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1131612256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 138c405f16bac484c86c12f2d0859d17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveRate: 1
+  minDist: .00999999978
+  moveTarget: {x: 0, y: 0, z: 0}
+  isRunning: 1
+  movementPoint: {x: 0, y: 0, z: 0}
+  moveBounds: {fileID: 1698286401}
 --- !u!114 &1131612265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -812,7 +830,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1722097737}
-  - 114: {fileID: 1722097738}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -831,26 +848,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
---- !u!114 &1722097738
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1722097736}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 210e66965dccdac40b6f9b53ad923a32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawn: {fileID: 1784311597}
-  assignTag: Enemy
-  haveGravity: 0
-  xSpeed: 1
-  xMin: -2
-  xMax: 2
-  ySpeed: 2
-  spawnFrequency: 1.95000005
-  bullet: {fileID: 729091082}
 --- !u!1 &1784311597
 GameObject:
   m_ObjectHideFlags: 0
@@ -984,7 +981,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1784311597}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.84888554, y: 3.18084669, z: -1}
+  m_LocalPosition: {x: -10.1311216, y: 3.18084669, z: -1}
   m_LocalScale: {x: .600000024, y: .600000024, z: .600000024}
   m_Children: []
   m_Father: {fileID: 0}

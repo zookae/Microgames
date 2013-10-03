@@ -32,6 +32,29 @@ public class MoveInDirection : MoveControl {
         }
 	}
 
+    public void MoveInDirectionM(MoveDirection dir, float moveSpeed) {
+        if (isRunning) {
+            switch (dir) {
+                case MoveDirection.Up:
+                    //this.GetComponent<Rigidbody>().velocity = transform.TransformDirection(Vector3.up * moveRate);
+                    transform.position += transform.up * moveRate * Time.deltaTime;
+                    break;
+                case MoveDirection.Down:
+                    //this.GetComponent<Rigidbody>().velocity = transform.TransformDirection(Vector3.down * moveRate);
+                    transform.position -= transform.up * moveRate * Time.deltaTime;
+                    break;
+                case MoveDirection.Right:
+                    //this.GetComponent<Rigidbody>().velocity = transform.TransformDirection(Vector3.right * moveRate);
+                    transform.position += transform.right * moveRate * Time.deltaTime;
+                    break;
+                case MoveDirection.Left:
+                    //this.GetComponent<Rigidbody>().velocity = transform.TransformDirection(Vector3.left * moveRate);
+                    transform.position -= transform.right * moveRate * Time.deltaTime;
+                    break;
+            }
+        }
+    }
+
     /// <summary>
     /// Given a root XML node parse all the children and 
     /// instantiate a component on the appropriate object with the appropriate parameters
