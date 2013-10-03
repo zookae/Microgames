@@ -13,8 +13,8 @@ public class SpawnWave : Spawn {
 
     //public ShootAtTarget shootBehavior;
 
-    public MoveControl MovementOnX;
-    public MoveControl MovementOnY;
+    public MovementType MovementOnX;
+    public MovementType MovementOnY;
 
     public float spawnFrequency;
 
@@ -41,6 +41,12 @@ public class SpawnWave : Spawn {
         }
 	}
 
+    public enum MovementType {
+        PatrolRelativeX,
+        MoveToRandomPointX,
+        MoveInDirectionDown
+    }
+
     GameObject spawnEnemy() {
         // create the object
         GameObject newTarget = (GameObject)GameObject.Instantiate(GameObject.CreatePrimitive(PrimitiveType.Cube)
@@ -60,16 +66,41 @@ public class SpawnWave : Spawn {
         // assign set of tags for other components to use
         newTarget.tag = assignTag;
 
-        // add movement along X axis behavior
-        newTarget.gameObject.AddComponent<PatrolRelativeX>();
-        newTarget.gameObject.GetComponent<PatrolRelativeX>().moveRate = xSpeed;
-        newTarget.gameObject.GetComponent<PatrolRelativeX>().patrolMin.x = xMin;
-        newTarget.gameObject.GetComponent<PatrolRelativeX>().patrolMax.x = xMax;
+        //// add movement along X axis behavior
+        //newTarget.gameObject.AddComponent<PatrolRelativeX>();
+        //newTarget.gameObject.GetComponent<PatrolRelativeX>().moveRate = xSpeed;
+        //newTarget.gameObject.GetComponent<PatrolRelativeX>().patrolMin.x = xMin;
+        //newTarget.gameObject.GetComponent<PatrolRelativeX>().patrolMax.x = xMax;
 
-        // add movement along Y axis behavior
-        newTarget.gameObject.AddComponent<MoveInDirection>();
-        newTarget.gameObject.GetComponent<MoveInDirection>().moveRate = ySpeed;
-        newTarget.gameObject.GetComponent<MoveInDirection>().dir = MoveDirection.Down;
+        switch (MovementOnX) {
+            case MovementType.PatrolRelativeX:
+                // attach / parse from XML
+                newTarget.gameObject.AddComponent<PatrolRelativeX>();
+                newTarget.gameObject.GetComponent<PatrolRelativeX>().moveRate = xSpeed;
+                newTarget.gameObject.GetComponent<PatrolRelativeX>().patrolMin.x = xMin;
+                newTarget.gameObject.GetComponent<PatrolRelativeX>().patrolMax.x = xMax;
+                break;
+            case MovementType.MoveToRandomPointX:
+                // attach / parse from XML
+                newTarget.gameObject.AddComponent<MoveToRandomPointX>();
+                newTarget.gameObject.GetComponent<MoveToRandomPointX>().moveRate = xSpeed;
+                newTarget.gameObject.GetComponent<MoveToRandomPointX>().moveBounds = background;
+                break;
+            default:
+                break;
+        }
+
+        switch (MovementOnY) {
+            case MovementType.MoveInDirectionDown:
+                // add movement along Y axis behavior
+                newTarget.gameObject.AddComponent<MoveInDirection>();
+                newTarget.gameObject.GetComponent<MoveInDirection>().moveRate = ySpeed;
+                newTarget.gameObject.GetComponent<MoveInDirection>().dir = MoveDirection.Down;
+                break;
+
+            default:
+                break;
+        }
 
         // add shooting behavior
         newTarget.gameObject.AddComponent<NPCShootAtTarget>();
