@@ -3,19 +3,17 @@ using System.Collections;
 
 public class MoveToRandomPointY : MoveRandomPoint {
 
-	// Use this for initialization
+    // Use this for initialization
     void Start() {
-        movementPoint = RandomPoint(moveBounds);
-        movementPoint.x = transform.position.x;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        // if close enough to point pick a new one
-        if (Vector3.Distance(transform.position, movementPoint) < minDist) {
-            movementPoint = RandomPoint(moveBounds);
-            movementPoint.x = transform.position.x;
+        movementPoint = RandomPointY(moveBounds);
+    }
+
+    // Update is called once per frame
+    void Update() {
+        // if close enough to point (along X axis) pick a new one
+        if (Mathf.Abs(transform.position.y - movementPoint.y) < minDist) {
+            movementPoint = RandomPointY(moveBounds);
         }
-        MoveToPointM(movementPoint);
-	}
+        MoveToPointYM(movementPoint);
+    }
 }

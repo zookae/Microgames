@@ -5,17 +5,15 @@ public class MoveToRandomPointX : MoveRandomPoint {
 
 	// Use this for initialization
 	void Start () {
-        movementPoint = RandomPoint(moveBounds);
-        movementPoint.y = transform.position.y;
+        movementPoint = RandomPointX(moveBounds);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        // if close enough to point pick a new one
-        if (Vector3.Distance(transform.position, movementPoint) < minDist) {
-            movementPoint = RandomPoint(moveBounds);
-            movementPoint.y = transform.position.y;
+        // if close enough to point (along X axis) pick a new one
+        if (Mathf.Abs(transform.position.x - movementPoint.x) < minDist) {
+            movementPoint = RandomPointX(moveBounds);
         }
-        MoveToPointM(movementPoint);
+        MoveToPointXM(movementPoint);
 	}
 }

@@ -849,10 +849,9 @@ MonoBehaviour:
   xMin: -2
   xMax: 2
   ySpeed: 1
-  MovementOnX: 0
-  MovementOnY: 2
-  spawnFrequency: 1
+  MovementBehaviors: 0100000003000000
   bullet: {fileID: 729091082}
+  spawnFrequency: 1
 --- !u!1 &1784311597
 GameObject:
   m_ObjectHideFlags: 0

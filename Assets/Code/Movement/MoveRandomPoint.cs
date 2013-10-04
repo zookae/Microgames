@@ -24,6 +24,12 @@ public class MoveRandomPoint : MoveToPoint {
         MoveToPointM(movementPoint);
 	}
 
+    /// <summary>
+    /// Select a random point,
+    /// constrained by bounds object defining space of movement
+    /// </summary>
+    /// <param name="moveBounds">Boundary for movement</param>
+    /// <returns>New point</returns>
     public Vector3 RandomPoint(GameObject moveBounds) {
         // find max + min of boundary on movement
         Vector3 minPt = moveBounds.transform.collider.bounds.min;
@@ -40,4 +46,63 @@ public class MoveRandomPoint : MoveToPoint {
 
         return movePt;
     }
+
+    /// <summary>
+    /// Select a random point along the X axis,
+    /// constrained by bounds object defining space of X movement
+    /// </summary>
+    /// <param name="moveBounds">Boundary for movement</param>
+    /// <returns>New point</returns>
+    public Vector3 RandomPointX(GameObject moveBounds) {
+        // find max + min of boundary on movement
+        Vector3 minPt = moveBounds.transform.collider.bounds.min;
+        Vector3 maxPt = moveBounds.transform.collider.bounds.max;
+
+        float minX = transform.position.x - minPt.x;
+        float maxX = maxPt.x - transform.position.x ;
+
+        Vector3 movePt = transform.position;
+
+        // move random distance along X toward further bound
+        if (maxX > minX) {
+            movePt.x += Random.RandomRange(0.0f, 1.0f) * maxX;
+        } else {
+            movePt.x -= Random.RandomRange(0.0f, 1.0f) * minX;
+        }
+
+        //movePt.x = minPt.x + Random.Range(0.0f, 1.0f) * maxPt.x;
+        movePt.z = transform.position.z;
+
+        return movePt;
+    }
+
+    /// <summary>
+    /// Select a random point along the Y axis,
+    /// constrained by bounds object defining space of Y movement
+    /// </summary>
+    /// <param name="moveBounds">Boundary for movement</param>
+    /// <returns>New point</returns>
+    public Vector3 RandomPointY(GameObject moveBounds) {
+        // find max + min of boundary on movement
+        Vector3 minPt = moveBounds.transform.collider.bounds.min;
+        Vector3 maxPt = moveBounds.transform.collider.bounds.max;
+
+        float minY = transform.position.y - minPt.y;
+        float maxY = maxPt.y - transform.position.y;
+
+        Vector3 movePt = transform.position;
+
+        // move random distance along Y toward further bound
+        if (maxY > minY) {
+            movePt.y += Random.RandomRange(0.0f, 1.0f) * maxY;
+        } else {
+            movePt.y -= Random.RandomRange(0.0f, 1.0f) * minY;
+        }
+
+        movePt.z = transform.position.z;
+
+        return movePt;
+    }
+
+
 }

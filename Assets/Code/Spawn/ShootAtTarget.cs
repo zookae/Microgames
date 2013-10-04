@@ -18,18 +18,14 @@ public class ShootAtTarget : Spawn {
     /// </summary>
     public GameObject ShootAtTar() {
         Debug.Log("called ShootAtTar");
-        GameObject bullet = SpawnTriggerable();
-        bullet.AddComponent<MoveToTarget>();
         if (moveTarget != null) {
+            GameObject bullet = SpawnTriggerable();
+            bullet.AddComponent<MoveToTarget>();
             bullet.GetComponent<MoveToTarget>().movementTarget = moveTarget;
-        } else {
-            // default to silly behavior of not moving
-            bullet.GetComponent<MoveToTarget>().movementTarget = transform;
+            bullet.GetComponent<MoveToTarget>().moveRate = moveSpeed;
+            return bullet;
         }
-
-        bullet.GetComponent<MoveToTarget>().moveRate = moveSpeed;
-
-        return bullet;
+        return null; // no target so no bullet for you!
     }
 
     /// <summary>
@@ -39,13 +35,15 @@ public class ShootAtTarget : Spawn {
     /// <returns></returns>
     public GameObject ShootAtTar(GameObject moveBounds, float lifespan) {
         GameObject newObj = ShootAtTar();
-        if (moveBounds != null) {
-            newObj.AddComponent<CleanupBound>();
-            newObj.GetComponent<CleanupBound>().boundingObject = moveBounds;
-        }
-        if (lifespan > 0) {
-            newObj.AddComponent<DestroyTime>();
-            newObj.GetComponent<DestroyTime>().lifetimer = lifespan;
+        if (newObj != null) { // test for whether there was a target
+            if (moveBounds != null) {
+                newObj.AddComponent<CleanupBound>();
+                newObj.GetComponent<CleanupBound>().boundingObject = moveBounds;
+            }
+            if (lifespan > 0) {
+                newObj.AddComponent<DestroyTime>();
+                newObj.GetComponent<DestroyTime>().lifetimer = lifespan;
+            }
         }
         
         return newObj;

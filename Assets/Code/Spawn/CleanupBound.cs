@@ -15,12 +15,19 @@ public class CleanupBound : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        // test if outside boundary -> destroy if so
         if (!IsInsideBoundary(transform, boundingObject)) {
             Debug.Log(transform.name + " is outside the bounding " + boundingObject.name);
             Destroy(gameObject);
         }
 	}
 
+    /// <summary>
+    /// Test whether a transform is within the bounds of another object along X-Y projection
+    /// </summary>
+    /// <param name="transform">Transform to test for being in bounds</param>
+    /// <param name="boundingObject">Bounds to use</param>
+    /// <returns></returns>
     public static bool IsInsideBoundary(Transform transform, GameObject boundingObject) {
         Bounds boundary = boundingObject.transform.collider.bounds; // cache to save some computation
         Vector3 transsize = transform.collider.bounds.size; // cache to save some computation
