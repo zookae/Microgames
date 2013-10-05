@@ -8,13 +8,12 @@ public class ShootInDirection : Shoot {
     /// </summary>
     public MoveDirection moveDir;
 
-
     public override GameObject Fire() {
         Debug.Log("called Fire from ShootInDirection");
         GameObject bullet = SpawnTriggerable();
         bullet.AddComponent<MoveInDirection>();
         bullet.GetComponent<MoveInDirection>().dir = moveDir;
-        bullet.GetComponent<MoveInDirection>().moveRate = moveSpeed;
+        bullet.GetComponent<MoveInDirection>().moveRate = bulletSpeed;
 
         return bullet;
     }
@@ -27,7 +26,7 @@ public class ShootInDirection : Shoot {
         GameObject bullet = SpawnTriggerable();
         bullet.AddComponent<MoveInDirection>();
         bullet.GetComponent<MoveInDirection>().dir = moveDir;
-        bullet.GetComponent<MoveInDirection>().moveRate = moveSpeed;
+        bullet.GetComponent<MoveInDirection>().moveRate = bulletSpeed;
 
         return bullet;
     }

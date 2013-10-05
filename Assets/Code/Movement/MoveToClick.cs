@@ -91,7 +91,6 @@ public class MoveToClick : MoveControl {
         float hitdistance = 0.0f;
 
         if (playerPlane.Raycast(ray, out hitdistance)) {
-            Vector3 targetPoint = ray.GetPoint(hitdistance);
             moveTarget = ray.GetPoint(hitdistance);
             Quaternion targetRotation = Quaternion.LookRotation(moveTarget - transform.position);
             transform.rotation = targetRotation;

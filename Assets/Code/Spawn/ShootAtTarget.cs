@@ -1,17 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ShootAtTarget : Spawn {
-
-    /// <summary>
-    /// Speed for the shot object to move
-    /// </summary>
-    public float moveSpeed;
+public class ShootAtTarget : Shoot {
 
     /// <summary>
     /// Object to fire toward
     /// </summary>
     public Transform moveTarget;
+
+    public override GameObject Fire() {
+        Debug.Log("called Fire from ShootAtTarget");
+        if (moveTarget != null) {
+            GameObject bullet = SpawnTriggerable();
+            bullet.AddComponent<MoveToTarget>();
+            bullet.GetComponent<MoveToTarget>().movementTarget = moveTarget;
+            bullet.GetComponent<MoveToTarget>().moveRate = bulletSpeed;
+            return bullet;
+        }
+        return null; // no target so no bullet for you!
+    }
 
     /// <summary>
     /// Create a bullet and set it to move in a given direction
@@ -22,7 +29,7 @@ public class ShootAtTarget : Spawn {
             GameObject bullet = SpawnTriggerable();
             bullet.AddComponent<MoveToTarget>();
             bullet.GetComponent<MoveToTarget>().movementTarget = moveTarget;
-            bullet.GetComponent<MoveToTarget>().moveRate = moveSpeed;
+            bullet.GetComponent<MoveToTarget>().moveRate = bulletSpeed;
             return bullet;
         }
         return null; // no target so no bullet for you!

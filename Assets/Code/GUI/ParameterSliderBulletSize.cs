@@ -13,14 +13,14 @@ public class ParameterSliderBulletSize : ParameterSlider {
     void Awake() {
         newValue = (paramMax - paramMin) / 2;
 
-        GameObject[] objs = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject[] objs = GameObject.FindGameObjectsWithTag(entity);
         foreach (GameObject o in objs) {
             paramArray.Add(o.GetComponent<Shoot>());
         }
     }
 
     void OnGUI() {
-        newValue = LabelSlider(new Rect(25, 85, 100, 30), newValue, 15);
+        newValue = LabelSlider(new Rect(xPos, yPos, xSize, ySize), newValue, fontSize);
 
         foreach (Shoot p in paramArray) {
             p.spawn.transform.localScale = new Vector3(newValue, newValue);

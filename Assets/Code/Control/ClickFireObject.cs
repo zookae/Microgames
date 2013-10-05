@@ -42,6 +42,6 @@ public class ClickFireObject : ShootAtTarget {
         // look up and parse each attribute needed for script
         cref.spawn = GameObject.Find(root.SelectSingleNode("spawn").InnerText);
         cref.fireTarget = GameObject.Find(root.SelectSingleNode("fireTarget").InnerText);
-        cref.moveSpeed = float.Parse(root.SelectSingleNode("moveSpeed").InnerText);
+        cref.bulletSpeed = float.Parse(root.SelectSingleNode("moveSpeed").InnerText);
     }
 }

@@ -10,6 +10,6 @@ public class ParameterSliderDrag : ParameterSlider {
     }
 
     void OnGUI() {
-        param.drag = LabelSlider(new Rect(25, 155, 100, 30), param.drag, 15);
+        param.drag = LabelSlider(new Rect(xPos, yPos, xSize, ySize), param.drag, fontSize);
     }
 }

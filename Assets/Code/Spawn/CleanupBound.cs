@@ -22,6 +22,10 @@ public class CleanupBound : MonoBehaviour {
         }
 	}
 
+    void OnDestroy() {
+
+    }
+
     /// <summary>
     /// Test whether a transform is within the bounds of another object along X-Y projection
     /// </summary>

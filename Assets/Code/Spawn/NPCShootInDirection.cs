@@ -3,23 +3,9 @@ using System.Collections;
 
 public class NPCShootInDirection : ShootInDirection {
 
-    /// <summary>
-    /// Seconds between NPC shots
-    /// </summary>
-    public float frequency;
-
-    /// <summary>
-    /// [optional] Boundary outside of which bullet will be destroyed
-    /// </summary>
-    public GameObject bulletBounds;
-
-    /// <summary>
-    /// [optional] Time after which bullet will be destroyed
-    /// </summary>
-    public float bulletLife;
-
     private float timeDelta;
 
+    // TODO: randomized firing rate
     private Random rng = new Random();
 	
 	// Update is called once per frame
@@ -29,11 +15,17 @@ public class NPCShootInDirection : ShootInDirection {
         if (timeDelta > frequency) {
 
             // fire bullet
+            if (bulletBounds != null && bulletLife > 0) {
+                ShootInDir(bulletBounds, bulletLife);
+            }
             if (bulletBounds != null) {
                 ShootInDir(bulletBounds);
+            } else if (bulletLife > 0) {
+                ShootInDir(bulletLife);
             } else {
                 ShootInDir();
             }
+
             timeDelta = 0; // reset time since fired
         }
 	}

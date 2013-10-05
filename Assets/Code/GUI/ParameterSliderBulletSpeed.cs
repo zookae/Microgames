@@ -20,10 +20,10 @@ public class ParameterSliderBulletSpeed : ParameterSlider {
     }
 
     void OnGUI() {
-        newValue = LabelSlider(new Rect(25, 25, 100, 30), newValue, 15);
+        newValue = LabelSlider(new Rect(xPos, yPos, xSize, ySize), newValue, fontSize);
 
         foreach (Shoot p in paramArray) {
-            p.moveSpeed = newValue;
+            p.bulletSpeed = newValue;
         }
     }
 }

@@ -14,7 +14,7 @@ public class DownloadModel : MonoBehaviour {
         IEnumerator gs = GoogleSketchUp.aSyncSearchForModel(term, dlPath, defaultDlPath);
         while (gs.MoveNext()) {
             Debug.Log("got an item");
-            object tmp = gs.Current;
+            //object tmp = gs.Current;
             GoogleSketchUp.unzip(dlPath + "/" + term + ".zip", dlPath);
         }
 	}

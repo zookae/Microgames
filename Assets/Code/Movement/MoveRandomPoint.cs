@@ -65,9 +65,9 @@ public class MoveRandomPoint : MoveToPoint {
 
         // move random distance along X toward further bound
         if (maxX > minX) {
-            movePt.x += Random.RandomRange(0.0f, 1.0f) * maxX;
+            movePt.x += Random.Range(0.0f, 1.0f) * maxX;
         } else {
-            movePt.x -= Random.RandomRange(0.0f, 1.0f) * minX;
+            movePt.x -= Random.Range(0.0f, 1.0f) * minX;
         }
 
         //movePt.x = minPt.x + Random.Range(0.0f, 1.0f) * maxPt.x;
@@ -94,9 +94,9 @@ public class MoveRandomPoint : MoveToPoint {
 
         // move random distance along Y toward further bound
         if (maxY > minY) {
-            movePt.y += Random.RandomRange(0.0f, 1.0f) * maxY;
+            movePt.y += Random.Range(0.0f, 1.0f) * maxY;
         } else {
-            movePt.y -= Random.RandomRange(0.0f, 1.0f) * minY;
+            movePt.y -= Random.Range(0.0f, 1.0f) * minY;
         }
 
         movePt.z = transform.position.z;

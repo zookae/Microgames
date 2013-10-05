@@ -3,6 +3,13 @@ using System.Collections;
 
 public class ParameterSlider : MonoBehaviour {
 
+    public float xPos;
+    public float yPos;
+    public float xSize;
+    public float ySize;
+
+    public int fontSize;
+
     public float paramMin;
     public float paramMax;
     public string paramName;

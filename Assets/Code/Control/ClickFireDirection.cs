@@ -5,11 +5,6 @@ using System;
 
 public class ClickFireDirection : ShootInDirection {
 
-    /// <summary>
-    /// [optional] Boundary to destroy projectile if it passes.
-    /// </summary>
-    public GameObject bulletBounds;
-
     void Update() {
         if (Input.GetMouseButtonDown(0)) {
             if (bulletBounds != null) {
@@ -41,6 +36,6 @@ public class ClickFireDirection : ShootInDirection {
         // look up and parse each attribute needed for script
         cref.spawn = GameObject.Find(root.SelectSingleNode("spawn").InnerText);
         cref.moveDir = (MoveDirection)Enum.Parse(typeof(MoveDirection), root.SelectSingleNode("moveDirection").InnerText);
-        cref.moveSpeed = float.Parse(root.SelectSingleNode("moveSpeed").InnerText);
+        cref.bulletSpeed = float.Parse(root.SelectSingleNode("moveSpeed").InnerText);
     }
 }

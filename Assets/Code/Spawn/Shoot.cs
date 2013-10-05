@@ -6,7 +6,22 @@ public abstract class Shoot : Spawn {
     /// <summary>
     /// Speed for shot object to move
     /// </summary>
-    public float moveSpeed;
+    public float bulletSpeed;
+
+    /// <summary>
+    /// Seconds cooldown between shots
+    /// </summary>
+    public float frequency;
+
+    /// <summary>
+    /// [optional] Boundary outside of which bullet will be destroyed
+    /// </summary>
+    public GameObject bulletBounds;
+
+    /// <summary>
+    /// [optional] Time after which bullet will be destroyed
+    /// </summary>
+    public float bulletLife;
 
     public abstract GameObject Fire();
 

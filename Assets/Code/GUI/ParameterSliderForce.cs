@@ -10,6 +10,6 @@ public class ParameterSliderForce : ParameterSlider {
     }
 
     void OnGUI() {
-        param.force = LabelSlider(new Rect(25, 55, 100, 30), param.force, 15);
+        param.force = LabelSlider(new Rect(xPos, yPos, xSize, ySize), param.force, fontSize);
     }
 }

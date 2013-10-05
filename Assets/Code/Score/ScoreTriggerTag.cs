@@ -7,36 +7,21 @@ public class ScoreTriggerTag : MonoBehaviour {
     /// <summary>
     /// List of tags that are "good" / give score
     /// </summary>
-    public List<string> goodTag;
-
-    /// <summary>
-    /// List of tags that are "bad" / lose score
-    /// </summary>
-    public List<string> badTag;
+    public List<string> tagSet;
 
     /// <summary>
     /// Points gained for colliding with good tag
     /// </summary>
-    public float gainPoints;
+    public float pointChange;
 
-    /// <summary>
-    /// Points lost for colliding with bad tag
-    /// </summary>
-    public float losePoints;
-
+    
     void OnTriggerEnter(Collider col) {
 
-        // NOTE : 
         if (GameState.Singleton.CurrentState == State.Running) {
             Debug.Log("score : entered trigger");
-            foreach (string gt in goodTag) {
-                if (col.CompareTag(gt)) {
-                    GameState.Singleton.score += gainPoints;
-                }
-            }
-            foreach (string bt in badTag) {
-                if (col.CompareTag(bt)) {
-                    GameState.Singleton.score -= losePoints;
+            foreach (string t in tagSet) {
+                if (col.CompareTag(t)) {
+                    GameState.Singleton.score += pointChange;
                 }
             }
         }
