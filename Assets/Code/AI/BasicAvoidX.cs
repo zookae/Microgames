@@ -1,10 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-/// <summary>
-/// AI to have agent avoid colliding with objects according to their tag
-/// </summary>
-public class BasicAvoid : MonoBehaviour {
+public class BasicAvoidX : MonoBehaviour {
 
     /// <summary>
     /// Tag of objects for NPC to avoid
@@ -20,20 +17,19 @@ public class BasicAvoid : MonoBehaviour {
     /// Minimum distance to consider taking avoid action
     /// </summary>
     public float minActDistance;
-    
+
     /// <summary>
     /// Speed for agent to use for avoiding
     /// </summary>
     public float moveSpeed;
-	
+
     private float senseDelta;
 
     private GameObject[] avoidObject;
 
-    private Vector3 avoidMovement;
+    private float avoidMagnitude = 0.0f;
 
-    private int jitterDirection = 0;
-    
+	
 	// Update is called once per frame
 	void Update () {
         // sensing
@@ -43,41 +39,43 @@ public class BasicAvoid : MonoBehaviour {
             senseDelta = 0;
         }
 
-        avoidMovement = transform.position; // vector for avoiding movement
-        int numAvoid = 0;
+        // track number of objects on either side to avoid
+        int avoidPos = 0;
+        int avoidNeg = 0;
 
-        
         if (avoidObject != null && avoidObject.Length > 0) {
             // deciding
             foreach (GameObject go in avoidObject) {
                 if (go == null)
                     continue;
                 // TODO :  predict position + avoid that; problem is non-physics-based movement
-                float goDist = Vector3.Distance(transform.position, go.transform.position);
-                if (goDist < minActDistance) {
+                float goDist = transform.position.x - go.transform.position.x;
+                if (Mathf.Abs(goDist) < minActDistance) {
+                    if (goDist < 0)
+                        avoidNeg++;
+                    if (goDist > 0)
+                        avoidPos++;
+
                     // move in opposite direction of object
-                    avoidMovement += go.transform.position;
-                    numAvoid++;
+                    avoidMagnitude += Mathf.Abs(goDist);
                 }
             }
 
+            // (1) pick direction to move to avoid
+            // (2) move
+            // (3) reset direction picked
+
             // acting
-            if (avoidMovement != transform.position) {
+            if (avoidMagnitude > 0.0f) {
                 // average over applied avoiding movements
-                //avoidMovement = avoidMovement / numAvoid;
-                avoidMovement.z = 0.0f;
+                if (avoidNeg > avoidPos)
+                    avoidMagnitude *= -1; // flip direction if more on other side
 
-                // jitter on X if avoiding object is aligned
-                if (Mathf.Abs(avoidMovement.x - transform.position.x) < 0.5f) {
-                    Debug.Log("[BasicAvoid] x needs to jitter " + Random.Range(-1,2));
-                    //avoidMovement.x += 5.0f * Random.Range(-1,2);
-                }
-
-                transform.position = Vector3.MoveTowards(transform.position, avoidMovement,
+                Vector3 avoidVec = new Vector3(avoidMagnitude, 0, 0);
+                transform.position = Vector3.MoveTowards(transform.position, 
+                    transform.position + avoidVec,
                     moveSpeed * Time.deltaTime);
             }
         }
-
-        
 	}
 }

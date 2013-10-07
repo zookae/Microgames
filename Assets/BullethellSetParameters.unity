@@ -630,7 +630,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawn: {fileID: 729091082}
-  assignTag: 
+  assignTag: Blocker
   haveGravity: 0
   bulletSpeed: 0
   frequency: .5
@@ -653,6 +653,8 @@ GameObject:
   - 114: {fileID: 1131612265}
   - 114: {fileID: 1131612263}
   - 114: {fileID: 1131612264}
+  - 114: {fileID: 1131612267}
+  - 114: {fileID: 1131612268}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -784,6 +786,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boundingObject: {fileID: 1698286401}
+--- !u!114 &1131612267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1131612256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55129442e0a0ffb4186b9e5503e63534, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetTag: Enemy
+  senseFrequency: .5
+  minActDistance: 1
+  minFireSpacing: .300000012
+  moveSpeed: 10
+  targetObjects: []
+  actDelta: 0
+  senseDelta: 0
+  spawnee: {fileID: 740310512}
+  curTarget: {fileID: 0}
+--- !u!114 &1131612268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1131612256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9871126029b1d7e48a688d3c36c43016, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  avoidTag: Blocker
+  senseFrequency: 1
+  minActDistance: 1
+  moveSpeed: 5
 --- !u!1001 &1147654517
 Prefab:
   m_ObjectHideFlags: 0
@@ -1120,9 +1158,8 @@ GameObject:
   - 114: {fileID: 1784311598}
   - 114: {fileID: 1784311600}
   - 114: {fileID: 1784311606}
-  - 114: {fileID: 1784311607}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Boss
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1140,12 +1177,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawn: {fileID: 729091082}
-  assignTag: 
+  assignTag: Blocker
   haveGravity: 0
-  bulletSpeed: 0
+  bulletSpeed: 3
   frequency: .5
   bulletBounds: {fileID: 1698286401}
-  bulletLife: 2
+  bulletLife: 1
   moveDir: 1
 --- !u!114 &1784311599
 MonoBehaviour:
@@ -1178,7 +1215,7 @@ MonoBehaviour:
   name: 
   resourcetype: 1
   value: 1
-  minValue: 0
+  minValue: -Infinity
   maxValue: Infinity
 --- !u!54 &1784311601
 Rigidbody:
@@ -1257,18 +1294,3 @@ MonoBehaviour:
   threshType: 1
   rtype: 1
   rthresh: 0
---- !u!114 &1784311607
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1784311597}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c2a60c381dfdf14884518afec1040d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  avoidTag: Blocker
-  senseFrequency: 1
-  minActDistance: 3
-  moveSpeed: 3

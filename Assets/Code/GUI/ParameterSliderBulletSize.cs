@@ -22,7 +22,10 @@ public class ParameterSliderBulletSize : ParameterSlider {
     void OnGUI() {
         newValue = LabelSlider(new Rect(xPos, yPos, xSize, ySize), newValue, fontSize);
 
+        //Debug.Log("[ParameterSlider] parameter array size: " + paramArray.Count);
         foreach (Shoot p in paramArray) {
+            if (p == null)
+                continue;
             p.spawn.transform.localScale = new Vector3(newValue, newValue);
         }
     }

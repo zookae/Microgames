@@ -23,6 +23,8 @@ public class ParameterSliderShootRate : ParameterSlider {
         newValue = LabelSlider(new Rect(xPos, yPos, xSize, ySize), newValue, fontSize);
 
         foreach (NPCShootInDirection p in paramArray) {
+            if (p == null)
+                continue;
             p.gameObject.GetComponent<NPCShootInDirection>().frequency = newValue;
         }
     }

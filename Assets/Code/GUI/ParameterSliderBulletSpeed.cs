@@ -23,6 +23,8 @@ public class ParameterSliderBulletSpeed : ParameterSlider {
         newValue = LabelSlider(new Rect(xPos, yPos, xSize, ySize), newValue, fontSize);
 
         foreach (Shoot p in paramArray) {
+            if (p == null)
+                continue;
             p.bulletSpeed = newValue;
         }
     }
