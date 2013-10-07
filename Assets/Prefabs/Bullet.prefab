@@ -12,6 +12,8 @@ GameObject:
   - 65: {fileID: 6500000}
   - 23: {fileID: 2300000}
   - 114: {fileID: 11400000}
+  - 114: {fileID: 11400002}
+  - 114: {fileID: 11400004}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -42,7 +44,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 982c5973a8519bb4c85c2755ce9d32de, type: 2}
+  - {fileID: 2100000, guid: 6c98bc71bb055fa4cb7c19c75d30eb59, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -79,6 +81,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyName: Enemy
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cab51c49031e23940ad4691b7414937a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tagSet:
+  - Enemy
+  pointChange: 10
+--- !u!114 &11400004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92d99b95e82247b479da394ab5a6edb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetTag: Enemy
+  rtype: 1
+  rchange: -1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
