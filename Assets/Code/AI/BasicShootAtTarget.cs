@@ -42,15 +42,21 @@ public class BasicShootAtTarget : MonoBehaviour {
 
     public Vector3 moveVec;
 
+
+    private GameObject background;
+
 	// Use this for initialization
 	void Start () {
         moveVec = transform.position;
+
+        background = GameObject.Find("Background");
 
         shootBehav = this.gameObject.AddComponent<ShootInDirection>();
         shootBehav.moveDir = MoveDirection.Up;
         shootBehav.bulletSpeed = 5.0f;
         shootBehav.spawn = spawnee;
         shootBehav.assignTag = "Bullet";
+        shootBehav.bulletBounds = background;
 	}
 	
 	// Update is called once per frame
@@ -92,7 +98,7 @@ public class BasicShootAtTarget : MonoBehaviour {
             float xDist = transform.position.x - curTarget.transform.position.x;
             
             if (Mathf.Abs(xDist) > minActDistance) {
-                Debug.Log("[BasicShootAtTarget] seeking: " + xDist);
+                //Debug.Log("[BasicShootAtTarget] seeking: " + xDist);
 
                 // seek to align
                 moveVec = transform.position;
@@ -100,7 +106,7 @@ public class BasicShootAtTarget : MonoBehaviour {
             }
             else {
                 // shoot in direction when aligned
-                this.shootBehav.ShootInDir();
+                this.shootBehav.ShootInDir(background);
             }
 
             actDelta = 0.0f;

@@ -64,11 +64,13 @@ public class BasicAvoidX : MonoBehaviour {
                 if (go == null)
                     continue;
                 // TODO :  predict position + avoid that; problem is non-physics-based movement
+
+                // compute min distance to collider bounds
                 float goDist1 = transform.collider.bounds.max.x - go.transform.position.x;
                 float goDist2 = transform.collider.bounds.min.x - go.transform.position.x;
                 float goDist = Mathf.Min(goDist1, goDist2);
 
-                Debug.Log("[BasicAvoidX] distance to object " + go.name + ": (" + goDist1 + "," + goDist2 + " -> " + goDist + ")");
+                //Debug.Log("[BasicAvoidX] distance to object " + go.name + ": (" + goDist1 + "," + goDist2 + " -> " + goDist + ")");
 
                 if (Mathf.Abs(goDist) < minActDistance) {
                     if (goDist < 0)
