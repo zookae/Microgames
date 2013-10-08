@@ -174,6 +174,7 @@ public class SpawnWave : Spawn {
                     newTarget.gameObject.GetComponent<NPCShootInDirection>().bulletSpeed = 5.0f;
                     newTarget.gameObject.GetComponent<NPCShootInDirection>().frequency = 1.5f;
                     newTarget.gameObject.GetComponent<NPCShootInDirection>().moveDir = MoveDirection.Down;
+                    newTarget.gameObject.GetComponent<NPCShootInDirection>().assignTag = "BulletBad";
                     break;
 
                 case ShootType.ShootInDirectionLeft:

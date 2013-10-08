@@ -32,8 +32,6 @@ public class BasicAvoid : MonoBehaviour {
 
     private Vector3 avoidMovement;
 
-    private int jitterDirection = 0;
-    
 	// Update is called once per frame
 	void Update () {
         // sensing

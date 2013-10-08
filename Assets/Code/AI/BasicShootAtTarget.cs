@@ -113,7 +113,7 @@ public class BasicShootAtTarget : MonoBehaviour {
         }
 
         // movement as result of decisions
-        if (moveVec != null) {
+        if (moveVec != transform.position) {
             transform.position = Vector3.MoveTowards(transform.position,
                 moveVec,
                 moveSpeed * Time.deltaTime);

@@ -12,7 +12,7 @@ public class Resource : MonoBehaviour {
     /// <summary>
     /// Name of the resource
     /// </summary>
-    public string name;
+    public string resourceName;
 
     /// <summary>
     /// Type of the resource

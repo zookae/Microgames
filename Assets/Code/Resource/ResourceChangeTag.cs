@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ResourceChangeTag : MonoBehaviour {
 
@@ -18,23 +19,33 @@ public class ResourceChangeTag : MonoBehaviour {
     /// </summary>
     public float rchange;
 
+    private List<Resource> resources;
+
+    void Start() {
+        resources = new List<Resource>();
+
+        // get all resources
+        Resource[] possResources = gameObject.GetComponents<Resource>();
+        foreach (Resource res in possResources) {
+            if (res.resourcetype == rtype) {
+                resources.Add(res);
+            }
+        }
+    }
+
     /// <summary>
     /// Destroy objects with a given tag
     /// </summary>
     /// <param name="col"></param>
     void OnTriggerEnter(Collider col) {
-        //Debug.Log("resource loss : entered trigger");
+        Debug.Log("resource loss : entered trigger");
 
         if (col.CompareTag(targetTag)) {
-            // get all resources
-            Resource[] resources = col.gameObject.GetComponents<Resource>();
-
+            
             // find those of given type
             foreach (Resource res in resources) {
                 // change if possible
-                if (res.resourcetype == rtype) {
-                    res.ChangeValue(res.value + rchange);
-                }
+                res.ChangeValue(res.value + rchange);
             }
         }
     }
