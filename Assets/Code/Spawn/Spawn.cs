@@ -24,7 +24,7 @@ public abstract class Spawn : MonoBehaviour {
     /// </summary>
     /// <returns></returns>
     public GameObject SpawnTriggerable() {
-        Debug.Log("called SpawnTriggerable");
+        //Debug.Log("[SpawnTriggerable]");
         // create the object
         GameObject newTarget = (GameObject)GameObject.Instantiate(spawn, transform.position, transform.rotation);
 

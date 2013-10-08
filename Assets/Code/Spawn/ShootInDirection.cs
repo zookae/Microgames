@@ -22,7 +22,7 @@ public class ShootInDirection : Shoot {
 	/// Create a bullet and set it to move in a given direction
 	/// </summary>
     public GameObject ShootInDir() {
-        Debug.Log("called ShootInDir");
+        //Debug.Log("called ShootInDir");
         GameObject bullet = SpawnTriggerable();
         bullet.AddComponent<MoveInDirection>();
         bullet.GetComponent<MoveInDirection>().dir = moveDir;

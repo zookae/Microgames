@@ -17,7 +17,7 @@ public class CleanupBound : MonoBehaviour {
 
         // test if outside boundary -> destroy if so
         if (!IsInsideBoundary(transform, boundingObject)) {
-            Debug.Log(transform.name + " is outside the bounding " + boundingObject.name);
+            //Debug.Log(transform.name + " is outside the bounding " + boundingObject.name);
             Destroy(gameObject);
         }
 	}

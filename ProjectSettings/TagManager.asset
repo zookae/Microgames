@@ -7,7 +7,8 @@ TagManager:
   - Blocker
   - Goal
   - Enemy
-  - 
+  - BulletBad
+  - Bullet
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX

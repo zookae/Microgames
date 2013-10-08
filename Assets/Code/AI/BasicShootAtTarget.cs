@@ -40,12 +40,17 @@ public class BasicShootAtTarget : MonoBehaviour {
     float targetDistance = Mathf.Infinity;
     float newTargetDistance = Mathf.Infinity;
 
+    public Vector3 moveVec;
+
 	// Use this for initialization
 	void Start () {
+        moveVec = transform.position;
+
         shootBehav = this.gameObject.AddComponent<ShootInDirection>();
         shootBehav.moveDir = MoveDirection.Up;
         shootBehav.bulletSpeed = 5.0f;
         shootBehav.spawn = spawnee;
+        shootBehav.assignTag = "Bullet";
 	}
 	
 	// Update is called once per frame
@@ -58,6 +63,8 @@ public class BasicShootAtTarget : MonoBehaviour {
 
         // sensing
         if (senseDelta > senseFrequency) {
+            targetDistance = Mathf.Infinity;
+            newTargetDistance = Mathf.Infinity;
 
             // pick nearest target
             targetObjects = GameObject.FindGameObjectsWithTag(targetTag);
@@ -76,7 +83,6 @@ public class BasicShootAtTarget : MonoBehaviour {
             senseDelta = 0.0f;
         }
 
-
         // acting
         if (actDelta > minFireSpacing) {
 
@@ -84,11 +90,13 @@ public class BasicShootAtTarget : MonoBehaviour {
             if (curTarget == null)
                 return;
             float xDist = transform.position.x - curTarget.transform.position.x;
+            
             if (Mathf.Abs(xDist) > minActDistance) {
+                Debug.Log("[BasicShootAtTarget] seeking: " + xDist);
+
                 // seek to align
-                transform.position = Vector3.MoveTowards(transform.position,
-                    transform.position - new Vector3(xDist, 0, 0),
-                    moveSpeed * Time.deltaTime);
+                moveVec = transform.position;
+                moveVec.x -= xDist;
             }
             else {
                 // shoot in direction when aligned
@@ -97,9 +105,15 @@ public class BasicShootAtTarget : MonoBehaviour {
 
             actDelta = 0.0f;
         }
-            
 
+        // movement as result of decisions
+        if (moveVec != null) {
+            transform.position = Vector3.MoveTowards(transform.position,
+                moveVec,
+                moveSpeed * Time.deltaTime);
+        }
         
 
 	}
 }
+

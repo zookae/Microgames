@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DestroyTarget : MonoBehaviour {
+public class DestroyTag : MonoBehaviour {
 
     public string destroyTag;
 

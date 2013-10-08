@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DestroyTargetBoth : MonoBehaviour {
+public class DestroyTagBoth : MonoBehaviour {
 
     /// <summary>
     /// Tag to trigger destruction
@@ -13,7 +13,7 @@ public class DestroyTargetBoth : MonoBehaviour {
     /// </summary>
     /// <param name="col"></param>
     void OnTriggerEnter(Collider col) {
-        Debug.Log("destroy : entered trigger");
+        //Debug.Log("destroy : entered trigger");
         if (col.CompareTag(destroyTag)) {
             Destroy(col.gameObject);
             Destroy(this.gameObject);
