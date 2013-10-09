@@ -39,7 +39,7 @@ public class LoginScript : MonoBehaviour {
         if (GUILayout.Button("Connect To Server")) {
             if (NetworkClient.Instance.ConnectToFirstAvailable()) {
                 DebugConsole.Log("I connected !");
-                //Application.LoadLevel(2);
+                Application.LoadLevel(2);
             }
         }
         if (GUILayout.Button("RPC - Spawn network box")) {

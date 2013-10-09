@@ -26,9 +26,9 @@ public class NetworkServer : MonoBehaviour {
 	public static ServerInfo MASTERSERVER;// = MASTERSERVER_DEFAULTS;
 	public static ServerInfo FACILITATOR;// = FACILITATOR_DEFAULTS;
 	
-	public static string SERVER_GAMETYPENAME = "EILab_networkingBase_v1";
-	public static string SERVER_GAMENAME = "EI lab base networking game.";
-	public static string SERVER_GAMECOMMENT = "Client server networking skeleton code";
+	public static string SERVER_GAMETYPENAME = "EILab_bulletertheller";
+	public static string SERVER_GAMENAME = "EI lab bullethell version 2.";
+	public static string SERVER_GAMECOMMENT = "Bullethell with parameter tuning";
 	
 	private static int SERVER_MAX_CONNECTIONS = 32;
 	private static int SERVER_LISTEN_PORT = 50466;

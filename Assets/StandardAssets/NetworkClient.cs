@@ -5,6 +5,7 @@ using System.Collections;
 //http://answers.unity3d.com/questions/145330/network-setup.html
 public class NetworkClient : MonoBehaviour {
 	
+    private const bool AUTO_LOAD_ON_CONNECT = true;
 	//public Transform cubePrefab;
 	public GameObject target;
 	
@@ -66,7 +67,52 @@ public class NetworkClient : MonoBehaviour {
 		  return _instance;
 		}
 	}
-	
+
+    void Awake() {
+        // check if I'm client
+        string[] args = System.Environment.GetCommandLineArgs();
+        if (System.Array.IndexOf(args, "server") < 0) {
+            //i am the client
+            SetupServerNames();
+            MasterServer.ClearHostList();
+            MasterServer.RequestHostList(NetworkServer.SERVER_GAMETYPENAME);
+            DebugConsole.IsOpen = true;
+        }
+    }
+
+    void OnMasterServerEvent(MasterServerEvent mse) {
+        switch (mse) {
+            case MasterServerEvent.HostListReceived:
+                DebugConsole.Log("NetworkClient.OnMasterServerEvent( mse ): HostListReceived");
+                if (!Network.isServer) {
+                    this.ConnectToFirstAvailable();
+                }
+                break;
+            default:
+                DebugConsole.Log("NetworkClient.OnMasterServerEvent()... : " + mse);
+                break;
+        }
+    }
+
+    private void SetupServerNames() {
+        //set up masterserver and facilitator options; if null, then the defaults are used
+        if (NetworkServer.MASTERSERVER_HOSTNAME != null) {
+            NetworkServer.MASTERSERVER = NetworkServer.ServerInfo.FromHostName(NetworkServer.MASTERSERVER_HOSTNAME, NetworkServer.MASTERSERVER_PORT);
+            MasterServer.port = NetworkServer.MASTERSERVER.serverPort;
+            MasterServer.ipAddress = NetworkServer.MASTERSERVER.serverIP;
+        }
+        else//use Unity defaults
+            NetworkServer.MASTERSERVER = new NetworkServer.ServerInfo(MasterServer.ipAddress, MasterServer.port);
+
+        if (NetworkServer.FACILITATOR_HOSTNAME != null) {
+            NetworkServer.FACILITATOR = NetworkServer.ServerInfo.FromHostName(NetworkServer.FACILITATOR_HOSTNAME, NetworkServer.FACILITATOR_PORT);
+            Network.natFacilitatorIP = NetworkServer.FACILITATOR.serverIP;
+            Network.natFacilitatorPort = NetworkServer.FACILITATOR.serverPort;
+        }
+        else//use Unity defaults
+            NetworkServer.FACILITATOR = new NetworkServer.ServerInfo(Network.natFacilitatorIP, Network.natFacilitatorPort);
+    }
+
 	//both clients and the server start on the scene "sceneNetworking"; once this object is started, 
 	//clients progress to the first real game scene and the server remains on the simple sceneNetworking
 	void Start()
@@ -80,30 +126,14 @@ public class NetworkClient : MonoBehaviour {
 			//try to get the web parameters
 			if( Application.isWebPlayer )
 	        	Application.ExternalEval("var unity = unityObject.getObjectById(\"unityPlayer\");unity.SendMessage(\"" + name + "\", \"ReceiveURL\", document.URL);");
+
+            //SetupServerNames();
 			
-			//set up masterserver and facilitator options; if null, then the defaults are used
-			if( NetworkServer.MASTERSERVER_HOSTNAME != null )
-			{
-				NetworkServer.MASTERSERVER = NetworkServer.ServerInfo.FromHostName( NetworkServer.MASTERSERVER_HOSTNAME, NetworkServer.MASTERSERVER_PORT );
-				MasterServer.port = NetworkServer.MASTERSERVER.serverPort;
-				MasterServer.ipAddress = NetworkServer.MASTERSERVER.serverIP;
-			}
-			else//use Unity defaults
-				NetworkServer.MASTERSERVER = new NetworkServer.ServerInfo( MasterServer.ipAddress, MasterServer.port );
-			
-			if( NetworkServer.FACILITATOR_HOSTNAME != null )
-			{
-				NetworkServer.FACILITATOR = NetworkServer.ServerInfo.FromHostName( NetworkServer.FACILITATOR_HOSTNAME, NetworkServer.FACILITATOR_PORT );
-				Network.natFacilitatorIP = NetworkServer.FACILITATOR.serverIP;
-				Network.natFacilitatorPort = NetworkServer.FACILITATOR.serverPort;
-			}
-			else//use Unity defaults
-				NetworkServer.FACILITATOR = new NetworkServer.ServerInfo( Network.natFacilitatorIP, Network.natFacilitatorPort );
-			
-		    MasterServer.RequestHostList( NetworkServer.SERVER_GAMETYPENAME );
+		    //MasterServer.RequestHostList( NetworkServer.SERVER_GAMETYPENAME );
 
             //don't load the next screen unless we're the client
-            Application.LoadLevel(1);
+            //Application.LoadLevel(1);
+            
             DebugConsole.Log("NetworkClient.Start() ... am client");
 
 		    //DebugConsole.IsOpen = true;
@@ -203,6 +233,10 @@ public class NetworkClient : MonoBehaviour {
 			{
 				DebugConsole.Log("network: " + Network.peerType);
 				successful = true;
+                if (AUTO_LOAD_ON_CONNECT) {
+                    Application.LoadLevel(1);
+                    //DebugConsole.IsOpen = false;
+                }
 			}
 			DebugConsole.Log("Done attempting to connect");
 			

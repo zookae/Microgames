@@ -115,7 +115,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ead4300cc06d8fa48af7c0ffc7f29bc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EditorClassIdentifier: 
 --- !u!114 &228740518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,7 +125,6 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b8a0b6ebf114c4b489cdca74498f5ad9, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
   target: {fileID: 228740515}
   fullUrl: 
@@ -152,7 +150,6 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b14989358c4a69459eb2ee44d506028, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
 --- !u!1 &1032755784
 GameObject:
