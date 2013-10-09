@@ -11,6 +11,14 @@ public enum State {
     Lose
 }
 
+/// <summary>
+/// SUPER TEMPORARY (replace with Scoring module and maybe delegates)
+/// </summary>
+public enum ScoreMode {
+    Collaborative,
+    Competitive,
+    Both
+}
 
 public class GameState : MonoBehaviour {
 
@@ -29,6 +37,11 @@ public class GameState : MonoBehaviour {
     /// Alternative states for game to be in
     /// </summary>
     public State CurrentState = State.Running;
+
+    /// <summary>
+    /// Scoring mode. Used to determine the scoring function.
+    /// </summary>
+    public ScoreMode CurrentScoreMode = ScoreMode.Competitive;
 
     /// <summary>
     /// Global score

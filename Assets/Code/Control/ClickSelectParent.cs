@@ -6,7 +6,7 @@ public class ClickSelectParent : MonoBehaviour {
     /// <summary>
     /// Object clicked on
     /// </summary>
-    private Transform clickObj;
+    // private Transform clickObj;
 
     /// <summary>
     /// Color to change the tagged object on clicking
@@ -31,11 +31,20 @@ public class ClickSelectParent : MonoBehaviour {
 	void Update () {
         if (GameState.Singleton.CurrentState == State.Running) { // make sure game isn't over
             if (Input.GetMouseButtonDown(0)) {
-                ObjectClicked();
+                Transform clickObj = ObjectClicked();
                 //Debug.Log("clicked on : " + clickObj.name);
                 //Debug.Log("parent object: " + clickObj.transform.parent.gameObject.name);
 
+                // XXX (kasiu): Will obviously break for any other objects in the scene with parents.
+                if (clickObj == null || clickObj.parent == null) {
+                    Debug.Log("Invalid object.");
+                    return;
+                }
+
                 // triples of: (time, object, tag)
+
+                // TODO (kasiu): Case on the ScoreMode and deal with this computation appropriately.
+                // Ideally separate scoring into its own module. Raw casing feels gross.
 
                 // iterate over all objects with interaction history and check for the clicked object parent
                 bool wasBlocked = false;
@@ -83,14 +92,15 @@ public class ClickSelectParent : MonoBehaviour {
         }
 	}
 
-    void ObjectClicked() {
+    public Transform ObjectClicked() {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         RaycastHit hit;
         bool hadHit = Physics.Raycast(ray, out hit);
         if (hadHit) {
-            clickObj = hit.collider.transform;
+            return hit.collider.transform;
         }
+        return null;
     }
 
     public void StoreTagging(string obj, string tag) {
