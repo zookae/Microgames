@@ -905,11 +905,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1437691636}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52d49d3a57e3d80419f334d4459caf39, type: 3}
+  m_Script: {fileID: 11500000, guid: 1c1d748922759ca4b9cf2ce82b2ff056, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   baseScore: 10
-  agreementBonus: 10
+  blockPenalty: 10
 --- !u!1 &1529532981
 GameObject:
   m_ObjectHideFlags: 0
