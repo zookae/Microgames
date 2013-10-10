@@ -6,12 +6,12 @@ public class ScoreTriggerTagAgreement : MonoBehaviour {
     /// <summary>
     /// The base score for labeling (and presumably matching).
     /// </summary>
-    public double baseScore = 10;
+    public float baseScore = 10;
 
     /// <summary>
     /// The bonus score for agreeing
     /// </summary>
-    public double agreementBonus = 10;
+    public float agreementBonus = 10;
 
     // TODO (kasiu): Think about whether it's necessary to keep all of this state around.
     //               It's not, but it saves iterating over the game state stuff on every update.
@@ -49,7 +49,7 @@ public class ScoreTriggerTagAgreement : MonoBehaviour {
                 if (click.Second == transform.name) {
                     wasTagged = true;
                     tag = click.Third;
-                    GameState.Singleton.score += 10;
+                    GameState.Singleton.score += baseScore;
                     Debug.Log("OH GOODNESS! OUR SCORE CHANGED!");
                     break;
                 }
@@ -60,7 +60,7 @@ public class ScoreTriggerTagAgreement : MonoBehaviour {
             foreach (Triple<double, string, string> click in GameState.Singleton.partnerTrace) {
                 if (click.Second == transform.name && click.Third == tag) {
                     wasAgreedOn = true;
-                    GameState.Singleton.score += 10;
+                    GameState.Singleton.score += agreementBonus;
                     Debug.Log("BONUS CHEESECAKE! OUR PARTNER AGREED!");
                     break;
                 }
