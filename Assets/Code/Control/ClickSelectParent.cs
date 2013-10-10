@@ -23,14 +23,20 @@ public class ClickSelectParent : MonoBehaviour {
     /// </summary>
     public float scoreLabeled = 10;
 
+    /// <summary>
+    /// Has this object been clicked on? If so, we ignore.
+    /// </summary>
+    public bool clicked { get; private set; }
+
     void Start() {
+        clicked = false;
         GameState.Singleton.partnerTrace.Add(new Triple<double, string, string>(0.0f, "Object-Cabbage", "Tag1"));
     }
     
 	// Update is called once per frame
 	void Update () {
         if (GameState.Singleton.CurrentState == State.Running) { // make sure game isn't over
-            if (Input.GetMouseButtonDown(0)) {
+            if (Input.GetMouseButtonDown(0) && !clicked) {
                 Transform clickObj = ObjectClicked();
                 //Debug.Log("clicked on : " + clickObj.name);
                 //Debug.Log("parent object: " + clickObj.transform.parent.gameObject.name);
@@ -41,53 +47,57 @@ public class ClickSelectParent : MonoBehaviour {
                     return;
                 }
 
+                Triple<double, string, string> tagging =
+                    new Triple<double, string, string>(GameState.Singleton.TimeUsed,
+                        clickObj.parent.name, clickObj.name);
+                GameState.Singleton.clickTrace.Add(tagging);
+                ChangeColor(clickObj.transform.parent.gameObject, clickObj.renderer.material.color);
+                // TODO (kasiu): Eventually store tagging in the DB
+                clicked = true;
+
                 // triples of: (time, object, tag)
-
-                // TODO (kasiu): Case on the ScoreMode and deal with this computation appropriately.
-                // Ideally separate scoring into its own module. Raw casing feels gross.
-
                 // iterate over all objects with interaction history and check for the clicked object parent
-                bool wasBlocked = false;
-                foreach (Triple<double, string, string> click in GameState.Singleton.partnerTrace) {
-                    if (click.Second == clickObj.parent.name && 
-                        click.First < GameState.Singleton.TimeUsed &&
-                        GameState.Singleton.blockTags.Contains(click.Third) &&
-                        GameState.Singleton.labelTags.Contains(clickObj.name)) {
-                        wasBlocked = true;
-                        break;
-                    }
-                }
+                //bool wasBlocked = false;
+                //foreach (Triple<double, string, string> click in GameState.Singleton.partnerTrace) {
+                //    if (click.Second == clickObj.parent.name && 
+                //        click.First < GameState.Singleton.TimeUsed &&
+                //        GameState.Singleton.blockTags.Contains(click.Third) &&
+                //        GameState.Singleton.labelTags.Contains(clickObj.name)) {
+                //        wasBlocked = true;
+                //        break;
+                //    }
+                //}
 
-                // iterate over all objects with interaction history and check for the clicked object parent
-                bool hasKey = false;
-                foreach (Triple<double, string, string> click in GameState.Singleton.clickTrace) {
-                    if (click.Second == clickObj.parent.name) {
-                        hasKey = true;
-                        break;
-                    }
-                }
+                //// iterate over all objects with interaction history and check for the clicked object parent
+                //bool hasKey = false;
+                //foreach (Triple<double, string, string> click in GameState.Singleton.clickTrace) {
+                //    if (click.Second == clickObj.parent.name) {
+                //        hasKey = true;
+                //        break;
+                //    }
+                //}
 
-                // if not yet clicked, change the parent object color and register the click
-                if (!hasKey) {
-                    ChangeColor(clickObj.transform.parent.gameObject, clickObj.renderer.material.color);
+                //// if not yet clicked, change the parent object color and register the click
+                //if (!hasKey) {
+                //    ChangeColor(clickObj.transform.parent.gameObject, clickObj.renderer.material.color);
 
-                    Triple<double, string, string> tagging =
-                        new Triple<double, string, string>(GameState.Singleton.TimeUsed,
-                            clickObj.parent.name, clickObj.name);
-                    GameState.Singleton.clickTrace.Add(tagging);
-                    // TODO: convert me to time since game start
-                    Debug.Log("click trace: " + GameState.Singleton.TimeUsed + "," +
-                            clickObj.parent.name + "," + clickObj.name);
+                //    Triple<double, string, string> tagging =
+                //        new Triple<double, string, string>(GameState.Singleton.TimeUsed,
+                //            clickObj.parent.name, clickObj.name);
+                //    GameState.Singleton.clickTrace.Add(tagging);
+                //    // TODO: convert me to time since game start
+                //    Debug.Log("click trace: " + GameState.Singleton.TimeUsed + "," +
+                //            clickObj.parent.name + "," + clickObj.name);
 
 
-                    if (wasBlocked) {
-                        Debug.Log("docking score: " + scoreBlocked);
-                        GameState.Singleton.score -= scoreBlocked;
-                    } else {
-                        Debug.Log("adding score: " + scoreLabeled);
-                        GameState.Singleton.score += scoreLabeled;
-                    }
-                }
+                //    if (wasBlocked) {
+                //        Debug.Log("docking score: " + scoreBlocked);
+                //        GameState.Singleton.score -= scoreBlocked;
+                //    } else {
+                //        Debug.Log("adding score: " + scoreLabeled);
+                //        GameState.Singleton.score += scoreLabeled;
+                //    }
+                //}
             }
         }
 	}

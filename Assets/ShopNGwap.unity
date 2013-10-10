@@ -581,19 +581,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 733b821b55d104341ab1cc9c43f3a4f1, type: 2}
       propertyPath: m_LocalRotation.x
-      value: .0419955216
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 733b821b55d104341ab1cc9c43f3a4f1, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -.0513574593
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 733b821b55d104341ab1cc9c43f3a4f1, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -.178553432
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 733b821b55d104341ab1cc9c43f3a4f1, type: 2}
       propertyPath: m_LocalRotation.w
-      value: .981691182
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: 733b821b55d104341ab1cc9c43f3a4f1, type: 2}
       propertyPath: m_Name
@@ -666,9 +666,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 906174458}
-  m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
+  m_LocalRotation: {x: .707106829, y: 0, z: 0, w: -.707106829}
   m_LocalPosition: {x: 0, y: 0, z: 1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!1 &1013366063
@@ -751,6 +751,7 @@ GameObject:
   - 33: {fileID: 1306069036}
   - 65: {fileID: 1306069035}
   - 23: {fileID: 1306069034}
+  - 114: {fileID: 1306069038}
   m_Layer: 0
   m_Name: Object-Shovel
   m_TagString: Untagged
@@ -804,13 +805,26 @@ Transform:
   m_PrefabParentObject: {fileID: 400004, guid: 733b821b55d104341ab1cc9c43f3a4f1, type: 2}
   m_PrefabInternal: {fileID: 816678513}
   m_GameObject: {fileID: 1306069033}
-  m_LocalRotation: {x: .0419955216, y: -.0513574593, z: -.178553432, w: .981691182}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.01510525, y: -1.6542753, z: .112252593}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1013366064}
   - {fileID: 522029763}
   m_Father: {fileID: 0}
+--- !u!114 &1306069038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1306069033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52d49d3a57e3d80419f334d4459caf39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseScore: 10
+  agreementBonus: 10
 --- !u!1 &1437691636
 GameObject:
   m_ObjectHideFlags: 0
@@ -822,6 +836,7 @@ GameObject:
   - 33: {fileID: 1437691639}
   - 65: {fileID: 1437691638}
   - 23: {fileID: 1437691637}
+  - 114: {fileID: 1437691641}
   m_Layer: 0
   m_Name: Object-Cabbage
   m_TagString: Untagged
@@ -882,6 +897,19 @@ Transform:
   - {fileID: 658044823}
   - {fileID: 803932850}
   m_Father: {fileID: 0}
+--- !u!114 &1437691641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1437691636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52d49d3a57e3d80419f334d4459caf39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseScore: 10
+  agreementBonus: 10
 --- !u!1 &1529532981
 GameObject:
   m_ObjectHideFlags: 0
@@ -893,6 +921,7 @@ GameObject:
   - 33: {fileID: 1529532984}
   - 65: {fileID: 1529532983}
   - 23: {fileID: 1529532982}
+  - 114: {fileID: 1529532986}
   m_Layer: 0
   m_Name: Object-Rock
   m_TagString: Untagged
@@ -953,6 +982,19 @@ Transform:
   - {fileID: 793378951}
   - {fileID: 791623100}
   m_Father: {fileID: 0}
+--- !u!114 &1529532986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1529532981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52d49d3a57e3d80419f334d4459caf39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseScore: 10
+  agreementBonus: 10
 --- !u!1 &1588099211
 GameObject:
   m_ObjectHideFlags: 0
@@ -1010,6 +1052,7 @@ MonoBehaviour:
   TimeUsed: 0
   MaxTime: 15
   CurrentState: 0
+  CurrentScoreMode: 1
   score: 0
   blockTags:
   - Tag1
@@ -1026,7 +1069,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e34b7789a9049894484b4036436f111b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xPos: 540
+  xPos: 100
   yPos: 100
   xSize: 100
   ySize: 100
@@ -1172,6 +1215,10 @@ Prefab:
     - target: {fileID: 100004, guid: 733b821b55d104341ab1cc9c43f3a4f1, type: 2}
       propertyPath: m_Name
       value: Object-Cabbage
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 733b821b55d104341ab1cc9c43f3a4f1, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: .0497152805
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 733b821b55d104341ab1cc9c43f3a4f1, type: 2}
