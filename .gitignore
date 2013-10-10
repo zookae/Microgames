@@ -10,6 +10,7 @@ obj
 *.userprefs
 *.DS_Store
 Thumbs.db
+netbullet_Data/
 Library/ScriptAssemblies
 Library/cache
 Library/metadata
