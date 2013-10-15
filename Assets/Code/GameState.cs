@@ -11,9 +11,13 @@ public enum State {
     Lose
 }
 
+public enum ScoringMode {
+    Collaborative,
+    Competitive,
+    Both
+}
+
 public class GameState : MonoBehaviour {
-
-
     /// <summary>
     /// The time the game has run so far.
     /// </summary>
@@ -28,6 +32,11 @@ public class GameState : MonoBehaviour {
     /// Alternative states for game to be in
     /// </summary>
     public State CurrentState = State.Running;
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public ScoringMode ScoringMode = ScoringMode.Collaborative;
 
     /// <summary>
     /// Global score
@@ -98,6 +107,11 @@ public class GameState : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        if (TimeUsed >= MaxTime && CurrentState == State.Running) {
+            CurrentState = State.Win;
+        }
+
         TimeUsed += Time.deltaTime;
+
     }
 }

@@ -25,6 +25,7 @@ public class LoadObject : MonoBehaviour {
             // TODO: smarter layout choices OR fixed grid
             GameObject newObject = (GameObject)GameObject.Instantiate(prefab, 
                 transform.position, transform.rotation);
+            newObject.AddComponent("ScoreTriggerTagAgreement");
 
             newObject.name = objName;
             newObject.transform.FindChild("Tag1").name = tagNames[0];
