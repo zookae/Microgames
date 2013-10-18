@@ -9,8 +9,14 @@ public class TagLabelGUI : MonoBehaviour {
 
     public float x, y;
 
+    /// <summary>
+    /// If the tag name contains spaces, we store the individual words.
+    /// </summary>
+    public string[] splitName;
+
 	// Use this for initialization
 	void Start () {
+        splitName = this.gameObject.name.Split(' ');
 	}
 
     /// <summary>
@@ -22,6 +28,9 @@ public class TagLabelGUI : MonoBehaviour {
 
         Vector3 pixelPosition = Camera.main.WorldToScreenPoint(this.gameObject.transform.position);
         // NOTE (kasiu): Screen.height - pixelPosition.y sets the y position correctly because FOO SCREENSPACE axes reversal :(
-        GUI.Box(new Rect(pixelPosition.x, Screen.height - pixelPosition.y, 100, 100), this.gameObject.name, style);
+        // TODO (kasiu): YES, IT'S LEFT-JUSTIFIED FONT. DEAL WITH IT.
+        for (var i = 0; i < splitName.Length; i++) {
+            GUI.Box(new Rect(pixelPosition.x, Screen.height + (fontSize * i) - (pixelPosition.y), 100, 100), splitName[i], style);
+        }
     }
 }
