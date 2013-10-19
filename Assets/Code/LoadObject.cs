@@ -82,10 +82,10 @@ public class LoadObject : MonoBehaviour {
             foreach (string s in itemList) {
                 string[] pair = s.Split(',');
                 if (pair.Length == 2) {
-                    DebugConsole.Log("For item " + pair[0] + " we're loading: " + textureName);
                     string textureName = (header + pair[1]).Trim() ;
                     Texture texture = Resources.Load(textureName) as Texture;
                     if (texture != null) {
+                        DebugConsole.Log("For item " + pair[0] + " we're loading: " + textureName);
                         itemImageMap.Add(pair[0], texture);
                     }
                 }
