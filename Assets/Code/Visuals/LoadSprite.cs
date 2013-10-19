@@ -8,12 +8,14 @@ public class LoadSprite : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        DebugConsole.Log("Texture name : " + texture.name);
         assignedTexture = false;
-        renderer.material.mainTexture = texture;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        if (!assignedTexture && texture != null) {
+            renderer.material.mainTexture = texture;
+            assignedTexture = true;
+        }
 	}
 }

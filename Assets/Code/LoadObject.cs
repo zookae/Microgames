@@ -21,24 +21,22 @@ public class LoadObject : MonoBehaviour {
 
     public List<Vector3> layoutPositions = new List<Vector3>();
 
+    /// <summary>
+    /// Currently expected a comma-delimeted .txt file.
+    /// TODO (kasiu): Change this to something smarter.
+    /// </summary>
+    public TextAsset objectSpriteMapping;
+
+    private const string header = "gwap_sprites/";
+
+    /// <summary>
+    /// The object-(loaded texture) mapping (stored from load).
+    /// </summary>
     public Dictionary<string, Texture> itemImageMap = new Dictionary<string, Texture>();
-    private string header = "gwap_sprites/";
 
 	// Use this for initialization
 	void Start () {
-        // TEMP (kasiu): Load the sprite mapping in. Relocate when needed.
-        TextAsset mapfile = Resources.Load("itemImageMap") as TextAsset;
-        if (mapfile != null) {
-            string[] itemList = mapfile.text.Split('\n');
-            foreach (string s in itemList) {
-                string[] pair = s.Split(',');
-                if (pair.Length == 2) {
-                    string textureName = header + pair[1];
-                    DebugConsole.Log("Loaded texture: " + textureName);
-                    itemImageMap.Add(pair[0], Resources.Load(textureName) as Texture);
-                }
-            }
-        }
+        LoadMapping();
 
         int layoutCounter = 0;
         foreach (string objName in objectNames) {
@@ -57,7 +55,7 @@ public class LoadObject : MonoBehaviour {
 
             Transform spriteChild = newObject.transform.FindChild("TexturedQuad");
             if (spriteChild != null) {
-                DebugConsole.Log("Attempting to attach textures.");
+                DebugConsole.Log("Attempting to attach textures: " + objName);
                 spriteChild.gameObject.AddComponent("LoadSprite");
                 LoadSprite spriteComponent = spriteChild.GetComponent<LoadSprite>();
                 spriteComponent.texture = itemImageMap[objName];
@@ -76,5 +74,22 @@ public class LoadObject : MonoBehaviour {
         position.x += randX;
         position.y += randY;
         return position;
+    }
+
+    private void LoadMapping() {
+        if (objectSpriteMapping != null) {
+            string[] itemList = objectSpriteMapping.text.Split('\n');
+            foreach (string s in itemList) {
+                string[] pair = s.Split(',');
+                if (pair.Length == 2) {
+                    DebugConsole.Log("For item " + pair[0] + " we're loading: " + textureName);
+                    string textureName = (header + pair[1]).Trim() ;
+                    Texture texture = Resources.Load(textureName) as Texture;
+                    if (texture != null) {
+                        itemImageMap.Add(pair[0], texture);
+                    }
+                }
+            }
+        }
     }
 }

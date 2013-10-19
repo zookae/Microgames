@@ -643,10 +643,6 @@ MonoBehaviour:
   - Cabbage
   - Cheese
   - Baseball Glove
-  - Hammer
-  - Necklace
-  - Shrimp
-  - Cranberries
   tagNames:
   - Grocery Store
   - Department Store
@@ -659,6 +655,7 @@ MonoBehaviour:
   - {x: 3, y: 0, z: 0}
   - {x: -2.5, y: -1.5, z: 0}
   - {x: 2.5, y: -1.5, z: 0}
+  objectSpriteMapping: {fileID: 4900000, guid: 372bcc6a27789ab4198f892edf9cbbf4, type: 3}
 --- !u!1001 &1958207846
 Prefab:
   m_ObjectHideFlags: 0
