@@ -7,6 +7,7 @@ using System.Collections.Generic;
 /// </summary>
 public enum State {
     Running,
+    Paused,
     Win,
     Lose
 }
