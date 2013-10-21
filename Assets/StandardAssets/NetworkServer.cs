@@ -26,7 +26,7 @@ public class NetworkServer : MonoBehaviour {
 	public static ServerInfo MASTERSERVER;// = MASTERSERVER_DEFAULTS;
 	public static ServerInfo FACILITATOR;// = FACILITATOR_DEFAULTS;
 	
-	public static string SERVER_GAMETYPENAME = "EILab_bulletertheller";
+	public static string SERVER_GAMETYPENAME = "EILab_bulletertheller @ home";
 	public static string SERVER_GAMENAME = "EI lab bullethell version 2.";
 	public static string SERVER_GAMECOMMENT = "Bullethell with parameter tuning";
 	
