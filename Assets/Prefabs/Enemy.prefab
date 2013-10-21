@@ -146,13 +146,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23356fd937935f94e8560392b6fbf6fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawn: {fileID: 0}
+  spawn: {fileID: 100000, guid: b8305c140ea2f4d4da503de7fa33df80, type: 2}
   assignTag: BulletBad
   haveGravity: 0
   bulletSpeed: 0
   frequency: .5
   bulletBounds: {fileID: 0}
-  bulletLife: 2
+  bulletLife: 5
   moveDir: 1
 --- !u!114 &11400008
 MonoBehaviour:
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76951532b5632824e84da916a5ce8ff6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosion: {fileID: 0}
+  explosion: {fileID: 100000, guid: cbbee59a0d7b6eb4e99bba0241525b65, type: 2}
   lifespan: 1
 --- !u!114 &11400010
 MonoBehaviour:
@@ -175,12 +175,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92d99b95e82247b479da394ab5a6edb0, type: 3}
+  m_Script: {fileID: 11500000, guid: 95b99aae923cf814bb514b0eb51c2875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetTag: Bullet
-  rtype: 1
-  rchange: -1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
