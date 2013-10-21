@@ -24,7 +24,7 @@ public class DBClientProxy : MonoBehaviour {
     /// </summary>
     /// <param name="dbstr"></param>
     public void SaveToDB(string dbstr) {
-        DebugConsole.Log("DBClientProxy:SaveToDB - saving to db the string: " + dbstr);
+        DebugConsole.Log("[DBClientProxy]:SaveToDB - saving to db the string: " + dbstr);
         NetworkClient.Instance.SendServerMess(NetworkClient.MessType_ToServer.SaveDBStr, dbstr);
     }
 }

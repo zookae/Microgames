@@ -395,13 +395,15 @@ public class NetworkClient : MonoBehaviour {
 	public void SendServerMess( NetworkClient.MessType_ToServer messType, string args )
 	//public void SendServerMess( NetworkClient.MessType messType, string args )
 	{
-		DebugConsole.LogWarning( "Sending message to server: " + messType.ToString() );
+		DebugConsole.LogWarning( "[NetworkClient] Sending message to server: " + messType.ToString() );
 		if( args != null && args.Length > 0 ) DebugConsole.Log( "args: " + args );
-		
+
+        DebugConsole.Log("[NetworkClient] am I the client? " + Network.isClient.ToString());
+
 		if( Network.isClient ) 
 		{
 			
-			//DebugConsole.LogWarning("network: " + Network.peerType);
+			DebugConsole.LogWarning("[NetworkClient] when sending message; network: " + Network.peerType);
 
 			if( args != null && args.Length > 0 )
 			{	
