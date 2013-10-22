@@ -133,8 +133,8 @@ Camera:
   near clip plane: .300000012
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
-  orthographic size: 100
+  orthographic: 1
+  orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -210,7 +210,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 503241151}
-  m_LocalRotation: {x: .347764522, y: -.0702894554, z: -.178869709, w: .917673647}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -928,6 +928,7 @@ GameObject:
   - 114: {fileID: 1418646960}
   - 114: {fileID: 1418646961}
   - 114: {fileID: 1418646962}
+  - 114: {fileID: 1418646963}
   m_Layer: 0
   m_Name: GlobalState
   m_TagString: Untagged
@@ -993,6 +994,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreFrequency: 1
   pointChange: 1
+--- !u!114 &1418646963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1418646958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dc9e6b708eebe042a7a4de9a2cf52f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  countTag: Enemy
+  countAmount: 0
 --- !u!1 &1698286401
 GameObject:
   m_ObjectHideFlags: 0
@@ -1007,10 +1021,10 @@ GameObject:
   - 114: {fileID: 1698286407}
   - 114: {fileID: 1698286408}
   - 114: {fileID: 1698286406}
-  - 114: {fileID: 1698286409}
   - 114: {fileID: 1698286410}
   - 114: {fileID: 1698286411}
   - 114: {fileID: 1698286412}
+  - 114: {fileID: 1698286413}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -1129,27 +1143,6 @@ MonoBehaviour:
   paramName: Enemy Bullet Speed
   paramArray: []
   entity: Enemy
---- !u!114 &1698286409
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1698286401}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0fbb7747741d65418af14816664c897, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  xPos: 30
-  yPos: 100
-  xSize: 150
-  ySize: 30
-  fontSize: 15
-  paramMin: 0
-  paramMax: 3
-  paramName: Enemy Firing Rate
-  paramArray: []
-  entity: Enemy
 --- !u!114 &1698286410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1197,6 +1190,28 @@ MonoBehaviour:
   xSize: 100
   ySize: 30
   fontSize: 30
+--- !u!114 &1698286413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1698286401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bd09fe24c42a71469c12686cb685017, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xPos: 0
+  yPos: 0
+  xSize: 0
+  ySize: 0
+  fontSize: 0
+  paramMin: .100000001
+  paramMax: 3
+  paramName: 
+  paramArray: []
+  entity: Enemy
+  ptype: 2
 --- !u!1001 &2030128852
 Prefab:
   m_ObjectHideFlags: 0
