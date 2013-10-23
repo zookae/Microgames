@@ -11,6 +11,8 @@ public class ParameterSliderSelect : ParameterSlider {
     public string entity = "Enemy";
 
     private float newValue;
+    private float prevTime = 0.0f;
+    private float timeDelta = 0.1f;
     public ParamType ptype;
 
     void Awake() {
@@ -30,9 +32,24 @@ public class ParameterSliderSelect : ParameterSlider {
             }
         }
     }
-
+    
     void OnGUI() {
+        float oldValue = newValue;
         newValue = LabelSlider(new Rect(xPos, yPos, xSize, ySize), newValue, fontSize);
+
+        // store action trace
+        if (newValue != oldValue &&
+            GameState.Singleton.TimeUsed - prevTime > timeDelta) {
+            ParamChange pch = new ParamChange(
+                GameState.Singleton.TimeUsed,
+                ptype,
+                entity,
+                newValue);
+            Debug.Log(pch.ToString());
+            GameState.Singleton.actionTrace.Add(pch);
+
+            prevTime = GameState.Singleton.TimeUsed;
+        }
 
         foreach (MonoBehaviour p in paramArray) {
             if (p == null)
