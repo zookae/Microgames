@@ -730,7 +730,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1131612256}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!4 &1131612260
 Transform:
   m_ObjectHideFlags: 0
@@ -1019,13 +1019,13 @@ GameObject:
   - 33: {fileID: 1698286404}
   - 64: {fileID: 1698286403}
   - 23: {fileID: 1698286402}
-  - 114: {fileID: 1698286406}
-  - 114: {fileID: 1698286408}
-  - 114: {fileID: 1698286413}
-  - 114: {fileID: 1698286409}
-  - 114: {fileID: 1698286414}
   - 114: {fileID: 1698286411}
   - 114: {fileID: 1698286412}
+  - 114: {fileID: 1698286407}
+  - 114: {fileID: 1698286410}
+  - 114: {fileID: 1698286413}
+  - 114: {fileID: 1698286414}
+  - 114: {fileID: 1698286406}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -1090,7 +1090,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 1698286401}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a21e9c3aaa7186f488a0bcee8b7424c8, type: 3}
+  m_Script: {fileID: 11500000, guid: 7bd09fe24c42a71469c12686cb685017, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xPos: 0
+  yPos: 0
+  xSize: 0
+  ySize: 0
+  fontSize: 0
+  paramMin: 0
+  paramMax: 1
+  paramName: Enemy Bullet Size
+  paramArray: []
+  entity: Enemy
+  ptype: 1
+--- !u!114 &1698286407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1698286401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a6151969381655478ac15deee68ab51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   xPos: 30
@@ -1101,10 +1123,8 @@ MonoBehaviour:
   paramMin: 0
   paramMax: 10
   paramName: Player Move Force
-  paramArray: []
-  entity: Player
-  ptype: 3
---- !u!114 &1698286408
+  param: {fileID: 0}
+--- !u!114 &1698286410
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -1112,7 +1132,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1698286401}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a21e9c3aaa7186f488a0bcee8b7424c8, type: 3}
+  m_Script: {fileID: 11500000, guid: 5d801e0eec5473f42bfc5475c6ad28a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   xPos: 30
@@ -1122,32 +1142,8 @@ MonoBehaviour:
   fontSize: 15
   paramMin: 0
   paramMax: 5
-  paramName: Player Move Drag
-  paramArray: []
-  entity: Player
-  ptype: 4
---- !u!114 &1698286409
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1698286401}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a21e9c3aaa7186f488a0bcee8b7424c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  xPos: 30
-  yPos: 100
-  xSize: 150
-  ySize: 30
-  fontSize: 15
-  paramMin: 0
-  paramMax: 3
-  paramName: Enemy Firing Rate
-  paramArray: []
-  entity: Enemy
-  ptype: 2
+  paramName: Drag
+  param: {fileID: 0}
 --- !u!114 &1698286411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1183,20 +1179,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1698286401}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a21e9c3aaa7186f488a0bcee8b7424c8, type: 3}
+  m_Script: {fileID: 11500000, guid: 7bd09fe24c42a71469c12686cb685017, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xPos: 30
-  yPos: 70
-  xSize: 150
-  ySize: 30
-  fontSize: 15
+  xPos: 0
+  yPos: 0
+  xSize: 0
+  ySize: 0
+  fontSize: 0
   paramMin: 0
-  paramMax: 10
-  paramName: Enemy Bullet Speed
+  paramMax: 3
+  paramName: Enemy Firing Rate
   paramArray: []
   entity: Enemy
-  ptype: 0
+  ptype: 2
 --- !u!114 &1698286414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1205,20 +1201,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1698286401}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a21e9c3aaa7186f488a0bcee8b7424c8, type: 3}
+  m_Script: {fileID: 11500000, guid: 7bd09fe24c42a71469c12686cb685017, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xPos: 30
-  yPos: 130
-  xSize: 150
-  ySize: 30
-  fontSize: 15
+  xPos: 0
+  yPos: 0
+  xSize: 0
+  ySize: 0
+  fontSize: 0
   paramMin: 0
-  paramMax: 1
-  paramName: Enemy Bullet Size
+  paramMax: 10
+  paramName: Enemy Bullet Speed
   paramArray: []
   entity: Enemy
-  ptype: 1
+  ptype: 0
 --- !u!1001 &2030128852
 Prefab:
   m_ObjectHideFlags: 0

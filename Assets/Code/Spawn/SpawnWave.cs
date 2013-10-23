@@ -197,9 +197,9 @@ public class SpawnWave : Spawn {
                     newTarget.gameObject.GetComponent<NPCShootInDirection>().moveDir = MoveDirection.Right;
 
                     // register this firing behavior with parameter manipulators
-                    background.GetComponent<ParameterSliderBulletSpeed>().paramArray.Add(
+                    background.GetComponent<ParameterSliderSelect>().paramArray.Add(
                         newTarget.gameObject.GetComponent<NPCShootInDirection>());
-                    background.GetComponent<ParameterSliderShootRate>().paramArray.Add(
+                    background.GetComponent<ParameterSliderSelect>().paramArray.Add(
                         newTarget.gameObject.GetComponent<NPCShootInDirection>());
                     break;
 
