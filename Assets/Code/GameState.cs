@@ -60,6 +60,11 @@ public class GameState : MonoBehaviour {
     public List<Triple<double, string, string>> partnerTrace = new List<Triple<double, string, string>>();
 
     /// <summary>
+    /// Track actions for changing game parameters
+    /// </summary>
+    public List<ParamChange> actionTrace = new List<ParamChange>();
+
+    /// <summary>
     /// Tags this game instance uses for blocking
     /// </summary>
     public List<string> blockTags = new List<string>();
@@ -114,5 +119,9 @@ public class GameState : MonoBehaviour {
 
         TimeUsed += Time.deltaTime;
 
+        foreach (ParamChange pch in actionTrace) {
+            Debug.Log(pch + "...");
+        }
+        Debug.Log(actionTrace);
     }
 }

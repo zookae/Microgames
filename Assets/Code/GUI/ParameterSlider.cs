@@ -28,4 +28,30 @@ public class ParameterSlider : MonoBehaviour {
         paramVal = GUI.HorizontalSlider(screenRect, paramVal, paramMin, paramMax);
         return paramVal;
     }
+
+    /// <summary>
+    /// Update a "Shoot" component parameter to a new value.
+    /// </summary>
+    /// <param name="paramtype">The type of the Shoot parameter to update</param>
+    /// <param name="script">Shoot script to update</param>
+    /// <param name="newval">Value to update to</param>
+    internal void SetParameter(ParamType paramtype, MonoBehaviour script, float newval) {
+        switch (paramtype) {
+            case ParamType.BULLET_SPEED:
+                ((Shoot)script).bulletSpeed = newval;
+                break;
+            case ParamType.BULLET_SIZE:
+                ((Shoot)script).spawn.transform.localScale = new Vector3(newval, newval);
+                break;
+            case ParamType.FIRERATE:
+                ((Shoot)script).gameObject.GetComponent<NPCShootInDirection>().frequency = newval;
+                break;
+            case ParamType.MOVE_FORCE:
+                ((MoveByKeyForce)script).force = newval;
+                break;
+            case ParamType.MOVE_DRAG:
+                ((MoveByKeyForce)script).drag = newval;
+                break;
+        }
+    }
 }

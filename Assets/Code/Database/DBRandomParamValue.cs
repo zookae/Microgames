@@ -2,12 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public enum ParamType {
-    BULLETSPEED,
-    BULLETSIZE,
-    FIRERATE
-}
-
 public class DBRandomParamValue : ParameterSlider {
 
     public List<Shoot> paramArray = new List<Shoot>();
@@ -31,18 +25,7 @@ public class DBRandomParamValue : ParameterSlider {
         foreach (Shoot p in paramArray) {
             if (p == null)
                 continue;
-            switch (ptype) {
-                case ParamType.BULLETSPEED:
-                    p.bulletSpeed = newValue;
-                    break;
-                case ParamType.BULLETSIZE:
-                    p.spawn.transform.localScale = new Vector3(newValue, newValue);
-                    break;
-                case ParamType.FIRERATE:
-                    p.gameObject.GetComponent<NPCShootInDirection>().frequency = newValue;
-                    break;
-            }
-            
+            SetParameter(ptype, p, newValue);
         }
     }
 

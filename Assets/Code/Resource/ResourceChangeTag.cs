@@ -38,7 +38,7 @@ public class ResourceChangeTag : MonoBehaviour {
     /// </summary>
     /// <param name="col"></param>
     void OnTriggerEnter(Collider col) {
-        Debug.Log("resource loss : entered trigger");
+        //Debug.Log("resource loss : entered trigger");
 
         if (col.CompareTag(targetTag)) {
             
