@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BasicShootAtTarget : MonoBehaviour {
+public class BasicShootAtTarget : Shoot {
 
     /// <summary>
     /// Name of object for NPC to fire toward
@@ -45,6 +45,10 @@ public class BasicShootAtTarget : MonoBehaviour {
 
     private GameObject background;
 
+    public override GameObject Fire() {
+        return null;
+    }
+
 	// Use this for initialization
 	void Start () {
         moveVec = transform.position;
@@ -57,6 +61,8 @@ public class BasicShootAtTarget : MonoBehaviour {
         shootBehav.spawn = spawnee;
         shootBehav.assignTag = "Bullet";
         shootBehav.bulletBounds = background;
+
+        minFireSpacing = frequency;
 	}
 	
 	// Update is called once per frame

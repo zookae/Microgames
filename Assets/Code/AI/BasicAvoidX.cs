@@ -2,6 +2,10 @@
 using System.Collections;
 
 public class BasicAvoidX : MonoBehaviour {
+    /// <summary>
+    /// Whether movement control uses forces or direction translation
+    /// </summary>
+    public bool moveByForce = false;
 
     /// <summary>
     /// Tag of objects for NPC to avoid
@@ -28,6 +32,8 @@ public class BasicAvoidX : MonoBehaviour {
     /// </summary>
     public float moveSpeed;
 
+    public float moveForce;
+
     private float senseDelta;
     private float actDelta;
 
@@ -40,8 +46,14 @@ public class BasicAvoidX : MonoBehaviour {
     public int avoidPos;
     public int avoidNeg;
 
+    private float initialZ;
+
     void Start() {
         moveVec = transform.position;
+        if (moveByForce && gameObject.GetComponent<MoveByKeyForce>() != null) {
+            moveForce = gameObject.GetComponent<MoveByKeyForce>().force;
+        }
+        initialZ = transform.position.z;
     }
 	
 	// Update is called once per frame
@@ -94,10 +106,26 @@ public class BasicAvoidX : MonoBehaviour {
             if (avoidNeg > avoidPos)
                 avoidMagnitude *= -1; // flip direction if more on other side
 
-            moveVec.x += avoidMagnitude;
-            transform.position = Vector3.MoveTowards(transform.position,
-                moveVec,
-                moveSpeed * Time.deltaTime);
+            
+            if (moveByForce) {
+                moveVec.x = avoidMagnitude;
+                moveVec.y = 0.0f;
+                this.rigidbody.AddForce(moveVec * moveForce, ForceMode.Force);
+                this.rigidbody.rotation = new Quaternion();
+            }
+            else {
+                moveVec.x += avoidMagnitude;
+                transform.position = Vector3.MoveTowards(transform.position,
+                    moveVec,
+                    moveSpeed * Time.deltaTime);
+            }
+            
+        }
+
+        if (transform.position.z != initialZ) {
+            Vector3 fixPos = transform.position;
+            fixPos.z = initialZ;
+            transform.position = fixPos;
         }
 
 	}

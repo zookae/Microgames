@@ -234,6 +234,7 @@ GameObject:
   - 114: {fileID: 740268411}
   - 114: {fileID: 740268410}
   - 114: {fileID: 740268421}
+  - 114: {fileID: 740268422}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -306,7 +307,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1204450628}
   m_GameObject: {fileID: 740268409}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 23356fd937935f94e8560392b6fbf6fd, type: 3}
   m_Name: 
@@ -419,6 +420,25 @@ MonoBehaviour:
   targetTag: Bullet
   rtype: 1
   rchange: -1
+--- !u!114 &740268422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 740268409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d363b5aa715819041a7f4a8456f85ca3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawn: {fileID: 100000, guid: b8305c140ea2f4d4da503de7fa33df80, type: 2}
+  assignTag: BulletBad
+  haveGravity: 0
+  bulletSpeed: 0
+  frequency: .5
+  bulletBounds: {fileID: 1698286401}
+  bulletLife: 5
+  moveTarget: {fileID: 1131612260}
 --- !u!1001 &908732477
 Prefab:
   m_ObjectHideFlags: 0
@@ -458,7 +478,8 @@ Prefab:
       propertyPath: bulletBounds
       value: 
       objectReference: {fileID: 1698286401}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11400006, guid: 4e511e70134259e46bdbb9f39bb03c7a, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 4e511e70134259e46bdbb9f39bb03c7a, type: 2}
   m_RootGameObject: {fileID: 1003462383}
   m_IsPrefabParent: 0
@@ -476,12 +497,12 @@ GameObject:
   - 23: {fileID: 1003462384}
   - 54: {fileID: 1003462390}
   - 114: {fileID: 1003462388}
-  - 114: {fileID: 1003462392}
   - 114: {fileID: 1003462389}
   - 114: {fileID: 1003462391}
   - 114: {fileID: 1003462393}
   - 114: {fileID: 1003462395}
   - 114: {fileID: 1003462394}
+  - 114: {fileID: 1003462392}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -609,23 +630,22 @@ MonoBehaviour:
 --- !u!114 &1003462392
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400006, guid: 4e511e70134259e46bdbb9f39bb03c7a,
-    type: 2}
-  m_PrefabInternal: {fileID: 908732477}
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1003462383}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23356fd937935f94e8560392b6fbf6fd, type: 3}
+  m_Script: {fileID: 11500000, guid: d363b5aa715819041a7f4a8456f85ca3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawn: {fileID: 100000, guid: b8305c140ea2f4d4da503de7fa33df80, type: 2}
   assignTag: BulletBad
   haveGravity: 0
-  bulletSpeed: 0
+  bulletSpeed: 5
   frequency: .5
   bulletBounds: {fileID: 1698286401}
-  bulletLife: 5
-  moveDir: 1
+  bulletLife: 10
+  moveTarget: {fileID: 1131612260}
 --- !u!114 &1003462393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -828,7 +848,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76951532b5632824e84da916a5ce8ff6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosion: {fileID: 100000, guid: cbbee59a0d7b6eb4e99bba0241525b65, type: 2}
+  explosion: {fileID: 0}
   lifespan: 3
 --- !u!114 &1131612267
 MonoBehaviour:
@@ -841,10 +861,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55129442e0a0ffb4186b9e5503e63534, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawn: {fileID: 0}
+  assignTag: 
+  haveGravity: 0
+  bulletSpeed: 0
+  frequency: .5
+  bulletBounds: {fileID: 0}
+  bulletLife: 0
   targetTag: Enemy
   senseFrequency: .5
   minActDistance: 1
-  minFireSpacing: .200000003
+  minFireSpacing: 1
   moveSpeed: 3
   targetObjects: []
   actDelta: 0
@@ -863,11 +890,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9871126029b1d7e48a688d3c36c43016, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveByForce: 0
   avoidTag: BulletBad
   senseFrequency: .300000012
   actFrequency: .200000003
   minActDistance: 3
   moveSpeed: 3
+  moveForce: 0
   avoidObject: []
   avoidMagnitude: 0
   moveVec: {x: 0, y: 0, z: 0}
@@ -912,6 +941,10 @@ Prefab:
       propertyPath: bulletBounds
       value: 
       objectReference: {fileID: 1698286401}
+    - target: {fileID: 11400006, guid: 4e511e70134259e46bdbb9f39bb03c7a, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4e511e70134259e46bdbb9f39bb03c7a, type: 2}
   m_RootGameObject: {fileID: 740268409}
@@ -1037,9 +1070,11 @@ GameObject:
   - 114: {fileID: 1698286413}
   - 114: {fileID: 1698286409}
   - 114: {fileID: 1698286414}
+  - 114: {fileID: 1698286410}
   - 114: {fileID: 1698286411}
   - 114: {fileID: 1698286412}
   - 114: {fileID: 1698286407}
+  - 114: {fileID: 1698286415}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -1108,10 +1143,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xPos: 30
-  yPos: 10
+  yPos: 30
   xSize: 150
   ySize: 30
   fontSize: 15
+  fontColor: {r: .960153878, g: .970588207, b: .214100316, a: .97647059}
   paramMin: 0
   paramMax: 10
   paramName: Player Move Force
@@ -1143,10 +1179,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xPos: 30
-  yPos: 40
+  yPos: 60
   xSize: 150
   ySize: 30
   fontSize: 15
+  fontColor: {r: .960153878, g: .970588207, b: .214100316, a: .97647059}
   paramMin: 0
   paramMax: 5
   paramName: Player Move Drag
@@ -1165,15 +1202,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xPos: 30
-  yPos: 100
+  yPos: 120
   xSize: 150
   ySize: 30
   fontSize: 15
+  fontColor: {r: .960153878, g: .970588207, b: .214100316, a: .97647059}
   paramMin: 0
   paramMax: 3
   paramName: Enemy Firing Rate
   paramArray: []
   entity: Enemy
+  ptype: 2
+--- !u!114 &1698286410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1698286401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21e9c3aaa7186f488a0bcee8b7424c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xPos: 30
+  yPos: 180
+  xSize: 150
+  ySize: 30
+  fontSize: 15
+  fontColor: {r: .960153878, g: .970588207, b: .214100316, a: .97647059}
+  paramMin: 0
+  paramMax: 1
+  paramName: Player Firing Rate
+  paramArray: []
+  entity: Player
   ptype: 2
 --- !u!114 &1698286411
 MonoBehaviour:
@@ -1202,6 +1263,7 @@ MonoBehaviour:
   xSize: 100
   ySize: 30
   fontSize: 30
+  fontColor: {r: .960153878, g: .970588207, b: .214100316, a: .97647059}
 --- !u!114 &1698286413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1214,10 +1276,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xPos: 30
-  yPos: 70
+  yPos: 90
   xSize: 150
   ySize: 30
   fontSize: 15
+  fontColor: {r: .960153878, g: .970588207, b: .214100316, a: .97647059}
   paramMin: 0
   paramMax: 10
   paramName: Enemy Bullet Speed
@@ -1236,16 +1299,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xPos: 30
-  yPos: 130
+  yPos: 150
   xSize: 150
   ySize: 30
   fontSize: 15
+  fontColor: {r: .960153878, g: .970588207, b: .214100316, a: .97647059}
   paramMin: 0
   paramMax: 1
   paramName: Enemy Bullet Size
   paramArray: []
   entity: Enemy
   ptype: 1
+--- !u!114 &1698286415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1698286401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f773a42de127dc459a12bd4bf9d721b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selGridInt: 0
+  selBehaviors: 0100000000000000
+  selStrings:
+  - 
+  - 
+  entity: Enemy
+  paramArray:
+  - {fileID: 0}
+  - {fileID: 0}
+  targetObjects: []
 --- !u!1001 &2030128852
 Prefab:
   m_ObjectHideFlags: 0
@@ -1285,7 +1370,12 @@ Prefab:
       propertyPath: bulletBounds
       value: 
       objectReference: {fileID: 1698286401}
-    m_RemovedComponents: []
+    - target: {fileID: 11400006, guid: 4e511e70134259e46bdbb9f39bb03c7a, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 11400006, guid: 4e511e70134259e46bdbb9f39bb03c7a, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 4e511e70134259e46bdbb9f39bb03c7a, type: 2}
   m_RootGameObject: {fileID: 2051483789}
   m_IsPrefabParent: 0
@@ -1303,12 +1393,13 @@ GameObject:
   - 23: {fileID: 2051483797}
   - 54: {fileID: 2051483796}
   - 114: {fileID: 2051483795}
-  - 114: {fileID: 2051483794}
   - 114: {fileID: 2051483793}
   - 114: {fileID: 2051483792}
   - 114: {fileID: 2051483791}
   - 114: {fileID: 2051483790}
   - 114: {fileID: 2051483801}
+  - 114: {fileID: 2051483802}
+  - 114: {fileID: 2051483794}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -1377,11 +1468,10 @@ MonoBehaviour:
 --- !u!114 &2051483794
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400006, guid: 4e511e70134259e46bdbb9f39bb03c7a,
-    type: 2}
-  m_PrefabInternal: {fileID: 2030128852}
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2051483789}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 23356fd937935f94e8560392b6fbf6fd, type: 3}
   m_Name: 
@@ -1494,3 +1584,22 @@ MonoBehaviour:
   targetTag: Bullet
   rtype: 1
   rchange: -1
+--- !u!114 &2051483802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2051483789}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8e13d894b2b12f4c8462becde53abae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawn: {fileID: 100000, guid: b8305c140ea2f4d4da503de7fa33df80, type: 2}
+  assignTag: BulletBad
+  haveGravity: 0
+  bulletSpeed: 0
+  frequency: .5
+  bulletBounds: {fileID: 1698286401}
+  bulletLife: 5
+  moveTarget: {fileID: 1131612260}

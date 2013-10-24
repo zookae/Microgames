@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DestroyTime : MonoBehaviour {
+public class DestroyTime : DestroyBehavior {
 
     public float lifetimer;
 	

@@ -645,7 +645,7 @@ public class DebugConsole : MonoBehaviour {
   /// </summary>
   /// <param name="message">Message to print.</param>
   public static object Log(object message) {
-	UnityEngine.Debug.Log( message.ToString() );
+    //UnityEngine.Debug.Log( message.ToString() );
     DebugConsole.Instance.LogMessage(Message.Log(message));
  
     return message;

@@ -24,11 +24,11 @@ public class ParameterSliderSelect : ParameterSlider {
             if (ptype == ParamType.BULLET_SIZE ||
                 ptype == ParamType.BULLET_SPEED ||
                 ptype == ParamType.FIRERATE) {
-                    paramArray.Add(o.GetComponent<Shoot>());
+                    paramArray.AddRange(o.GetComponents<Shoot>());
             } else if (
                 ptype == ParamType.MOVE_DRAG ||
                 ptype == ParamType.MOVE_FORCE) {
-                    paramArray.Add(o.GetComponent<MoveByKeyForce>());
+                    paramArray.AddRange(o.GetComponents<MoveByKeyForce>());
             }
         }
 
@@ -42,7 +42,7 @@ public class ParameterSliderSelect : ParameterSlider {
     
     void OnGUI() {
         float oldValue = newValue;
-        newValue = LabelSlider(new Rect(xPos, yPos, xSize, ySize), newValue, fontSize);
+        newValue = LabelSlider(new Rect(xPos, yPos, xSize, ySize), newValue, fontSize, fontColor);
 
         // store action trace
         if (newValue != oldValue &&

@@ -9,6 +9,7 @@ obj
 *.pidb
 *.userprefs
 *.DS_Store
+*.exe.meta
 *.exe
 Thumbs.db
 gwap_Data/
