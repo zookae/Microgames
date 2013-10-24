@@ -36,6 +36,7 @@ public class LoadObject : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        LoadDummyPositions();
         LoadMapping();
 
         int layoutCounter = 0;
@@ -43,8 +44,10 @@ public class LoadObject : MonoBehaviour {
             // TODO: smarter layout choices OR fixed grid
             Vector3 position = GenerateRandomPosition(layoutPositions[layoutCounter]);
             GameObject newObject = (GameObject)GameObject.Instantiate(prefab,
-                position, Quaternion.identity);
+                position, prefab.transform.rotation);
             newObject.AddComponent("ScoreTriggerTagAgreement");
+
+            DebugConsole.Log("Added object of : " + prefab.name);
 
             newObject.name = objName;
             newObject.transform.FindChild("Tag1").name = tagNames[0];
@@ -65,7 +68,7 @@ public class LoadObject : MonoBehaviour {
 	}
 
     private const float maxRandX = 0.01f;
-    private const float maxRandY = 0.02f;
+    private const float maxRandY = 0.04f;
 
     private Vector3 GenerateRandomPosition(Vector3 position) {
         Vector3 newPosition = position;
@@ -74,6 +77,16 @@ public class LoadObject : MonoBehaviour {
         position.x += randX;
         position.y += randY;
         return position;
+    }
+
+    private void LoadDummyPositions() {
+        layoutPositions.Add(Vector3.zero);
+        layoutPositions.Add(new Vector3(-1.5f, 2.5f, 0.0f));
+        layoutPositions.Add(new Vector3(1.5f, 2.5f, 0.0f));
+        layoutPositions.Add(new Vector3(-3.0f, 0.0f, 0.0f));
+        layoutPositions.Add(new Vector3(3.0f, 0.0f, 0.0f));
+        layoutPositions.Add(new Vector3(-1.5f, -2.5f, 0.0f));
+        layoutPositions.Add(new Vector3(1.5f, -2.5f, 0.0f));
     }
 
     private void LoadMapping() {

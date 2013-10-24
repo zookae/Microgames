@@ -10,7 +10,9 @@ obj
 *.userprefs
 *.DS_Store
 *.exe.meta
+*.exe
 Thumbs.db
+gwap_Data/
 netbullet_Data/
 Library/ScriptAssemblies
 Library/cache
