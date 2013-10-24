@@ -9,6 +9,7 @@ public class ScoreGUI : MonoBehaviour {
     public float ySize = 100;
 
     public int fontSize;
+    public Color fontColor;
 
     /// <summary>
     /// Draws score on screen
@@ -16,6 +17,8 @@ public class ScoreGUI : MonoBehaviour {
     void OnGUI() {
         GUIStyle style = new GUIStyle();
         style.fontSize = fontSize;
+        style.normal.textColor = fontColor;
+        //style.normal.textColor = Color.yellow;
 
         GUI.Box(new Rect(xPos, yPos, xSize, ySize), 
             "score : " + GameState.Singleton.score, style);

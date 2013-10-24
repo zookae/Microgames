@@ -1147,6 +1147,7 @@ MonoBehaviour:
   xSize: 150
   ySize: 30
   fontSize: 15
+  fontColor: {r: .960153878, g: .970588207, b: .214100316, a: .97647059}
   paramMin: 0
   paramMax: 10
   paramName: Player Move Force
@@ -1182,6 +1183,7 @@ MonoBehaviour:
   xSize: 150
   ySize: 30
   fontSize: 15
+  fontColor: {r: .960153878, g: .970588207, b: .214100316, a: .97647059}
   paramMin: 0
   paramMax: 5
   paramName: Player Move Drag
@@ -1204,6 +1206,7 @@ MonoBehaviour:
   xSize: 150
   ySize: 30
   fontSize: 15
+  fontColor: {r: .960153878, g: .970588207, b: .214100316, a: .97647059}
   paramMin: 0
   paramMax: 3
   paramName: Enemy Firing Rate
@@ -1226,6 +1229,7 @@ MonoBehaviour:
   xSize: 150
   ySize: 30
   fontSize: 15
+  fontColor: {r: .960153878, g: .970588207, b: .214100316, a: .97647059}
   paramMin: 0
   paramMax: 1
   paramName: Player Firing Rate
@@ -1259,6 +1263,7 @@ MonoBehaviour:
   xSize: 100
   ySize: 30
   fontSize: 30
+  fontColor: {r: .960153878, g: .970588207, b: .214100316, a: .97647059}
 --- !u!114 &1698286413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1275,6 +1280,7 @@ MonoBehaviour:
   xSize: 150
   ySize: 30
   fontSize: 15
+  fontColor: {r: .960153878, g: .970588207, b: .214100316, a: .97647059}
   paramMin: 0
   paramMax: 10
   paramName: Enemy Bullet Speed
@@ -1297,6 +1303,7 @@ MonoBehaviour:
   xSize: 150
   ySize: 30
   fontSize: 15
+  fontColor: {r: .960153878, g: .970588207, b: .214100316, a: .97647059}
   paramMin: 0
   paramMax: 1
   paramName: Enemy Bullet Size

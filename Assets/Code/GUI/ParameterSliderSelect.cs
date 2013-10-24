@@ -42,7 +42,7 @@ public class ParameterSliderSelect : ParameterSlider {
     
     void OnGUI() {
         float oldValue = newValue;
-        newValue = LabelSlider(new Rect(xPos, yPos, xSize, ySize), newValue, fontSize);
+        newValue = LabelSlider(new Rect(xPos, yPos, xSize, ySize), newValue, fontSize, fontColor);
 
         // store action trace
         if (newValue != oldValue &&

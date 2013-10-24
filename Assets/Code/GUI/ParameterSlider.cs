@@ -9,14 +9,16 @@ public class ParameterSlider : MonoBehaviour {
     public float ySize;
 
     public int fontSize;
+    public Color fontColor = Color.black;
 
     public float paramMin;
     public float paramMax;
     public string paramName;
 
-    public float LabelSlider(Rect screenRect, float paramVal, int fontSize) {
+    public float LabelSlider(Rect screenRect, float paramVal, int fontSize, Color fontColor) {
         GUIStyle style = new GUIStyle();
         style.fontSize = fontSize;
+        style.normal.textColor = fontColor;
 
         Rect labelRect = screenRect;
         labelRect.x += screenRect.width;
