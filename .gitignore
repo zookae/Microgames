@@ -9,7 +9,9 @@ obj
 *.pidb
 *.userprefs
 *.DS_Store
+*.exe
 Thumbs.db
+gwap_Data/
 netbullet_Data/
 Library/ScriptAssemblies
 Library/cache
