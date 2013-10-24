@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class NPCShootInDirection : ShootInDirection {
+public class NPCShootInDirection : ShootInDirection, INPCShootBehavior {
 
     private float timeDelta;
 

@@ -10,9 +10,7 @@ public class AnimatedUV : MonoBehaviour {
 
 	// Use this for initialization
 	void Update() {
-        Debug.Log(uvAnimationRate * Time.deltaTime);
         uvOffset += (uvAnimationRate * Time.deltaTime);
-        Debug.Log("uvOffset is: " + uvOffset);
         renderer.material.SetTextureOffset("_MainTex", uvOffset);
 	}
 }

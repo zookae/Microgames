@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class NPCShootAtTarget : ShootAtTarget, INPCShootBehavior {
+public class NPCShootTowardTarget : ShootTowardTarget, INPCShootBehavior {
 
     private float timeDelta;
 
@@ -11,9 +11,9 @@ public class NPCShootAtTarget : ShootAtTarget, INPCShootBehavior {
 	void Update () {
         timeDelta += Time.deltaTime; // increment time since fired
 
-        if (timeDelta > frequency) {
+        //Debug.Log("[NPCShootTowardTarget] bulletspeed: " + bulletSpeed);
 
-            Debug.Log("[NPCShootAtTarget] bulletspeed: " + bulletSpeed);
+        if (timeDelta > frequency) {
 
             // fire bullet
             if (bulletBounds != null && bulletLife > 0) {

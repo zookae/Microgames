@@ -44,7 +44,7 @@ public class ParameterSlider : MonoBehaviour {
                 ((Shoot)script).spawn.transform.localScale = new Vector3(newval, newval);
                 break;
             case ParamType.FIRERATE:
-                ((Shoot)script).gameObject.GetComponent<NPCShootInDirection>().frequency = newval;
+                ((Shoot)script).gameObject.GetComponent<Shoot>().frequency = newval;
                 break;
             case ParamType.MOVE_FORCE:
                 ((MoveByKeyForce)script).force = newval;

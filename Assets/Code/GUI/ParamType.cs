@@ -7,5 +7,6 @@ public enum ParamType {
     BULLET_SIZE,
     FIRERATE,
     MOVE_FORCE,
-    MOVE_DRAG
+    MOVE_DRAG,
+    FIRE_TYPE
 }

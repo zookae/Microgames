@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ShootAtTarget : Shoot {
+public class ShootTowardTarget : Shoot {
 
     /// <summary>
     /// Object to fire toward
@@ -11,10 +11,13 @@ public class ShootAtTarget : Shoot {
     public override GameObject Fire() {
         Debug.Log("called Fire from ShootAtTarget");
         if (moveTarget != null) {
+
             GameObject bullet = SpawnTriggerable();
-            bullet.AddComponent<MoveToTarget>();
-            bullet.GetComponent<MoveToTarget>().movementTarget = moveTarget;
-            bullet.GetComponent<MoveToTarget>().moveRate = bulletSpeed;
+
+            bullet.AddComponent<MoveTowardTarget>();
+            bullet.GetComponent<MoveTowardTarget>().targetTransform = moveTarget;
+            bullet.GetComponent<MoveTowardTarget>().moveRate = bulletSpeed;
+            bullet.GetComponent<MoveTowardTarget>().stopAtTarget = false;
             return bullet;
         }
         return null; // no target so no bullet for you!
@@ -25,14 +28,16 @@ public class ShootAtTarget : Shoot {
     /// </summary>
     public GameObject ShootAtTar() {
         Debug.Log("called ShootAtTar");
+
+        //Debug.Log("[ShootTowardTarget] bulletspeed: " + bulletSpeed);
+
         if (moveTarget != null) {
-
-            Debug.Log("[ShootAtTarget] bulletspeed: " + bulletSpeed);
-
             GameObject bullet = SpawnTriggerable();
-            bullet.AddComponent<MoveToTarget>();
-            bullet.GetComponent<MoveToTarget>().movementTarget = moveTarget;
-            bullet.GetComponent<MoveToTarget>().moveRate = bulletSpeed;
+
+            bullet.AddComponent<MoveTowardTarget>();
+            bullet.GetComponent<MoveTowardTarget>().targetTransform = moveTarget;
+            bullet.GetComponent<MoveTowardTarget>().moveRate = bulletSpeed;
+            bullet.GetComponent<MoveTowardTarget>().stopAtTarget = false;
             return bullet;
         }
         return null; // no target so no bullet for you!
