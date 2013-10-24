@@ -22,7 +22,7 @@ public class ParameterSlider : MonoBehaviour {
         labelRect.x += screenRect.width;
         GUI.Label(labelRect, paramName, style);
 
-        // &lt;- Push the Slider to the end of the Label
+        // Push the Slider to the end of the Label
         //screenRect.x += screenRect.width;
 
         paramVal = GUI.HorizontalSlider(screenRect, paramVal, paramMin, paramMax);

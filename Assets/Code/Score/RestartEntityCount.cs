@@ -31,6 +31,8 @@ public class RestartEntityCount : MonoBehaviour {
 
             targetSet = GameObject.FindGameObjectsWithTag(countTag); // update set of objects
             if (targetSet.Length == countAmount) {
+                DBSend.Score(GameState.Singleton.score);
+                DBSend.ActionTrace(GameState.Singleton.actionTrace);
                 Application.LoadLevel(Application.loadedLevel); // restart level
             }
         }

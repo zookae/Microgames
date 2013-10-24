@@ -31,6 +31,13 @@ public class ParameterSliderSelect : ParameterSlider {
                     paramArray.Add(o.GetComponent<MoveByKeyForce>());
             }
         }
+
+        ParamChange pch = new ParamChange(
+                GameState.Singleton.TimeUsed,
+                ptype,
+                entity,
+                newValue);
+        GameState.Singleton.actionTrace.Add(pch);
     }
     
     void OnGUI() {

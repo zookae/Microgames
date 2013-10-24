@@ -929,6 +929,7 @@ GameObject:
   - 114: {fileID: 1418646961}
   - 114: {fileID: 1418646962}
   - 114: {fileID: 1418646963}
+  - 114: {fileID: 1418646964}
   m_Layer: 0
   m_Name: GlobalState
   m_TagString: Untagged
@@ -1008,6 +1009,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   countTag: Enemy
   countAmount: 0
+--- !u!114 &1418646964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1418646958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed5d24576615cf24c93cbabd3c12bf20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newTimeScale: 1
 --- !u!1 &1698286401
 GameObject:
   m_ObjectHideFlags: 0
@@ -1026,6 +1039,7 @@ GameObject:
   - 114: {fileID: 1698286414}
   - 114: {fileID: 1698286411}
   - 114: {fileID: 1698286412}
+  - 114: {fileID: 1698286407}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -1104,6 +1118,19 @@ MonoBehaviour:
   paramArray: []
   entity: Player
   ptype: 3
+--- !u!114 &1698286407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1698286401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a155930306af174faa602c49cf53d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uvAnimationRate: {x: 0, y: -.25}
+  textureName: starry_bg
 --- !u!114 &1698286408
 MonoBehaviour:
   m_ObjectHideFlags: 0

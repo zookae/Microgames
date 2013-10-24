@@ -119,9 +119,9 @@ public class GameState : MonoBehaviour {
 
         TimeUsed += Time.deltaTime;
 
-        foreach (ParamChange pch in actionTrace) {
-            Debug.Log(pch + "...");
-        }
-        Debug.Log(actionTrace);
+        //foreach (ParamChange pch in actionTrace) {
+        //    Debug.Log(pch + "...");
+        //}
+        //Debug.Log(actionTrace);
     }
 }
