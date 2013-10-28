@@ -8,10 +8,7 @@ public class SpawnSet : Spawn {
     /// Prefab for targets to generate
     /// </summary>
     public GameObject target;
-    /// <summary>
-    /// Tag to assign to new targets
-    /// </summary>
-    public List<string> tags;
+
     /// <summary>
     /// Whether to spawn targets that obey gravity or are kinematic
     /// </summary>

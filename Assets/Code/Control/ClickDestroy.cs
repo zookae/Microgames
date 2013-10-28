@@ -10,10 +10,6 @@ public class ClickDestroy : MonoBehaviour {
 
     public List<string> targetTags;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -21,10 +17,12 @@ public class ClickDestroy : MonoBehaviour {
             ObjectClicked();
             Debug.Log("clicked on : " + clickObj.name);
             foreach (string tag in targetTags) {
+                Debug.Log("destroy tags: " + tag);
                 if (clickObj.CompareTag(tag)) {
                     Destroy(clickObj.gameObject);
                 }
             }
+            Debug.Log("object tag: " + clickObj.tag);
             
         }
 	}
@@ -39,3 +37,4 @@ public class ClickDestroy : MonoBehaviour {
         }
     }
 }
+

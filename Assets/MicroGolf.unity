@@ -154,7 +154,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f490d227dfad8c439736bc0dfa31253, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EditorClassIdentifier: 
   moveRate: 10
   minDist: .00999999978
   moveTarget: {x: 0, y: 0, z: 0}
@@ -186,7 +185,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca25a6d29b7de7b41b3fd81ce1631ac1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EditorClassIdentifier: 
+--- !u!1001 &149811656
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 400000, guid: b425422498394bf45bc1835024982747, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -2.08486104
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: b425422498394bf45bc1835024982747, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -5.27603149
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: b425422498394bf45bc1835024982747, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 4.17722368
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: b425422498394bf45bc1835024982747, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -.707106829
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: b425422498394bf45bc1835024982747, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: b425422498394bf45bc1835024982747, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: b425422498394bf45bc1835024982747, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: .707106829
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: b425422498394bf45bc1835024982747, type: 2}
+  m_RootGameObject: {fileID: 461046995}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1 &321748642
 GameObject:
   m_ObjectHideFlags: 0
@@ -226,10 +264,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2732e0bc5395ca24991c3a33b0197f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EditorClassIdentifier: 
   TimeUsed: 0
   MaxTime: 7
   CurrentState: 0
+  ScoringMode: 0
   score: 0
   blockTags: []
   labelTags: []
@@ -243,7 +281,6 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f7b6ad2c41e8e544da72da88938556e6, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
   barDisplay: 0
   progressBarEmpty: {fileID: 2800000, guid: 66d0b1060f1263748aaa24b917861f3d, type: 3}
@@ -342,7 +379,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d6223c1e26667a44a804422e17f2989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EditorClassIdentifier: 
   moveRate: 10
   minDist: .5
   moveTarget: {x: 0, y: 0, z: 0}
@@ -352,8 +388,8 @@ MonoBehaviour:
 --- !u!1 &461046995
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 100000, guid: b425422498394bf45bc1835024982747, type: 2}
+  m_PrefabInternal: {fileID: 149811656}
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 461046998}
@@ -370,8 +406,9 @@ GameObject:
 --- !u!199 &461046996
 ParticleSystemRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 19900000, guid: b425422498394bf45bc1835024982747,
+    type: 2}
+  m_PrefabInternal: {fileID: 149811656}
   m_GameObject: {fileID: 461046995}
   m_Enabled: 1
   m_CastShadows: 1
@@ -400,8 +437,9 @@ ParticleSystemRenderer:
 --- !u!198 &461046997
 ParticleSystem:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 19800000, guid: b425422498394bf45bc1835024982747,
+    type: 2}
+  m_PrefabInternal: {fileID: 149811656}
   m_GameObject: {fileID: 461046995}
   lengthInSec: 5
   startDelay: 0
@@ -1452,8 +1490,8 @@ ParticleSystem:
 --- !u!4 &461046998
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 400000, guid: b425422498394bf45bc1835024982747, type: 2}
+  m_PrefabInternal: {fileID: 149811656}
   m_GameObject: {fileID: 461046995}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
   m_LocalPosition: {x: -2.08486104, y: -5.27603149, z: 4.17722368}
@@ -1463,14 +1501,14 @@ Transform:
 --- !u!114 &461046999
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 11400000, guid: b425422498394bf45bc1835024982747,
+    type: 2}
+  m_PrefabInternal: {fileID: 149811656}
   m_GameObject: {fileID: 461046995}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 82b6f59e6ef4b6941b2d31a297fcfefc, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
 --- !u!1 &651949234
 GameObject:
@@ -1566,7 +1604,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d6223c1e26667a44a804422e17f2989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EditorClassIdentifier: 
   moveRate: 5
   minDist: .5
   moveTarget: {x: 0, y: 0, z: 0}
@@ -1648,7 +1685,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83d6f8b2517bbd04bb7f60026aefdc5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EditorClassIdentifier: 
   gameState: 1
   tintColor: {r: .960153878, g: .970588207, b: .214100316, a: 0}
 --- !u!114 &952867754
@@ -1661,7 +1697,6 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 83d6f8b2517bbd04bb7f60026aefdc5c, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
   gameState: 2
   tintColor: {r: 1, g: 0, b: 0, a: 0}
@@ -1696,7 +1731,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 7f33eca1d7d0592478e4217cd8be589f, type: 2}
+  - {fileID: 2100000, guid: 795b77e7ecb1b104b9b9a51a337e569f, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
