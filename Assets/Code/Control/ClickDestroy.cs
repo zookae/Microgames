@@ -15,14 +15,14 @@ public class ClickDestroy : MonoBehaviour {
 	void Update () {
         if (Input.GetMouseButtonDown(0)) {
             ObjectClicked();
-            Debug.Log("clicked on : " + clickObj.name);
+            //Debug.Log("clicked on : " + clickObj.name);
             foreach (string tag in targetTags) {
-                Debug.Log("destroy tags: " + tag);
+                //Debug.Log("destroy tags: " + tag);
                 if (clickObj.CompareTag(tag)) {
                     Destroy(clickObj.gameObject);
                 }
             }
-            Debug.Log("object tag: " + clickObj.tag);
+            //Debug.Log("object tag: " + clickObj.tag);
             
         }
 	}

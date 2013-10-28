@@ -12,12 +12,9 @@ GameObject:
   - 65: {fileID: 6500000}
   - 23: {fileID: 2300000}
   - 114: {fileID: 11400000}
-  - 114: {fileID: 11400006}
-  - 114: {fileID: 11400002}
-  - 114: {fileID: 11400004}
   m_Layer: 0
-  m_Name: EnemyBullet
-  m_TagString: BulletBad
+  m_Name: Blocker
+  m_TagString: Blocker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,8 +26,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.82449198, y: 0, z: -1.92448425}
-  m_LocalScale: {x: .9710145, y: .9710145, z: 0}
+  m_LocalPosition: {x: -23.9017353, y: 0, z: 7.59201431}
+  m_LocalScale: {x: .5, y: .5, z: .5}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!23 &2300000
@@ -45,7 +42,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 982c5973a8519bb4c85c2755ce9d32de, type: 2}
+  - {fileID: 2100000, guid: 95fdfbd679d0d1d44b8eaa8a1e0fa3b1, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -65,7 +62,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -78,49 +75,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cab51c49031e23940ad4691b7414937a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tagSet:
-  - Player
-  pointChange: -10
---- !u!114 &11400002
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76951532b5632824e84da916a5ce8ff6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 100000, guid: 986e9e1989825e441bb52ba5254be380, type: 2}
-  lifespan: .300000012
---- !u!114 &11400004
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86df4d0186abf7641a0bf107a771a60e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destroyTag: Player
---- !u!114 &11400006
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8e51f0de8a05b248b995c4ea699b115, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destroyTag: Bullet
+  lifespan: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
