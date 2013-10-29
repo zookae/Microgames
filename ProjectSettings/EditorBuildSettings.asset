@@ -13,5 +13,7 @@ EditorBuildSettings:
     path: Assets/Bullethell.unity
   - enabled: 0
     path: Assets/ShopNGwap.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/SnackSucker.unity
+  - enabled: 1
+    path: Assets/BullethellPlay.unity
