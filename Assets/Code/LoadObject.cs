@@ -45,7 +45,15 @@ public class LoadObject : MonoBehaviour {
             Vector3 position = GenerateRandomPosition(layoutPositions[layoutCounter]);
             GameObject newObject = (GameObject)GameObject.Instantiate(prefab,
                 position, prefab.transform.rotation);
-            newObject.AddComponent("ScoreTriggerTagAgreement");
+            if (GameState.Singleton.ScoringMode == ScoringMode.Collaborative) {
+                newObject.AddComponent("ScoreTriggerTagAgreement");
+            } else if (GameState.Singleton.ScoringMode == ScoringMode.Competitive) {
+                newObject.AddComponent("ScoreTriggerTagBlocked");
+            } else { // Both
+                // XXX (kasiu): Currently adds both. This is bad.
+                newObject.AddComponent("ScoreTriggerTagAgreement");
+                newObject.AddComponent("ScoreTriggerTagBlocked");
+            }
 
             DebugConsole.Log("Added object of : " + prefab.name);
 
