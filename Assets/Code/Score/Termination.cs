@@ -2,9 +2,11 @@
 using System.Collections;
 
 public class Termination : MonoBehaviour {
-	
+
+    public float MaxTime = 7.0f;
+
 	void Update() {
-        if (GameState.Singleton.TimeUsed > GameState.Singleton.MaxTime &&
+        if (GameState.Singleton.TimeUsed > MaxTime &&
             GameState.Singleton.CurrentState == State.Running) {
 			GameState.Singleton.CurrentState = State.Lose;
 			DisableRunning();
@@ -14,7 +16,7 @@ public class Termination : MonoBehaviour {
     void OnCollisionEnter(Collision col) {
         //Debug.Log("collided");
         if (col.gameObject.name == "Blocker") {
-            Debug.Log("FAILURE!");
+            //Debug.Log("FAILURE!");
             GameState.Singleton.CurrentState = State.Lose;
             DisableRunning();
         }
@@ -22,30 +24,30 @@ public class Termination : MonoBehaviour {
 
 
     void OnTriggerEnter(Collider otherObj) {
-        Debug.Log("triggered");
+        //Debug.Log("triggered");
         if (otherObj.gameObject.name == "Goal") {
-            Debug.Log("GOOOAAAAAL!");
+            //Debug.Log("GOOOAAAAAL!");
             GameState.Singleton.CurrentState = State.Win;
             DisableRunning();
         } else if (otherObj.gameObject.name == "Blocker") {
-            Debug.Log("FAILURE!");
+            //Debug.Log("FAILURE!");
             GameState.Singleton.CurrentState = State.Lose;
             DisableRunning();
         }
 
 
-        if (otherObj.gameObject.name == "Target") {
-            Debug.Log("GOOOAAAAAL!");
-        }
-        if (otherObj.gameObject.name == "Target(Clone)") {
-            Debug.Log("clone goal!");
-        }
-        if (otherObj.CompareTag("Target")) {
-            Debug.Log("TAG GOAL!"); // TODO: must add tag name in Tag manager --> programmatically?
-        }
-        if (otherObj.CompareTag("Blocker")) {
-            Debug.Log("TAG BLOCK!"); // TODO: must add tag name in Tag manager --> programmatically?
-        }
+        //if (otherObj.gameObject.name == "Target") {
+        //    Debug.Log("GOOOAAAAAL!");
+        //}
+        //if (otherObj.gameObject.name == "Target(Clone)") {
+        //    Debug.Log("clone goal!");
+        //}
+        //if (otherObj.CompareTag("Target")) {
+        //    Debug.Log("TAG GOAL!"); // TODO: must add tag name in Tag manager --> programmatically?
+        //}
+        //if (otherObj.CompareTag("Blocker")) {
+        //    Debug.Log("TAG BLOCK!"); // TODO: must add tag name in Tag manager --> programmatically?
+        //}
     }
 
     /// <summary>

@@ -3,8 +3,10 @@ using System.Collections;
 
 public class TerminateScoreInTime : Terminate {
 
+    public float MaxTime;
+
 	void Update () {
-        if (PassedTime()) {
+        if (PassedTime(MaxTime)) {
             GameState.Singleton.CurrentState = State.Lose; // lose if you take too long
         }
         else if (PassedThresh(GameState.Singleton.score, valueThreshold, ThresholdType.Above)) {

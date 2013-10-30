@@ -19,6 +19,9 @@ public class PatrolRelativeY : MoveControl {
 	
 	// Update is called once per frame
 	void Update () {
+        if (GameState.Singleton.CurrentState != State.Running)
+            return;
+
         // TODO : compose moveTo
         if (isRunning) {
             // ignore movement target X and Z axes

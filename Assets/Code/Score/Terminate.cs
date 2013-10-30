@@ -22,8 +22,8 @@ public class Terminate : MonoBehaviour {
     /// Test whether game is past maximum allowed time
     /// </summary>
     /// <returns></returns>
-    public bool PassedTime() {
-        if (GameState.Singleton.TimeUsed >= GameState.Singleton.MaxTime) {
+    public bool PassedTime(float timeThreshold) {
+        if (GameState.Singleton.TimeUsed >= timeThreshold) {
             return true;
         }
         return false;

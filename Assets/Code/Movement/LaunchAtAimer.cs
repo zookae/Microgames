@@ -22,6 +22,8 @@ public class LaunchAtAimer : MoveControl {
 	
 	// Update is called once per frame
 	void Update () {
+        if (GameState.Singleton.CurrentState != State.Running)
+            return;
 
         // only track position updates before launch
         if (!click.hasClicked) {

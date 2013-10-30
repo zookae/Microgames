@@ -27,7 +27,7 @@ public class ScoreTriggerTagSet : MonoBehaviour {
     void OnTriggerEnter(Collider col) {
 
         if (GameState.Singleton.CurrentState == State.Running) {
-            Debug.Log("score : entered trigger");
+            //Debug.Log("score : entered trigger");
             foreach (string gt in goodTag) {
                 if (col.CompareTag(gt)) {
                     GameState.Singleton.score += gainPoints;

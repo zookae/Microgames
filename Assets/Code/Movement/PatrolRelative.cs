@@ -18,6 +18,9 @@ public class PatrolRelative : MoveControl {
 	
 	// Update is called once per frame
 	void Update () {
+        if (GameState.Singleton.CurrentState != State.Running)
+            return;
+
         // TODO : compose moveTo
         if (isRunning) {
             transform.position = Vector3.MoveTowards(transform.position, moveTarget, moveRate * Time.deltaTime); // direct bouncing

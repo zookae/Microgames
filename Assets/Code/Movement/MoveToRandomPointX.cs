@@ -10,6 +10,9 @@ public class MoveToRandomPointX : MoveRandomPoint {
 	
 	// Update is called once per frame
 	void Update () {
+        if (GameState.Singleton.CurrentState != State.Running)
+            return;
+
         // if close enough to point (along X axis) pick a new one
         if (Mathf.Abs(transform.position.x - movementPoint.x) < minDist) {
             movementPoint = RandomPointX(moveBounds);

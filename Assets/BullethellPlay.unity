@@ -987,7 +987,6 @@ GameObject:
   - 33: {fileID: 1698286404}
   - 64: {fileID: 1698286403}
   - 23: {fileID: 1698286402}
-  - 114: {fileID: 1698286411}
   - 114: {fileID: 1698286412}
   - 114: {fileID: 1698286407}
   m_Layer: 0
@@ -1059,17 +1058,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uvAnimationRate: {x: 0, y: -.25}
   textureName: starry_bg
---- !u!114 &1698286411
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1698286401}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16fb2dffb1b382443a5d875a16b6f048, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1698286412
 MonoBehaviour:
   m_ObjectHideFlags: 0

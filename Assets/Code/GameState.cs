@@ -27,7 +27,7 @@ public class GameState : MonoBehaviour {
     /// <summary>
     /// Maximum length for the game to run.
     /// </summary>
-    public float MaxTime = 7.0f;
+    public float MaxTime = 7.0f; // TODO: refactor to move this into separate termination logic
 
     /// <summary>
     /// Alternative states for game to be in
@@ -113,15 +113,6 @@ public class GameState : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (TimeUsed >= MaxTime && CurrentState == State.Running) {
-            CurrentState = State.Win;
-        }
-
         TimeUsed += Time.deltaTime;
-
-        //foreach (ParamChange pch in actionTrace) {
-        //    Debug.Log(pch + "...");
-        //}
-        //Debug.Log(actionTrace);
     }
 }

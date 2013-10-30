@@ -14,7 +14,8 @@ public class MoveRandomPoint : MoveToPoint {
 
 	// Update is called once per frame
 	void Update () {
-        //Debug.Log("[MoveRandomPoint]: moving to - " + movementPoint);
+        if (GameState.Singleton.CurrentState != State.Running)
+            return;
         
         // if close enough to point pick a new one
         if (Vector3.Distance(transform.position, movementPoint) < minDist) {
@@ -37,8 +38,8 @@ public class MoveRandomPoint : MoveToPoint {
 
         // select random point w/in bounds
         Vector3 movePt = minPt;
-        Debug.Log("point distance X: " + (maxPt.x - minPt.x));
-        Debug.Log("point distance Y: " + (maxPt.y - minPt.y));
+        //Debug.Log("point distance X: " + (maxPt.x - minPt.x));
+        //Debug.Log("point distance Y: " + (maxPt.y - minPt.y));
 
         movePt.x += Random.Range(0.0f, 1.0f) * (maxPt.x - minPt.x);
         movePt.y += Random.Range(0.0f, 1.0f) * (maxPt.y - minPt.y);

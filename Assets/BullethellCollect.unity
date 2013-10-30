@@ -334,7 +334,7 @@ MonoBehaviour:
   moveTarget: {x: 0, y: 0, z: 0}
   isRunning: 1
   movementPoint: {x: 0, y: 0, z: 0}
-  moveBounds: {fileID: 0}
+  moveBounds: {fileID: 1698286401}
 --- !u!1001 &491083083
 Prefab:
   m_ObjectHideFlags: 0
@@ -384,6 +384,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 503241153}
   - 108: {fileID: 503241152}
+  - 114: {fileID: 503241154}
+  - 114: {fileID: 503241155}
   m_Layer: 0
   m_Name: Directional light
   m_TagString: Untagged
@@ -437,6 +439,32 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!114 &503241154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 503241151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83d6f8b2517bbd04bb7f60026aefdc5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameState: 2
+  tintColor: {r: .143813491, g: 1, b: .0735294223, a: 1}
+--- !u!114 &503241155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 503241151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83d6f8b2517bbd04bb7f60026aefdc5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameState: 3
+  tintColor: {r: .970588207, g: .214100316, b: .214100316, a: .97647059}
 --- !u!1001 &506366716
 Prefab:
   m_ObjectHideFlags: 0
@@ -1439,6 +1467,10 @@ GameObject:
   - 114: {fileID: 1418646960}
   - 114: {fileID: 1418646961}
   - 114: {fileID: 1418646964}
+  - 114: {fileID: 1418646962}
+  - 114: {fileID: 1418646963}
+  - 114: {fileID: 1418646965}
+  - 114: {fileID: 1418646966}
   m_Layer: 0
   m_Name: GlobalState
   m_TagString: Untagged
@@ -1492,6 +1524,35 @@ MonoBehaviour:
   - Player
   gainPoints: 10
   losePoints: 5
+--- !u!114 &1418646962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1418646958}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f16242a4f4445b842a0225278deb3e51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  termState: 2
+  valueThreshold: 7
+  threshType: 0
+--- !u!114 &1418646963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1418646958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7b6ad2c41e8e544da72da88938556e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barDisplay: 0
+  progressBarEmpty: {fileID: 2800000, guid: 66d0b1060f1263748aaa24b917861f3d, type: 3}
+  progressBarFull: {fileID: 2800000, guid: 4c86ac4639b24f24bb598c0d75a3828a, type: 3}
+  MaxTime: 7
 --- !u!114 &1418646964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1504,6 +1565,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newTimeScale: 1
+--- !u!114 &1418646965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1418646958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3fdeef7896f23c48b4be950ba85791f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  termState: 2
+  valueThreshold: 0
+  threshType: 0
+  MaxTime: 7
+--- !u!114 &1418646966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1418646958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3fdeef7896f23c48b4be950ba85791f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  termState: 3
+  valueThreshold: 0
+  threshType: 1
+  MaxTime: 7
 --- !u!1 &1525539506
 GameObject:
   m_ObjectHideFlags: 0
@@ -1617,7 +1708,6 @@ GameObject:
   - 33: {fileID: 1698286404}
   - 64: {fileID: 1698286403}
   - 23: {fileID: 1698286402}
-  - 114: {fileID: 1698286411}
   - 114: {fileID: 1698286412}
   - 114: {fileID: 1698286407}
   m_Layer: 0
@@ -1689,17 +1779,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uvAnimationRate: {x: 0, y: -.25}
   textureName: starry_bg
---- !u!114 &1698286411
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1698286401}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16fb2dffb1b382443a5d875a16b6f048, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1698286412
 MonoBehaviour:
   m_ObjectHideFlags: 0

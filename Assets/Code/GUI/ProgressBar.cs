@@ -10,6 +10,8 @@ public class ProgressBar : MonoBehaviour {
 	
 	public Texture2D progressBarEmpty;
 	public Texture2D progressBarFull;
+
+    public float MaxTime = GameState.Singleton.MaxTime;
 	
 	void OnGUI() {
 		/*
@@ -39,8 +41,7 @@ public class ProgressBar : MonoBehaviour {
 	
 	void Update() {
         if (GameState.Singleton.CurrentState == State.Running) {
-            //barDisplay = GameState.Singleton.TimeUsed / Termination.maxTime;
-            barDisplay = GameState.Singleton.TimeUsed / GameState.Singleton.MaxTime;
+            barDisplay = GameState.Singleton.TimeUsed / this.MaxTime;
         }
 	}
 }

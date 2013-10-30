@@ -18,6 +18,10 @@ public class MoveToClick : MoveControl {
 
 	// Update is called once per frame
 	void Update () {
+        // TODO: should have generic way to say whether method continues when game ends
+        if (GameState.Singleton.CurrentState != State.Running)
+            return;
+
         // detect click and set goal of going there
         if (Input.GetMouseButtonDown(0)) {
             mouseTarget = Input.mousePosition;

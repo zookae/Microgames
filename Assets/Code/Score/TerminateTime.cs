@@ -5,7 +5,7 @@ public class TerminateTime : Terminate {
 
     // Update is called once per frame
 	void Update () {
-        if (PassedTime()) {
+        if (PassedTime(valueThreshold)) {
             GameState.Singleton.CurrentState = termState;
         }
 	}

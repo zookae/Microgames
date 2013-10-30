@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameState: 2
-  tintColor: {r: .960153878, g: .970588207, b: .214100316, a: 0}
+  tintColor: {r: .258823365, g: .0735294223, b: 1, a: 1}
 --- !u!114 &137030256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,7 +192,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 244009824}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -19.9951611, y: -5.16770267, z: 11.9801064}
+  m_LocalPosition: {x: -19.9951611, y: -5.16770267, z: 2.18046951}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -228,6 +228,7 @@ MonoBehaviour:
   barDisplay: 0
   progressBarEmpty: {fileID: 2800000, guid: 66d0b1060f1263748aaa24b917861f3d, type: 3}
   progressBarFull: {fileID: 2800000, guid: 4c86ac4639b24f24bb598c0d75a3828a, type: 3}
+  MaxTime: 7
 --- !u!114 &244009828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,6 +274,7 @@ MonoBehaviour:
   termState: 2
   valueThreshold: 10
   threshType: 0
+  MaxTime: 7
 --- !u!114 &244009831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,6 +289,7 @@ MonoBehaviour:
   termState: 2
   valueThreshold: 0
   threshType: 0
+  MaxTime: 7
 --- !u!1 &817726467
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,11 +382,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b425422498394bf45bc1835024982747, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -9.17771104e-07
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b425422498394bf45bc1835024982747, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 7.5854373
+      value: -.113385677
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b425422498394bf45bc1835024982747, type: 2}
       propertyPath: m_LocalRotation.x
@@ -1540,7 +1543,7 @@ Transform:
   m_PrefabInternal: {fileID: 859611814}
   m_GameObject: {fileID: 1089250909}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: -17.5031242, y: 0, z: 7.5854373}
+  m_LocalPosition: {x: -17.5031242, y: -9.17771104e-07, z: -.113385677}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1576,7 +1579,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 982c5973a8519bb4c85c2755ce9d32de, type: 2}
+  - {fileID: 2100000, guid: 1af9ef542376a6e47958e3f235611bad, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -1623,6 +1626,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca25a6d29b7de7b41b3fd81ce1631ac1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxTime: 7
 --- !u!114 &1445821282
 MonoBehaviour:
   m_ObjectHideFlags: 0
