@@ -27,7 +27,7 @@ public class ClickSelectParent : MonoBehaviour {
                 if (AlreadyClicked(clickObj.parent.name)) {
                     Debug.Log("Already clicked.");
                     return;
-                }
+                } 
 
                 Triple<double, string, string> tagging =
                     new Triple<double, string, string>(GameState.Singleton.TimeUsed,
