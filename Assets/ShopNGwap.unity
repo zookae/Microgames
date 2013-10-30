@@ -335,6 +335,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fad0e609015f8d24397637667361e39d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabs:
+  - {fileID: 100006, guid: 0ca755a6788a2f24f840153629f696fb, type: 2}
+  - {fileID: 100008, guid: c48fc629225038946bdc51d2f6ad5e85, type: 2}
   objectFile: {fileID: 4900000, guid: 372bcc6a27789ab4198f892edf9cbbf4, type: 3}
   numObjects: 7
   allObjects: []

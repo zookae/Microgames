@@ -8,9 +8,7 @@ using System.Collections.Generic;
 /// </summary>
 public class ClickSelectParent : MonoBehaviour {
 
-    void Start() {
-        GameState.Singleton.partnerTrace.Add(new Triple<double, string, string>(0.0f, "Object-Cabbage", "Tag1"));
-    }
+    void Start() {}
     
 	// Update is called once per frame
 	void Update () {

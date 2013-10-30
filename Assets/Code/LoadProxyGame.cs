@@ -3,6 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class LoadProxyGame : MonoBehaviour {
+    /// <summary>
+    /// The possible prefabs that can be spawned
+    /// </summary>
+    public GameObject[] prefabs;
 
     /// <summary>
     /// HACK HACK HACK HACK HACK (kasiu): Replace with a load from the DB or something.
@@ -34,12 +38,23 @@ public class LoadProxyGame : MonoBehaviour {
         List<string> objectSet = SelectRandomSubset(numObjects, allObjects);
         List<string> tagSet = SelectRandomSubset(2, allTags);
 
+        // HACK (kasiu):
+        if (mode == ScoringMode.Both) {
+            tagSet.Add(tagSet[tagSet.Count - 1]);
+        }
+
         // Set things.
         GameState.Singleton.ScoringMode = mode;
 
         // Modify the spawner
         GameObject spawner = GameObject.Find("Spawner");
         if (spawner != null && (spawner.GetComponent<LoadObject>() != null)) {
+            if (mode == ScoringMode.Both) {
+                spawner.GetComponent<LoadObject>().prefab = prefabs[1];
+            } else {
+                spawner.GetComponent<LoadObject>().prefab = prefabs[0];
+            }
+
             spawner.GetComponent<LoadObject>().objectNames = objectSet;
             spawner.GetComponent<LoadObject>().tagNames = tagSet;
         }
