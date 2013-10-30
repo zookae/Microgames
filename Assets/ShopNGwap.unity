@@ -293,8 +293,9 @@ GameObject:
   - 114: {fileID: 1588099213}
   - 114: {fileID: 1588099215}
   - 114: {fileID: 1588099216}
-  - 114: {fileID: 1588099217}
   - 114: {fileID: 1588099214}
+  - 114: {fileID: 1588099218}
+  - 114: {fileID: 1588099217}
   m_Layer: 0
   m_Name: GlobalState
   m_TagString: Untagged
@@ -397,6 +398,21 @@ MonoBehaviour:
   barDisplay: 0
   progressBarEmpty: {fileID: 2800000, guid: 66d0b1060f1263748aaa24b917861f3d, type: 3}
   progressBarFull: {fileID: 2800000, guid: 4c86ac4639b24f24bb598c0d75a3828a, type: 3}
+  MaxTime: 15
+--- !u!114 &1588099218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1588099211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f16242a4f4445b842a0225278deb3e51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  termState: 2
+  valueThreshold: 15
+  threshType: 0
 --- !u!1 &1781938960
 GameObject:
   m_ObjectHideFlags: 0
