@@ -2,21 +2,45 @@
 using System.Collections;
 using System.Reflection;
 using System;
+using System.Collections.Generic;
 
-public class MechanicTweaker {
+public class MechanicTweaker<T> : MonoBehaviour {
 
     public string targetClass;
 
-    private bool hasToggled = false;
-    private bool hasSelected = false;
-    private string targetField;
+    // TODO : back to private
+    public bool hasToggled = false;
+    public bool hasSelected = false;
+    public string targetField;
 
-    public MechanicTweaker(string targetClass) {
+    public List<string> fields;
+    public FieldInfo[] fis;
+
+    public int fieldIndex;
+
+    //public MechanicTweaker(string targetClass) {
+    //    targetField = pickField();
+    //    hasSelected = true;
+    //}
+
+    void Awake() {
+        Type targetType = Type.GetType(targetClass);
+        fis = targetType.GetFields();
+
+        fields = new List<string>();
+        T gObj = gameObject.GetComponent<T>();
+
+        foreach (FieldInfo fi in fis) {
+            fields.Add(fi.ToString());
+            Debug.Log("[MechanicTweaker] got field " + fi);
+            Debug.Log("[MechanicTweaker] got field " + fi.GetValue(gObj));
+        }
         targetField = pickField();
-        hasSelected = true;
+        //hasSelected = true;
     }
 
     public void tweak() {
+        Debug.Log("[MechanicTweaker] called tweak()");
         toggleValue(targetField);
     }
 
@@ -26,7 +50,14 @@ public class MechanicTweaker {
     /// </summary>
     public void tweakRandomField() {
         string fieldName = pickField();
+
+        Debug.Log("[MechanicTweaker] tweaking field : " + fieldName);
+
         toggleValue(fieldName);
+    }
+
+    public void setTargetField() {
+        targetField = pickField();
     }
 
     /// <summary>
@@ -34,9 +65,13 @@ public class MechanicTweaker {
     /// </summary>
     /// <returns></returns>
     public string pickField() {
-        Type targetType = Type.GetType(targetClass);
-        FieldInfo[] fi = targetType.GetFields();
-        return fi[UnityEngine.Random.Range(0, fi.Length)].ToString();
+        //Type targetType = Type.GetType(targetClass);
+        //FieldInfo[] fi = targetType.GetFields();
+        int index = UnityEngine.Random.Range(0, fis.Length);
+        Debug.Log("[MechanicTweaker.pickField] picked field index : " + index);
+        Debug.Log("[MechanicTweaker.pickField] got field: " + fis[index]);
+        fieldIndex = index;
+        return fis[index].ToString();
     }
 
     /// <summary>
@@ -44,8 +79,12 @@ public class MechanicTweaker {
     /// </summary>
     /// <param name="field"></param>
     public void toggleValue(string field) {
-        FieldInfo fi = typeof(ParameterToggle).GetField(field);
-        object v = fi.GetValue(null);
+        Debug.Log("[MechanicTweaker] toggling value of field : " + field);
+        //FieldInfo fi = Type.GetType(targetClass).GetField(field);
+        FieldInfo fi = fis[fieldIndex];
+
+        Debug.Log("[MechanicTweaker] toggling value of : " + fi.ToString());
+        object v = fi.GetValue(Type.GetType(targetClass));
         if (v is int) {
             fi.SetValue(this, toggleInt((int)v));
         }
