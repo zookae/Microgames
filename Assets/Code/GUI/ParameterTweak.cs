@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 
-public class ParameterTweak<T> : MonoBehaviour {
+public class ParameterTweak<T> : MonoBehaviour where T : Component {
 
     public MechanicTweaker<T> tweak;
 

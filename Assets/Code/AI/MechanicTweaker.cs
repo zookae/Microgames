@@ -4,7 +4,7 @@ using System.Reflection;
 using System;
 using System.Collections.Generic;
 
-public class MechanicTweaker<T> : MonoBehaviour {
+public class MechanicTweaker<T> : MonoBehaviour where T : Component {
 
     public string targetClass;
 
@@ -18,6 +18,8 @@ public class MechanicTweaker<T> : MonoBehaviour {
 
     public int fieldIndex;
 
+    public List<T> entityComponents;
+
     //public MechanicTweaker(string targetClass) {
     //    targetField = pickField();
     //    hasSelected = true;
@@ -28,13 +30,16 @@ public class MechanicTweaker<T> : MonoBehaviour {
         fis = targetType.GetFields();
 
         fields = new List<string>();
-        T gObj = gameObject.GetComponent<T>();
-
-        foreach (FieldInfo fi in fis) {
-            fields.Add(fi.ToString());
-            Debug.Log("[MechanicTweaker] got field " + fi);
-            Debug.Log("[MechanicTweaker] got field " + fi.GetValue(gObj));
+        T[] mechanics = gameObject.GetComponents(typeof(T)) as T[];
+        entityComponents.AddRange(mechanics);
+        foreach (T mech in mechanics) {
+            foreach (FieldInfo fi in fis) {
+                fields.Add(fi.ToString());
+                Debug.Log("[MechanicTweaker] got field " + fi);
+                Debug.Log("[MechanicTweaker] got field " + fi.GetValue(mech));
+            }
         }
+        
         targetField = pickField();
         //hasSelected = true;
     }
