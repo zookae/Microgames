@@ -5,6 +5,7 @@ public class DBGameStateManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        DebugConsole.Log("COOKIES. I'M STARTING UP.");
 	}
 
     // TODO (kasiu): Use this to replace LoadProxyGame's setup logic
