@@ -113,6 +113,8 @@ public class GameState : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        TimeUsed += Time.deltaTime;
+        if (CurrentState != State.Paused) {
+            TimeUsed += Time.deltaTime;
+        }
     }
 }
