@@ -20,7 +20,6 @@ public class ScoreGUI : MonoBehaviour {
         style.fontSize = fontSize;
         style.normal.textColor = fontColor;
 
-        GUI.Box(new Rect(xPos, 100, 100, 25), "score: " + GameState.Singleton.score, style);
-        
+        GUI.Box(new Rect(xPos, yPos, 100, 25), "score: " + GameState.Singleton.score, style);        
     }
 }
