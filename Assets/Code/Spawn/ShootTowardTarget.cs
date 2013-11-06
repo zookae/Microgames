@@ -27,7 +27,7 @@ public class ShootTowardTarget : Shoot {
     /// Create a bullet and set it to move in a given direction
     /// </summary>
     public GameObject ShootAtTar() {
-        Debug.Log("called ShootAtTar");
+        //Debug.Log("called ShootAtTar");
 
         //Debug.Log("[ShootTowardTarget] bulletspeed: " + bulletSpeed);
 

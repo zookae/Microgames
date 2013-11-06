@@ -17,7 +17,7 @@ public class ParameterSliderSelect : ParameterSlider {
 
     void Awake() {
         newValue = (paramMax - paramMin) / 2;
-        Debug.Log("[ParameterSliderSelect] initializing value: " + newValue);
+        //Debug.Log("[ParameterSliderSelect] initializing value: " + newValue);
 
         GameObject[] objs = GameObject.FindGameObjectsWithTag(entity);
         foreach (GameObject o in objs) {

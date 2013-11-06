@@ -61,6 +61,7 @@ public class BasicShootAtTarget : Shoot {
         shootBehav.spawn = spawnee;
         shootBehav.assignTag = "Bullet";
         shootBehav.bulletBounds = background;
+        shootBehav.frequency = frequency;
 
         minFireSpacing = frequency;
 	}

@@ -29,25 +29,6 @@ public class ParameterToggle : MonoBehaviour {
 
         GameObject[] objs = GameObject.FindGameObjectsWithTag(entity);
         targetObjects.AddRange(GameObject.FindGameObjectsWithTag(entity));
-        //foreach (GameObject o in objs) {
-
-            //if (ptype == ParamType.FIRE_TYPE) {
-            //    paramArray.AddRange(o.GetComponents<Shoot>());
-            //}
-            //else if (
-            //  ptype == ParamType.MOVE_DRAG ||
-            //  ptype == ParamType.MOVE_FORCE) {
-            //    paramArray.AddRange(o.GetComponents<MoveByKeyForce>());
-            //}
-            // TODO: parameterize movement types
-        //}
-
-        //ParamChange pch = new ParamChange(
-        //        GameState.Singleton.TimeUsed,
-        //        ptype,
-        //        entity,
-        //        newValue);
-        //GameState.Singleton.actionTrace.Add(pch);
     }
 
     void OnGUI() {
@@ -60,6 +41,8 @@ public class ParameterToggle : MonoBehaviour {
             case ShootBehavior.SHOOT_TOWARD:
                 setComponents("isShootToward");
                 break;
+            default:
+                break;
         }
         
         
@@ -68,8 +51,11 @@ public class ParameterToggle : MonoBehaviour {
 
     void setComponents(string behaviorName) {
         MethodInfo mi = typeof(ParameterToggle).GetMethod(behaviorName);
-        Debug.Log("[ParameterToggle].setComponents method is " + mi.ToString());
+        //Debug.Log("[ParameterToggle].setComponents method is " + mi.ToString());
         foreach (GameObject g in targetObjects) {
+            if (g == null) {
+                targetObjects.Remove(g);
+            }
             //Debug.Log("[ParameterToggle].setComponents gameobject is " + g.name);
             foreach (Shoot s in g.GetComponents<Shoot>()) {
                 //Debug.Log("[ParameterToggle].setComponents component is " + s.name);

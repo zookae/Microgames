@@ -698,14 +698,13 @@ GameObject:
   - 33: {fileID: 1131612259}
   - 136: {fileID: 1131612258}
   - 23: {fileID: 1131612257}
-  - 114: {fileID: 1131612261}
-  - 114: {fileID: 1131612262}
   - 114: {fileID: 1131612265}
   - 114: {fileID: 1131612263}
   - 114: {fileID: 1131612264}
   - 114: {fileID: 1131612266}
   - 114: {fileID: 1131612268}
   - 114: {fileID: 1131612267}
+  - 114: {fileID: 1131612261}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -770,30 +769,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1131612256}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 389ba1501f24dab4eb549d661ebe48c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  force: 10
-  drag: 0
-  maxVelocity: {x: 10, y: 10, z: 0}
---- !u!114 &1131612262
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1131612256}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa6bae25fc7cc9f4bb0cbc2436175ea6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawn: {fileID: 100000, guid: 09c6d6e37053b5a4eb04bba7da7d6b9d, type: 2}
   assignTag: Bullet
   haveGravity: 0
-  bulletSpeed: 3
+  bulletSpeed: 5
   frequency: 0
   bulletBounds: {fileID: 1698286401}
-  bulletLife: 0
+  bulletLife: 5
   moveDir: 0
 --- !u!114 &1131612263
 MonoBehaviour:
@@ -861,13 +846,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55129442e0a0ffb4186b9e5503e63534, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawn: {fileID: 0}
-  assignTag: 
+  spawn: {fileID: 100000, guid: 09c6d6e37053b5a4eb04bba7da7d6b9d, type: 2}
+  assignTag: Bullet
   haveGravity: 0
-  bulletSpeed: 0
+  bulletSpeed: 3
   frequency: .5
-  bulletBounds: {fileID: 0}
-  bulletLife: 0
+  bulletBounds: {fileID: 1698286401}
+  bulletLife: 5
   targetTag: Enemy
   senseFrequency: .5
   minActDistance: 1
@@ -1231,7 +1216,7 @@ MonoBehaviour:
   fontSize: 15
   fontColor: {r: .960153878, g: .970588207, b: .214100316, a: .97647059}
   paramMin: 0
-  paramMax: 1
+  paramMax: 3
   paramName: Player Firing Rate
   paramArray: []
   entity: Player
