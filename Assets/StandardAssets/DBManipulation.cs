@@ -152,6 +152,7 @@ public class DBManipulation  {
         return ans;
     }
 
+    // Note to kasiu: This is how you overwrite values in a table.
     internal void SavePlayerScoreStats( PlayerData playerData, int iOfPlayAgain ) {
         System.Text.StringBuilder sbSQL = new System.Text.StringBuilder();
         sbSQL.Append("UPDATE OR IGNORE player SET gamesPlayed = gamesPlayed+1 WHERE playerid=").Append(playerData.playerid);
@@ -255,6 +256,68 @@ public class DBManipulation  {
         sbSQL.Append(")");
 
         System.Data.IDataReader res2 = this.db.BasicQuery(sbSQL.ToString());
+
+        closeConnection();
+    }
+
+    // USED FOR SHOP AND GWAP
+    // HACK (kasiu): This is all stuck in here haphazardly because I'm lazy.
+    // I will clean it up once the study goes out, hopefully.
+    internal string[] LookupRandomTraces(int tracetype, int maxNumTraces) {
+        // XXX (kasiu): HOLY FLYING FRUITCAKE DO SOME ERROR CHECKING PLEASE
+        openConnection();
+
+        System.Text.StringBuilder sbSQL = new System.Text.StringBuilder();
+        // Pulls random traces
+        sbSQL.Append("SELECT * FROM gametrace WHERE tracetype == ").Append(tracetype);
+        sbSQL.Append(" ORDER BY RANDOM() LIMIT ").Append(maxNumTraces);
+
+        DebugConsole.Log(sbSQL.ToString());
+        System.Data.IDataReader res = this.db.BasicQuery(sbSQL.ToString());
+        string[] s = new string[maxNumTraces];
+        if (res.Read()) {
+            for (int i = 0 ; i < maxNumTraces; i++) {
+                if (!res.IsDBNull(i)) { // null if nothing's in the DB
+                    s[i] = res.GetString(i);
+                }
+            }
+        }
+
+        closeConnection();
+        return s;
+    }
+
+    internal void SavePlayerInformation(string udid, int gametype) {
+        openConnection();
+        closeConnection();
+    }
+
+    internal void SavePlayerLikertScores(string udid, string likertScores) {
+        DebugConsole.Log("Saving Likert score values.");
+        openConnection();
+        System.Text.StringBuilder sbSQL = new System.Text.StringBuilder();
+        sbSQL.Append("INSERT INTO gwap_info(likertScores) VALUES(\"");
+        sbSQL.Append(likertScores).Append("\") WHERE");
+        sbSQL.Append(" playerid=").Append(getPlayerID(udid));
+
+        DebugConsole.Log(sbSQL.ToString());
+        System.Data.IDataReader res = this.db.BasicQuery(sbSQL.ToString());
+        closeConnection();
+    }
+
+    internal void SaveTraceResults(int gameid, int tracetype, string values) {
+        DebugConsole.Log("Saving trace results.");
+        openConnection();
+        System.Text.StringBuilder sbSQL = new System.Text.StringBuilder();
+        sbSQL.Append("INSERT INTO gametrace(gameid,tracetype,tracevalue,dAdded) VALUES(");
+        sbSQL.Append(gameid.ToString()).Append(",");
+        sbSQL.Append(tracetype.ToString()).Append(",\"");
+        sbSQL.Append(values).Append("\",");
+        sbSQL.Append("CURRENT_TIMESTAMP");
+        sbSQL.Append(")");
+
+        DebugConsole.Log(sbSQL.ToString());
+        System.Data.IDataReader res = this.db.BasicQuery(sbSQL.ToString());
 
         closeConnection();
     }

@@ -215,6 +215,14 @@ public class GameStateClient : MonoBehaviour
 		case NetworkClient.MessType_ToClient.YouWin:
 //			bAmWinner = true;
 			break;
+
+        case NetworkClient.MessType_ToClient.SNGOpponentTrace:
+            // Generate the trace here.
+            if (args != null && args.Length > 0 && args[0] != null) {
+                // DO THINGS
+            }
+            break;
+
 			
 		default:
 			DebugConsole.Log( "MessageFromServer: default (adding to mailbox)" );

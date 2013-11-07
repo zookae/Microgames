@@ -51,6 +51,7 @@ public class GameState : MonoBehaviour {
 
     /// <summary>
     /// Record of history of objects clicked on by player
+    /// Triples are of the form (time, object, tag) respectively.
     /// </summary>
     public List<Triple<double, string, string>> clickTrace = new List<Triple<double, string, string>>();
 

@@ -181,7 +181,35 @@ public class GameStateServer : MonoBehaviour
 			rgd.SetUniqueDeviceID( player, args ); //comes from NetworkClient.OnConnectedToServer
             DebugConsole.Log( "Got a UDID of: " + args );
 			break;
-		default:
+
+        // UNIQUE AND SPECIFIC TO SNG ONLY
+        case NetworkClient.MessType_ToServer.SNGRequestTrace:
+            //string times = dbManip.LookupRandomTrace();
+            //NetworkClient.Instance.SendClientMess(player, NetworkClient.MessType_ToClient.SNGOpponentTrace, times);
+            break;
+
+        case NetworkClient.MessType_ToServer.SNGSaveDBTrace:
+            DebugConsole.Log("Got a trace from a player.");
+            string[] traces = args.Split(':');
+            if (traces.Length != 3) {
+                DebugConsole.Log("Ill formed trace info.");
+                break;
+            }
+            // XXX (kasiu): Make the gameID better.
+            dbManip.SaveTraceResults(1, 1, traces[0]);
+            dbManip.SaveTraceResults(1, 2, traces[1]);
+            dbManip.SaveTraceResults(1, 3, traces[2]);
+            break;
+
+        case NetworkClient.MessType_ToServer.SNGSavePlayerData:
+            break;
+
+        case NetworkClient.MessType_ToServer.SNGSavePlayerLikertData:
+            // XXX (kasiu): This does an extra function call to get the UDID. May want to just pass PID to likert insert.
+            dbManip.SavePlayerLikertScores(dbManip.getPlayerUDID(rgd.dPlayerData[player].playerid), args);
+            break;
+
+        default:
 			DebugConsole.Log( "MessageFromClient: default" );
 			break;
 		}

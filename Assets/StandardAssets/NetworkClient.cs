@@ -22,9 +22,9 @@ public class NetworkClient : MonoBehaviour {
 		, RelationMatchResult   //server sends to client to indicate whether the player pair agreed on the previous relation
 		, YouWin				//server send to client if the game is over and they have the higher score in the player pair
         // The below are for ShopNGwap only
-        , SNGGameMode           // server sends client which mode of the game this is   
+        , SNGGameMode           // server sends client which mode of the game this is
         , SNGOpponentTrace      // server sends client a generated trace to play against
-        , UNTYPED               //a catch-all type 
+        , UNTYPED               //a catch-all type
 	};
 	public enum MessType_ToServer { 
 		  DeviceUniqueIdentifier=0
@@ -41,12 +41,10 @@ public class NetworkClient : MonoBehaviour {
 		, PlayerScore	   		    //client sends whenever the swan is at the end of the screen
 		, PlayAgain                 //client sends when they want to play again
         // MORE ShopNGwap stuff
-        , SNGLeavingTitle           // client sends when leaving the title screen
-        , SNGTutorialFinished       // client sends when the tutorial is finished
-        , SNGRoundFinished          // client sends when a round is finished
-        , SNGSaveDBTrace            // client sends when a trace needs to be saved an stored
-        , SNGPlayAgain              // client sends when a new round starts
-        , SNGSaveLikert             // client sends when the likert score is saved
+        , SNGRequestTrace           // client sends whenever it wants a trace
+        , SNGSaveDBTrace            // client sends whenever it wants to save traces to the database
+        , SNGSavePlayerData         // client sends whenever it wants to save player data
+        , SNGSavePlayerLikertData   // client sends whenever it wants to save likert scores
 	};
 	
 	static NetworkClient _instance;
