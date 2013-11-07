@@ -27,4 +27,16 @@ public class DBStringHelper {
         // XXX (kasiu): This is bad. Also, if the delimeter is a comma, things will break :P
         return times + delimeter + objects + delimeter + tags;
     }
+
+    public static string listToString(List<string> list) {
+        string s = "";
+        for (int i = 0; i < list.Count; i++) {
+            s += list[i];
+
+            if (i != list.Count - 1) {
+                s += ",";
+            }
+        }
+        return s;
+    }
 }

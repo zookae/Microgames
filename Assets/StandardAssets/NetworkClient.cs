@@ -41,6 +41,7 @@ public class NetworkClient : MonoBehaviour {
 		, PlayerScore	   		    //client sends whenever the swan is at the end of the screen
 		, PlayAgain                 //client sends when they want to play again
         // MORE ShopNGwap stuff
+        , SNGRequestNewGame         // client sends whenever it initiates a new game
         , SNGRequestTrace           // client sends whenever it wants a trace
         , SNGSaveDBTrace            // client sends whenever it wants to save traces to the database
         , SNGSavePlayerData         // client sends whenever it wants to save player data

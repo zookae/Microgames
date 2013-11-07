@@ -26,6 +26,7 @@ public class GameStateServer : MonoBehaviour
 	// If one doesn't exist, it will be automatically created.
 	public static String databaseName = "db.sqlite3";
     private string[] RAY_TABLE_NAMES = new string[] { "player", "topscore", "confidenceLookupMC", "savedata", "game", "gamedetail" };
+    private static int currentGameId = 1;
 
     internal DBManipulation dbManip = new DBManipulation( databaseName, false, false );
 	internal ValidationStrategy valStrat = null; //initialized in Start() so that we can use the momoized (database) version intelligently/safely
@@ -83,7 +84,7 @@ public class GameStateServer : MonoBehaviour
 				playersWaitingToGo.RemoveAt( tmpI ); 
 				
 				//make single player data
-				RunningGameData_1player rgd1p = new RunningGameData_1player( this, -1, player );
+				RunningGameData_1player rgd1p = new RunningGameData_1player( this, /*-1*/ AssignNewGameID(), player );
                 rgd1p.dPlayerData.Add(player, new PlayerData()); 
 				rgd = rgd1p;
 				this.dPlayerToGamedata.Add( player, rgd1p );
@@ -99,6 +100,13 @@ public class GameStateServer : MonoBehaviour
 		}
 		return rgd; //always returns null, unless we already have a mapping from player to RunningGameData
 	}
+
+    // HACK (kasiu): Not sure if this is the best place for it, but the server should be the one in charge.
+    public int AssignNewGameID() {
+        int gameId = currentGameId;
+        currentGameId++;
+        return gameId;
+    }
 	
 	//THIS IS THE KEY METHOD OF THIS CLASS
 	public void MessageFromClient( NetworkPlayer player, NetworkClient.MessType_ToServer messType, string args )
@@ -183,9 +191,17 @@ public class GameStateServer : MonoBehaviour
 			break;
 
         // UNIQUE AND SPECIFIC TO SNG ONLY
+        // Right now, only changes ID. Doesn't do anything different
+        // XXX (kasiu): This is horrible design. FIX.
+        case NetworkClient.MessType_ToServer.SNGRequestNewGame:
+            rgd.gameID = AssignNewGameID();
+            break;
+
         case NetworkClient.MessType_ToServer.SNGRequestTrace:
-            //string times = dbManip.LookupRandomTrace();
-            //NetworkClient.Instance.SendClientMess(player, NetworkClient.MessType_ToClient.SNGOpponentTrace, times);
+            string[] times = dbManip.LookupRandomTraces(1, 1);
+            if (times[0] != null) {
+                NetworkClient.Instance.SendClientMess(player, NetworkClient.MessType_ToClient.SNGOpponentTrace, times[0]);
+            }
             break;
 
         case NetworkClient.MessType_ToServer.SNGSaveDBTrace:
@@ -195,13 +211,21 @@ public class GameStateServer : MonoBehaviour
                 DebugConsole.Log("Ill formed trace info.");
                 break;
             }
-            // XXX (kasiu): Make the gameID better.
-            dbManip.SaveTraceResults(1, 1, traces[0]);
-            dbManip.SaveTraceResults(1, 2, traces[1]);
-            dbManip.SaveTraceResults(1, 3, traces[2]);
+            // XXX (kasiu): Should actually retrieve the gameID from the initial call to SaveGameBasics.
+            // With the test thing there, it's currently 1 off.
+            dbManip.SaveGameBasics();
+            dbManip.SaveGameType(rgd.gameID, rgd.gameMode);
+            dbManip.SaveTraceResults(rgd.gameID, 1, traces[0]);
+            dbManip.SaveTraceResults(rgd.gameID, 2, traces[1]);
+            dbManip.SaveTraceResults(rgd.gameID, 3, traces[2]);
+            string objSetStr = "temp"; // DBStringHelper.listToString(rgd.objectSet);
+            string tagSetStr = "temp"; //DBStringHelper.listToString(rgd.tagSet);
+            dbManip.SaveGameGwapData(rgd.gameID, 0, rgd.dPlayerData[player].playerid, objSetStr, tagSetStr);
             break;
 
         case NetworkClient.MessType_ToServer.SNGSavePlayerData:
+            // XXX (kasiu): Not saving correct game mode.
+            dbManip.SavePlayerInformation(dbManip.getPlayerUDID(rgd.dPlayerData[player].playerid), rgd.gameMode);
             break;
 
         case NetworkClient.MessType_ToServer.SNGSavePlayerLikertData:

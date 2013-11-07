@@ -18,6 +18,7 @@ public class DBGameStateManager : MonoBehaviour {
 
         // Request information from the server to get started.
         // NetworkClient.Instance.SendServerMess(NetworkClient.MessType_ToServer.SNGRequestTrace, "");
+        //NetworkClient.Instance.
     }
 	
 	// Update is called once per frame
@@ -25,6 +26,7 @@ public class DBGameStateManager : MonoBehaviour {
         if (!sentTraceToDB && (GameState.Singleton.CurrentState == State.Win ||
             GameState.Singleton.CurrentState == State.Lose)) {
             // HACK (kasiu): Currently using a comma-delimeted thingy.
+            NetworkClient.Instance.SendServerMess(NetworkClient.MessType_ToServer.SNGSavePlayerData, "");
             NetworkClient.Instance.SendServerMess(NetworkClient.MessType_ToServer.SNGSaveDBTrace, DBStringHelper.traceToString(GameState.Singleton.clickTrace, ':'));
             sentTraceToDB = true;
         }

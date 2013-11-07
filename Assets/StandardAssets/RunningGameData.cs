@@ -25,6 +25,11 @@ public abstract class RunningGameData
     public int gameID;
     public Dictionary<NetworkPlayer, PlayerData> dPlayerData = new Dictionary<NetworkPlayer,PlayerData>();
 
+    // HACK (kasiu): The following variables have been STUPIDLY hacked in for SNG. I will fix this later
+    public int gameMode;
+    public List<string> objectSet;
+    public List<string> tagSet;
+
     abstract public void SendWinnerMessage( );
 	abstract public void EndGame( string mess_p1, string mess_p2 );
 	//abstract public void SetUniqueDeviceID( NetworkPlayer player, string udid );		
@@ -51,6 +56,8 @@ public abstract class RunningGameData
 	{
 		this.gss = inGSS;
         this.gameID = gid;
+        // XXX (kasiu): A hack.
+        this.gameMode = Random.Range(1, 4);
 	}
 	
 //	virtual public System.Collections.Generic.KeyValuePair<int/*domainId*/,System.Text.StringBuilder/*domainid|||domainName|||domainDescr*/> 

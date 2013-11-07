@@ -218,11 +218,16 @@ public class GameStateClient : MonoBehaviour
 
         case NetworkClient.MessType_ToClient.SNGOpponentTrace:
             // Generate the trace here.
+            DebugConsole.Log("Got a trace from the server");
             if (args != null && args.Length > 0 && args[0] != null) {
                 // DO THINGS
             }
             break;
-
+        case NetworkClient.MessType_ToClient.SNGGameMode:
+            DebugConsole.Log("Got game mode from the server!");
+            if (args != null && args.Length > 0 && args[0] != null) {
+            }
+            break;
 			
 		default:
 			DebugConsole.Log( "MessageFromServer: default (adding to mailbox)" );
