@@ -64,6 +64,13 @@ public class LoadObject : MonoBehaviour {
                 newObject.transform.FindChild("Tag3").name = tagNames[2];
             }
 
+            // Add the tooltip
+            newObject.AddComponent("MouseHoverTooltip");
+            MouseHoverTooltip mhtComponent = newObject.GetComponent<MouseHoverTooltip>();
+            mhtComponent.text = objName;
+            mhtComponent.fontSize = 10;
+            mhtComponent.fontColor = Color.white;
+
             Transform spriteChild = newObject.transform.FindChild("TexturedQuad");
             if (spriteChild != null) {
                 DebugConsole.Log("Attempting to attach textures: " + objName);
