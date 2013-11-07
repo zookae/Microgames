@@ -191,16 +191,38 @@ public class GameStateServer : MonoBehaviour
 			break;
 
         // UNIQUE AND SPECIFIC TO SNG ONLY
-        // Right now, only changes ID. Doesn't do anything different
-        // XXX (kasiu): This is horrible design. FIX.
+        // Whenever we want to create a new game, we do this.
         case NetworkClient.MessType_ToServer.SNGRequestNewGame:
-            rgd.gameID = AssignNewGameID();
+            int gameId = dbManip.SaveGameBasics(dbManip.getPlayerUDID(rgd.dPlayerData[player].playerid));
+            rgd.gameID = gameId;
+            dbManip.SaveGameType(rgd.gameID, rgd.gameMode);
+
+            List<string> objectSet = DBGWAPLoader.GenerateRandomObjectSet(7);
+            List<string> tagSet = DBGWAPLoader.GenerateRandomTagset();
+            rgd.objectSet = objectSet;
+            rgd.tagSet = tagSet;
+
+            // Sends the game mode
+            NetworkClient.Instance.SendClientMess(player, NetworkClient.MessType_ToClient.SNGGameMode, rgd.gameMode.ToString());
+
+            // Construct the object and tag sets.
+            if (objectSet != null) {
+                NetworkClient.Instance.SendClientMess(player, NetworkClient.MessType_ToClient.SNGObjectSet, DBStringHelper.listToString(objectSet));
+            }
+            if (tagSet != null) {
+                NetworkClient.Instance.SendClientMess(player, NetworkClient.MessType_ToClient.SNGTagSet, DBStringHelper.listToString(tagSet));
+            }
+
             break;
 
         case NetworkClient.MessType_ToServer.SNGRequestTrace:
+            // (OH GOD BAD HARDCODED NUMBERS)
             string[] times = dbManip.LookupRandomTraces(1, 1);
-            if (times[0] != null) {
-                NetworkClient.Instance.SendClientMess(player, NetworkClient.MessType_ToClient.SNGOpponentTrace, times[0]);
+
+            // Construct and send the partner trace.
+            List<Triple<double, string, string>> partnerTrace = DBGWAPLoader.ConstructRandomPartnerTrace(times, rgd.objectSet, rgd.tagSet);
+            if (partnerTrace != null) {
+                NetworkClient.Instance.SendClientMess(player, NetworkClient.MessType_ToClient.SNGOpponentTrace, DBStringHelper.traceToString(partnerTrace, ':'));
             }
             break;
 
@@ -208,18 +230,17 @@ public class GameStateServer : MonoBehaviour
             DebugConsole.Log("Got a trace from a player.");
             string[] traces = args.Split(':');
             if (traces.Length != 3) {
-                DebugConsole.Log("Ill formed trace info.");
+                DebugConsole.Log("Ill-formed trace info.");
                 break;
             }
             // XXX (kasiu): Should actually retrieve the gameID from the initial call to SaveGameBasics.
             // With the test thing there, it's currently 1 off.
-            dbManip.SaveGameBasics();
-            dbManip.SaveGameType(rgd.gameID, rgd.gameMode);
             dbManip.SaveTraceResults(rgd.gameID, 1, traces[0]);
             dbManip.SaveTraceResults(rgd.gameID, 2, traces[1]);
             dbManip.SaveTraceResults(rgd.gameID, 3, traces[2]);
-            string objSetStr = "temp"; // DBStringHelper.listToString(rgd.objectSet);
-            string tagSetStr = "temp"; //DBStringHelper.listToString(rgd.tagSet);
+            string objSetStr = DBStringHelper.listToString(rgd.objectSet);
+            string tagSetStr = DBStringHelper.listToString(rgd.tagSet);
+            // XXX (kasiu): Need to save score properly
             dbManip.SaveGameGwapData(rgd.gameID, 0, rgd.dPlayerData[player].playerid, objSetStr, tagSetStr);
             // Increment player score:
             dbManip.IncrementPlayerGameCount(rgd.dPlayerData[player].playerid);

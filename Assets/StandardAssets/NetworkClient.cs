@@ -24,6 +24,8 @@ public class NetworkClient : MonoBehaviour {
         // The below are for ShopNGwap only
         , SNGGameMode           // server sends client which mode of the game this is
         , SNGOpponentTrace      // server sends client a generated trace to play against
+        , SNGObjectSet          // server sends client a set of objects to use for this game
+        , SNGTagSet             // server sends client a set of tags to use for this game
         , UNTYPED               //a catch-all type
 	};
 	public enum MessType_ToServer { 
