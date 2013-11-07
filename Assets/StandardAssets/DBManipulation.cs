@@ -368,6 +368,15 @@ public class DBManipulation  {
         closeConnection();
     }
 
+    internal void IncrementPlayerGameCount(int playerid) {
+        openConnection();
+        System.Text.StringBuilder sbSQL = new System.Text.StringBuilder();
+        sbSQL.Append("UPDATE OR IGNORE player SET gamesPlayed = gamesPlayed+1 WHERE playerid=").Append(playerid);
+        DebugConsole.Log(sbSQL.ToString());
+        db.BasicQuery(sbSQL.ToString());
+        closeConnection();
+    }
+
     // This is kept separate from the player information because it happens later (generally).
     internal void SavePlayerLikertScores(string udid, string likertScores) {
         DebugConsole.Log("Saving Likert score values.");

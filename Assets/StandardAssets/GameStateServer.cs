@@ -221,6 +221,8 @@ public class GameStateServer : MonoBehaviour
             string objSetStr = "temp"; // DBStringHelper.listToString(rgd.objectSet);
             string tagSetStr = "temp"; //DBStringHelper.listToString(rgd.tagSet);
             dbManip.SaveGameGwapData(rgd.gameID, 0, rgd.dPlayerData[player].playerid, objSetStr, tagSetStr);
+            // Increment player score:
+            dbManip.IncrementPlayerGameCount(rgd.dPlayerData[player].playerid);
             break;
 
         case NetworkClient.MessType_ToServer.SNGSavePlayerData:
