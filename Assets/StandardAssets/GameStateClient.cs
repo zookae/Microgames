@@ -216,19 +216,47 @@ public class GameStateClient : MonoBehaviour
 //			bAmWinner = true;
 			break;
 
+        // BEGIN SNG-specific messages
         case NetworkClient.MessType_ToClient.SNGOpponentTrace:
             // Generate the trace here.
             DebugConsole.Log("Got a trace from the server");
             if (args != null && args.Length > 0 && args[0] != null) {
                 // DO THINGS
+                DebugConsole.Log(args[0] + " is args[0]");
+                DBGameStateManager dsm = GameState.Singleton.GetComponent<DBGameStateManager>();
+                List<Triple<double, string, string>> partnerTrace = DBStringHelper.stringToTrace(args[0], ':');
+                dsm.SetPartnerTrace(partnerTrace);
             }
             break;
         case NetworkClient.MessType_ToClient.SNGGameMode:
-            DebugConsole.Log("Got game mode from the server!");
+            DebugConsole.Log("Got the game mode from the server!");
             if (args != null && args.Length > 0 && args[0] != null) {
+                DebugConsole.Log(args[0] + " is args[0]");
+                DBGameStateManager dsm = GameState.Singleton.GetComponent<DBGameStateManager>();
+                dsm.SetMode(Convert.ToInt32(args[0]));
             }
             break;
-			
+        case NetworkClient.MessType_ToClient.SNGObjectSet:
+            DebugConsole.Log("Got the objects from the server!");
+            if (args != null && args.Length > 0 && args[0] != null) {
+                DebugConsole.Log(args[0] + " is args[0]");
+                DBGameStateManager dsm = GameState.Singleton.GetComponent<DBGameStateManager>();
+                List<string> objectSet = DBStringHelper.stringToList(args[0], ',');
+                dsm.SetObjectList(objectSet);
+            }
+            break;
+
+        case NetworkClient.MessType_ToClient.SNGTagSet:
+            DebugConsole.Log("Got the tags from the server!");
+            if (args != null && args.Length > 0 && args[0] != null) {
+                DebugConsole.Log(args[0] + " is args[0]");
+                DBGameStateManager dsm = GameState.Singleton.GetComponent<DBGameStateManager>();
+                List<string> tagSet = DBStringHelper.stringToList(args[0], ',');
+                dsm.SetTagList(tagSet);
+            }
+            break;
+
+		// END SNG-specific messages
 		default:
 			DebugConsole.Log( "MessageFromServer: default (adding to mailbox)" );
             mailbox.AddMessage( messType, args );

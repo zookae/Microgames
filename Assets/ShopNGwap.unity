@@ -293,11 +293,11 @@ GameObject:
   - 114: {fileID: 1588099213}
   - 114: {fileID: 1588099215}
   - 114: {fileID: 1588099216}
+  - 114: {fileID: 1588099220}
   - 114: {fileID: 1588099214}
   - 114: {fileID: 1588099218}
   - 114: {fileID: 1588099217}
   - 114: {fileID: 1588099219}
-  - 114: {fileID: 1588099220}
   m_Layer: 0
   m_Name: GlobalState
   m_TagString: Untagged
@@ -437,6 +437,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c0024b2f2e0b584daea92dde705b63d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabs: []
 --- !u!1 &1781938960
 GameObject:
   m_ObjectHideFlags: 0

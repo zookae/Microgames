@@ -296,7 +296,7 @@ public class DBManipulation  {
 
             DebugConsole.Log(sbSQL.ToString());
             System.Data.IDataReader res = this.db.BasicQuery(sbSQL.ToString());
-            if (res.Read() && res.IsDBNull(0)) {
+            if (res.Read() && !res.IsDBNull(0)) {
                 return res.GetInt32(0);
             }
         }
@@ -304,19 +304,36 @@ public class DBManipulation  {
         return -1;           
     }
 
-    internal void SaveGameBasics() {
+    internal int SaveGameBasics(string gamename) {
+        int gameid = -1;
         DebugConsole.Log("Saving trace results.");
         openConnection();
         System.Text.StringBuilder sbSQL = new System.Text.StringBuilder();
-        sbSQL.Append("INSERT INTO game(name,dAdded) VALUES(");
+        sbSQL.Append("INSERT INTO game(name,dAdded) VALUES(\"");
         // XXX (kasiu) Ignoring name column for now.
-        sbSQL.Append("\"NO NAME\",");
+        sbSQL.Append(gamename).Append("\",");
         sbSQL.Append("CURRENT_TIMESTAMP").Append(")");
 
         DebugConsole.Log(sbSQL.ToString());
         System.Data.IDataReader res = this.db.BasicQuery(sbSQL.ToString());
 
+        // Retrieve the correct gameID using a name hack
+        System.Text.StringBuilder sbSQL2 = new System.Text.StringBuilder();
+        sbSQL2.Append("SELECT gameid FROM game WHERE name == \"").Append(gamename).Append("\"");
+        DebugConsole.Log(sbSQL2.ToString());
+        System.Data.IDataReader res2 = this.db.BasicQuery(sbSQL2.ToString());
+        if (res2.Read() && !res2.IsDBNull(0)) {
+            gameid = res2.GetInt32(0);
+        }
+
+        // Finally, overwrite the name in the table
+        System.Text.StringBuilder sbSQL3 = new System.Text.StringBuilder();
+        sbSQL3.Append("UPDATE game SET name = \"NONE\" WHERE name == \"").Append(gamename).Append("\"");
+        DebugConsole.Log(sbSQL3.ToString());
+        System.Data.IDataReader res3 = this.db.BasicQuery(sbSQL3.ToString());
+
         closeConnection();
+        return gameid;
     }
 
     internal void SaveGameType(int gameid, int gametype) {
@@ -365,6 +382,15 @@ public class DBManipulation  {
 
         DebugConsole.Log(sbSQL.ToString());
         System.Data.IDataReader res = this.db.BasicQuery(sbSQL.ToString());
+        closeConnection();
+    }
+
+    internal void IncrementPlayerGameCount(int playerid) {
+        openConnection();
+        System.Text.StringBuilder sbSQL = new System.Text.StringBuilder();
+        sbSQL.Append("UPDATE OR IGNORE player SET gamesPlayed = gamesPlayed+1 WHERE playerid=").Append(playerid);
+        DebugConsole.Log(sbSQL.ToString());
+        db.BasicQuery(sbSQL.ToString());
         closeConnection();
     }
 
