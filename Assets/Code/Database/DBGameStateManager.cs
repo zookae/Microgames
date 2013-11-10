@@ -12,7 +12,14 @@ public class DBGameStateManager : MonoBehaviour {
     private bool hasReceivedTrace;
     private bool hasReceivedTags;
     private bool hasReceivedObjects;
+    private bool hasSpawnedObjects;
     private bool sentTraceToDB;
+
+    // Information received from the server...
+    private ScoringMode mode;
+    private List<string> tagList;
+    private List<string> objectList;
+    private List<Triple<double, string, string>> opponentTrace;
 
     void Reset() {
         hasReceivedMode = false;
@@ -29,10 +36,10 @@ public class DBGameStateManager : MonoBehaviour {
 
     // TODO (kasiu): Use this to replace LoadProxyGame's setup logic
     void Start() {
-        //Reset();
+        Reset();
     }
 
-    public bool IsReadyToRun() {
+    public bool IsReadyToSpawn() {
         return hasReceivedMode && hasReceivedTrace && hasReceivedTags && hasReceivedObjects;
     }
    
@@ -103,18 +110,26 @@ public class DBGameStateManager : MonoBehaviour {
         }
         return false;
     }
+
+    void OnGUI() {
+        if (!hasSpawnedObjects && !IsReadyToSpawn()) {
+            // TODO (kasiu): Display a loading message.
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        //if (!IsReadyToRun()) {
-        //    GameState.Singleton.CurrentState = State.Paused;
-        //}
+        if (!hasSpawnedObjects && IsReadyToSpawn()) {
+            // SPAWN THE SPAWNER. HECK YEAH.
+            hasSpawnedObjects = true;
+        }
 
         if (!sentTraceToDB && (GameState.Singleton.CurrentState == State.Win ||
             GameState.Singleton.CurrentState == State.Lose)) {
             // HACK (kasiu): Currently using a comma-delimeted thingy.
             NetworkClient.Instance.SendServerMess(NetworkClient.MessType_ToServer.SNGSavePlayerData, "");
             NetworkClient.Instance.SendServerMess(NetworkClient.MessType_ToServer.SNGSaveDBTrace, DBStringHelper.traceToString(GameState.Singleton.clickTrace, ':'));
+            NetworkClient.Instance.SendServerMess(NetworkClient.MessType_ToServer.SNGSavePlayerScore, ((int)(GameState.Singleton.score)).ToString());
             sentTraceToDB = true;
         }
 	}

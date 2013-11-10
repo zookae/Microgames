@@ -207,39 +207,48 @@ public class GameStateServer : MonoBehaviour
 
             // Construct the object and tag sets.
             if (objectSet != null) {
-                NetworkClient.Instance.SendClientMess(player, NetworkClient.MessType_ToClient.SNGObjectSet, DBStringHelper.listToString(objectSet));
+                NetworkClient.Instance.SendClientMess(player, NetworkClient.MessType_ToClient.SNGObjectSet, DBStringHelper.listToString(objectSet, ','));
             }
             if (tagSet != null) {
-                NetworkClient.Instance.SendClientMess(player, NetworkClient.MessType_ToClient.SNGTagSet, DBStringHelper.listToString(tagSet));
+                NetworkClient.Instance.SendClientMess(player, NetworkClient.MessType_ToClient.SNGTagSet, DBStringHelper.listToString(tagSet, ','));
             }
 
             break;
 
         case NetworkClient.MessType_ToServer.SNGRequestTrace:
             // (OH GOD BAD HARDCODED NUMBERS)
-            string[] times = dbManip.LookupRandomTraces(1, 1);
-
+            string[] times = (dbManip.LookupRandomTraces(1, 1))[0].Split(',');
+            DebugConsole.Log("Got a random timing thing from the database.");
+            
             // Construct and send the partner trace.
             List<Triple<double, string, string>> partnerTrace = DBGWAPLoader.ConstructRandomPartnerTrace(times, rgd.objectSet, rgd.tagSet);
             if (partnerTrace != null) {
                 NetworkClient.Instance.SendClientMess(player, NetworkClient.MessType_ToClient.SNGOpponentTrace, DBStringHelper.traceToString(partnerTrace, ':'));
+                DebugConsole.Log("SENT A TRACE!");
+            } else {
+                DebugConsole.Log("DIDN'T SEND TRACE!");
             }
             break;
 
         case NetworkClient.MessType_ToServer.SNGSaveDBTrace:
             DebugConsole.Log("Got a trace from a player.");
-            string[] traces = args.Split(':');
+            string[] traces = args.Split(',');
+            // This is a really awful hack...someone just kill me please.
+            // Basically, if I want to reuse all of my string helper functions, I have to manhandle some strings.
+            // THIS IS WHY THE CLIENT SHOULDN'T AUTOSPLIT STRINGS WHEN READING FROM THE SERVER DAMMIT.
+            // YOUR LOGIC IS NOT TWO-WAY...RANT...RANT...RAAAAAAAAAAAAAANT.
+            for (int i = 0; i < traces.Length; i++) {
+                traces[i] = traces[i].Replace(':', ',');
+            }
             if (traces.Length != 3) {
                 DebugConsole.Log("Ill-formed trace info.");
                 break;
             }
-            // XXX (kasiu): Should actually retrieve the gameID from the initial call to SaveGameBasics.
-            // With the test thing there, it's currently 1 off.
             dbManip.SaveTraceResults(rgd.gameID, 1, traces[0]);
             dbManip.SaveTraceResults(rgd.gameID, 2, traces[1]);
             dbManip.SaveTraceResults(rgd.gameID, 3, traces[2]);
-            string objSetStr = DBStringHelper.listToString(rgd.objectSet);
-            string tagSetStr = DBStringHelper.listToString(rgd.tagSet);
+            string objSetStr = DBStringHelper.listToString(rgd.objectSet, ',');
+            string tagSetStr = DBStringHelper.listToString(rgd.tagSet, ',');
             // XXX (kasiu): Need to save score properly
             dbManip.SaveGameGwapData(rgd.gameID, 0, rgd.dPlayerData[player].playerid, objSetStr, tagSetStr);
             // Increment player score:
@@ -247,13 +256,17 @@ public class GameStateServer : MonoBehaviour
             break;
 
         case NetworkClient.MessType_ToServer.SNGSavePlayerData:
-            // XXX (kasiu): Not saving correct game mode.
+            // XXX (kasiu): Not saving correct game mode???
             dbManip.SavePlayerInformation(dbManip.getPlayerUDID(rgd.dPlayerData[player].playerid), rgd.gameMode);
             break;
 
         case NetworkClient.MessType_ToServer.SNGSavePlayerLikertData:
             // XXX (kasiu): This does an extra function call to get the UDID. May want to just pass PID to likert insert.
             dbManip.SavePlayerLikertScores(dbManip.getPlayerUDID(rgd.dPlayerData[player].playerid), args);
+            break;
+        
+        case NetworkClient.MessType_ToServer.SNGSavePlayerScore:
+            dbManip.SaveGameScore(rgd.gameID, System.Convert.ToInt32(args));
             break;
 
         default:

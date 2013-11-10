@@ -224,7 +224,7 @@ public class GameStateClient : MonoBehaviour
                 // DO THINGS
                 DebugConsole.Log(args[0] + " is args[0]");
                 DBGameStateManager dsm = GameState.Singleton.GetComponent<DBGameStateManager>();
-                List<Triple<double, string, string>> partnerTrace = DBStringHelper.stringToTrace(args[0], ':');
+                List<Triple<double, string, string>> partnerTrace = DBStringHelper.stringToTrace(args, ':');
                 dsm.SetPartnerTrace(partnerTrace);
             }
             break;
@@ -239,9 +239,9 @@ public class GameStateClient : MonoBehaviour
         case NetworkClient.MessType_ToClient.SNGObjectSet:
             DebugConsole.Log("Got the objects from the server!");
             if (args != null && args.Length > 0 && args[0] != null) {
-                DebugConsole.Log(args[0] + " is args[0]");
+                DebugConsole.Log(args[0] + " is args[0] and length = " + args.Length); 
                 DBGameStateManager dsm = GameState.Singleton.GetComponent<DBGameStateManager>();
-                List<string> objectSet = DBStringHelper.stringToList(args[0], ',');
+                List<string> objectSet = new List<string>(args);
                 dsm.SetObjectList(objectSet);
             }
             break;
@@ -249,9 +249,9 @@ public class GameStateClient : MonoBehaviour
         case NetworkClient.MessType_ToClient.SNGTagSet:
             DebugConsole.Log("Got the tags from the server!");
             if (args != null && args.Length > 0 && args[0] != null) {
-                DebugConsole.Log(args[0] + " is args[0]");
+                DebugConsole.Log(args[0] + " is args[0] and length = " + args.Length);
                 DBGameStateManager dsm = GameState.Singleton.GetComponent<DBGameStateManager>();
-                List<string> tagSet = DBStringHelper.stringToList(args[0], ',');
+                List<string> tagSet = new List<string>(args);
                 dsm.SetTagList(tagSet);
             }
             break;

@@ -48,6 +48,7 @@ public class NetworkClient : MonoBehaviour {
         , SNGSaveDBTrace            // client sends whenever it wants to save traces to the database
         , SNGSavePlayerData         // client sends whenever it wants to save player data
         , SNGSavePlayerLikertData   // client sends whenever it wants to save likert scores
+        , SNGSavePlayerScore        // client sends whenever it wants to save a score for a game
 	};
 	
 	static NetworkClient _instance;

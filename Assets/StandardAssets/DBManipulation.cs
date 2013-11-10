@@ -269,7 +269,7 @@ public class DBManipulation  {
 
         System.Text.StringBuilder sbSQL = new System.Text.StringBuilder();
         // Pulls random traces
-        sbSQL.Append("SELECT * FROM gametrace WHERE tracetype == ").Append(tracetype);
+        sbSQL.Append("SELECT tracevalue FROM gametrace WHERE tracetype == ").Append(tracetype);
         sbSQL.Append(" ORDER BY RANDOM() LIMIT ").Append(maxNumTraces);
 
         DebugConsole.Log(sbSQL.ToString());
@@ -334,6 +334,17 @@ public class DBManipulation  {
 
         closeConnection();
         return gameid;
+    }
+
+    internal void SaveGameScore(int gameid, int score) {
+        openConnection();
+        System.Text.StringBuilder sbSQL = new System.Text.StringBuilder();
+        sbSQL.Append("UPDATE gamegwap SET score = ").Append(score.ToString());
+        sbSQL.Append(" WHERE gameid == ").Append(gameid);
+        DebugConsole.Log(sbSQL.ToString());
+
+        System.Data.IDataReader res = this.db.BasicQuery(sbSQL.ToString());
+        closeConnection();
     }
 
     internal void SaveGameType(int gameid, int gametype) {

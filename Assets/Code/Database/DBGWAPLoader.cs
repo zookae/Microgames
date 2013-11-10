@@ -57,6 +57,7 @@ public static class DBGWAPLoader {
             triple.Second = objectSubset[t];
             triple.Third = SelectRandomSubset(1, tags)[0];
             partnerTrace.Add(triple);
+            DebugConsole.Log("Adding trace element of : " + triple.First + ", " + triple.Second + ", " + triple.Third);
         }
         return partnerTrace;
     }
