@@ -31,7 +31,7 @@ public class LoadObject : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        //LoadDummyPositions();
+        LoadDummyPositions();
         LoadMapping();
 
         int layoutCounter = 0;

@@ -288,20 +288,19 @@ public class DBManipulation  {
     }
 
     // Returns the gametype for the given player, or -1 if the player doesn't exist.
-    internal int LookupPlayerGametype(string udid) {
-        int playerid = getPlayerID(udid);
-        if (playerid != -1) {
-            System.Text.StringBuilder sbSQL = new System.Text.StringBuilder();
-            sbSQL.Append("SELECT gametype from gwap_info WHERE playerid == ").Append(playerid);
-
-            DebugConsole.Log(sbSQL.ToString());
-            System.Data.IDataReader res = this.db.BasicQuery(sbSQL.ToString());
-            if (res.Read() && !res.IsDBNull(0)) {
-                return res.GetInt32(0);
-            }
+    internal int LookupPlayerGametype(int playerid) {
+        int gametype = -1;
+        openConnection();
+        System.Text.StringBuilder sbSQL = new System.Text.StringBuilder();
+        sbSQL.Append("SELECT gametype FROM gwapplayer WHERE playerid == ").Append(playerid);
+        DebugConsole.Log(sbSQL.ToString());
+        System.Data.IDataReader res = this.db.BasicQuery(sbSQL.ToString());
+        if (res.Read() && !res.IsDBNull(0)) {
+            gametype = res.GetInt32(0);
         }
-
-        return -1;           
+        closeConnection();
+        DebugConsole.Log("We've got a gametype: " + gametype);
+        return gametype;
     }
 
     internal int SaveGameBasics(string gamename) {
@@ -376,23 +375,23 @@ public class DBManipulation  {
 
         DebugConsole.Log(sbSQL.ToString());
         System.Data.IDataReader res = this.db.BasicQuery(sbSQL.ToString());
-
         closeConnection();
     }
 
     // Saves overall player information
-    internal void SavePlayerInformation(string udid, int gametype) {
+    internal void SavePlayerInfo(string udid, int gametype) {
+        DebugConsole.Log("Saving (probably new) player information.");
         openConnection();
-
         System.Text.StringBuilder sbSQL = new System.Text.StringBuilder();
-        sbSQL.Append("INSERT INTO gwap_info(playerid,gametype,likertScores,dAdded) VALUES(");
+        sbSQL.Append("INSERT OR IGNORE INTO gwapplayer(playerid,gametype,likertScores,dAdded) VALUES(");
         sbSQL.Append(getPlayerID(udid)).Append(",");
         sbSQL.Append(gametype).Append(",");
-        sbSQL.Append("NONE").Append(",");
+        sbSQL.Append("\"NONE\",");
         sbSQL.Append("CURRENT_TIMESTAMP").Append(")");
 
         DebugConsole.Log(sbSQL.ToString());
         System.Data.IDataReader res = this.db.BasicQuery(sbSQL.ToString());
+        DebugConsole.Log("INSERTED STUFF INTO gwapplayer");
         closeConnection();
     }
 
@@ -410,7 +409,7 @@ public class DBManipulation  {
         DebugConsole.Log("Saving Likert score values.");
         openConnection();
         System.Text.StringBuilder sbSQL = new System.Text.StringBuilder();
-        sbSQL.Append("INSERT INTO gwap_info(likertScores) VALUES(\"");
+        sbSQL.Append("INSERT INTO gwapplayer(likertScores) VALUES(\"");
         sbSQL.Append(likertScores).Append("\") WHERE");
         sbSQL.Append(" playerid=").Append(getPlayerID(udid));
 

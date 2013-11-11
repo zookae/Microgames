@@ -213,6 +213,13 @@ public class GameStateServer : MonoBehaviour
                 NetworkClient.Instance.SendClientMess(player, NetworkClient.MessType_ToClient.SNGTagSet, DBStringHelper.listToString(tagSet, ','));
             }
 
+            // For some reason, the gwapplayer table is refusing to update reliably. Here's a stupid check.
+            DebugConsole.Log("Attempting to check for gwapplayer update.");
+            int gamemode = dbManip.LookupPlayerGametype(rgd.dPlayerData[player].playerid);
+            if (gamemode == -1) {
+                dbManip.SavePlayerInfo(dbManip.getPlayerUDID(rgd.dPlayerData[player].playerid), rgd.gameMode);
+            }
+
             break;
 
         case NetworkClient.MessType_ToServer.SNGRequestTrace:
@@ -256,8 +263,17 @@ public class GameStateServer : MonoBehaviour
             break;
 
         case NetworkClient.MessType_ToServer.SNGSavePlayerData:
-            // XXX (kasiu): Not saving correct game mode???
-            dbManip.SavePlayerInformation(dbManip.getPlayerUDID(rgd.dPlayerData[player].playerid), rgd.gameMode);
+            // XXX (kasiu): Not used anymore.
+            // used for SNG only
+            int gametype = dbManip.LookupPlayerGametype(rgd.dPlayerData[player].playerid);
+            if (gametype != -1) {
+                DebugConsole.Log("Found an old player. Their gametype is : " + gametype);
+                rgd.gameMode = gametype;
+            } else {
+                rgd.gameMode = UnityEngine.Random.Range(1, 4);
+                DebugConsole.Log("Found a new player! Assigning a random gametype of " + rgd.gameMode);
+                //dbManip.SavePlayerInformation(dbManip.getPlayerUDID(rgd.dPlayerData[player].playerid), rgd.gameMode);
+            }
             break;
 
         case NetworkClient.MessType_ToServer.SNGSavePlayerLikertData:

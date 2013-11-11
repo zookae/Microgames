@@ -57,7 +57,7 @@ public abstract class RunningGameData
 		this.gss = inGSS;
         this.gameID = gid;
         // XXX (kasiu): A hack.
-        this.gameMode = Random.Range(1, 4);
+        this.gameMode = -1;
 	}
 	
 //	virtual public System.Collections.Generic.KeyValuePair<int/*domainId*/,System.Text.StringBuilder/*domainid|||domainName|||domainDescr*/> 

@@ -294,7 +294,6 @@ GameObject:
   - 114: {fileID: 1588099215}
   - 114: {fileID: 1588099216}
   - 114: {fileID: 1588099220}
-  - 114: {fileID: 1588099214}
   - 114: {fileID: 1588099218}
   - 114: {fileID: 1588099217}
   - 114: {fileID: 1588099219}
@@ -327,28 +326,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca1925a628e18674a99387db6db3bde5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1588099214
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1588099211}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fad0e609015f8d24397637667361e39d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefabs:
-  - {fileID: 100006, guid: 0ca755a6788a2f24f840153629f696fb, type: 2}
-  - {fileID: 100008, guid: c48fc629225038946bdc51d2f6ad5e85, type: 2}
-  objectFile: {fileID: 4900000, guid: 372bcc6a27789ab4198f892edf9cbbf4, type: 3}
-  numObjects: 7
-  allObjects: []
-  allTags:
-  - Pharmacy
-  - Supermarket
-  - Department Store
-  - Hardware Store
 --- !u!114 &1588099215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -437,95 +414,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c0024b2f2e0b584daea92dde705b63d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabs: []
---- !u!1001 &1767013087
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 400000, guid: b2ba5db2ab631f743ace8556b4fd645e, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: b2ba5db2ab631f743ace8556b4fd645e, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: b2ba5db2ab631f743ace8556b4fd645e, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: b2ba5db2ab631f743ace8556b4fd645e, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: b2ba5db2ab631f743ace8556b4fd645e, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: b2ba5db2ab631f743ace8556b4fd645e, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: b2ba5db2ab631f743ace8556b4fd645e, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: b2ba5db2ab631f743ace8556b4fd645e, type: 2}
-  m_RootGameObject: {fileID: 1781938960}
-  m_IsPrefabParent: 0
-  m_IsExploded: 1
---- !u!1 &1781938960
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 100000, guid: b2ba5db2ab631f743ace8556b4fd645e, type: 2}
-  m_PrefabInternal: {fileID: 1767013087}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1781938961}
-  - 114: {fileID: 1781938962}
-  m_Layer: 0
-  m_Name: Spawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1781938961
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 400000, guid: b2ba5db2ab631f743ace8556b4fd645e, type: 2}
-  m_PrefabInternal: {fileID: 1767013087}
-  m_GameObject: {fileID: 1781938960}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
---- !u!114 &1781938962
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400000, guid: b2ba5db2ab631f743ace8556b4fd645e,
-    type: 2}
-  m_PrefabInternal: {fileID: 1767013087}
-  m_GameObject: {fileID: 1781938960}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f04c86b09e09a424080d7e5fed8a694a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 100006, guid: 0ca755a6788a2f24f840153629f696fb, type: 2}
-  objectNames: []
-  tagNames: []
-  layoutPositions:
-  - {x: 0, y: 0, z: 0}
-  - {x: -2.5, y: 2, z: 0}
-  - {x: 2.5, y: 2, z: 0}
-  - {x: -4, y: 0, z: 0}
-  - {x: 4, y: 0, z: 0}
-  - {x: -2.5, y: -2, z: 0}
-  - {x: 2.5, y: -2, z: 0}
-  objectSpriteMapping: {fileID: 4900000, guid: 372bcc6a27789ab4198f892edf9cbbf4, type: 3}
+  prefabs:
+  - {fileID: 100006, guid: 0ca755a6788a2f24f840153629f696fb, type: 2}
+  - {fileID: 100008, guid: c48fc629225038946bdc51d2f6ad5e85, type: 2}
+  mappingAsset: {fileID: 4900000, guid: 372bcc6a27789ab4198f892edf9cbbf4, type: 3}
+  spawner: {fileID: 100000, guid: b2ba5db2ab631f743ace8556b4fd645e, type: 2}
