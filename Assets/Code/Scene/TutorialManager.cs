@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class TutorialManager : MonoBehaviour {
 
-    public List<DialogueBox> dialogueBoxes;
+    //public List<DialogueBox> dialogueBoxes;
     public int currentBoxIndex;
 
 	// Use this for initialization

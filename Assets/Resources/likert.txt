@@ -1,0 +1,4 @@
+How old are you?:18-20,20-25,25-30,35-40,40+:no
+Are you male or female?:Male,Female:no
+Do play games?:Yes,No:no
+If so, select all that apply below.:Action,Adventure,Casual,Strategy,RPG,Sports:yes
