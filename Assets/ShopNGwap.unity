@@ -337,6 +337,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2732e0bc5395ca24991c3a33b0197f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentRound: 0
+  TotalRounds: 1
   TimeUsed: 0
   MaxTime: 15
   CurrentState: 0

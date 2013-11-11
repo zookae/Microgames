@@ -1,4 +1,6 @@
-How old are you?:18-20,20-25,25-30,35-40,40+:no
-Are you male or female?:Male,Female:no
-Do play games?:Yes,No:no
-If so, select all that apply below.:Action,Adventure,Casual,Strategy,RPG,Sports:yes
+How old are you?^18-20,20-25,25-30,35-40,40+^no
+Are you male or female?^Male,Female^no
+Do play games?^Yes,No^no
+If so, select all that apply below.^Action,Adventure,Casual,Strategy,RPG,Sports^yes
+On a scale from 1-5, how would you rate the level of challenge in this game? (1:no challenge to 5:extremely challenging)^1,2,3,4,5^no
+On a scale from 1-5, how would you rate your enjoyment of the game? (1:no enjoyment to 5:enjoyed very much)^1,2,3,4,5^no

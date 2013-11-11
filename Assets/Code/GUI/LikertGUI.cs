@@ -20,13 +20,29 @@ public class LikertGUI : MonoBehaviour {
     private List<LikertQuestion> likertQuestions;
     private bool drawGUI;
     private Vector2 scrollPosition;
-    private GUIStyle textStyle;
-    private Font oldButtonFont;
     private string headerText;
+
+    // HAH! Figured out the style stuff!
+    private GUIStyle textStyle;
+    private GUIStyle toggleStyle;
+    private GUIStyle boxStyle;
+
+    // Caches the results and returns them
+    private string results;
+
+    /// <summary>
+    /// Will only return results once the actual survey is finished.
+    /// Other components should call this function to listen for results.
+    /// </summary>
+    /// <returns>The results as a formatted string, null if the survey has not been completed</returns>
+    public string GetResults() {
+        return results;
+    }
 
     // Use this for initialization
 	void Start () {
-        likertQuestions = LikertParser.ParseLikertFile(file.text);
+        // HACK (kasiu): Using '^'-delimeted strings. It's ugly. I'm lazy. Deal with it.
+        likertQuestions = LikertParser.ParseLikertFile(file.text, '^');
         headerText = headerFile.text;
 
         // XXX (kasiu): CHECKING IS STILL NOT ROBUST :P
@@ -37,48 +53,56 @@ public class LikertGUI : MonoBehaviour {
             textStyle.normal.textColor = fontColor;
             //textStyle.alignment = TextAnchor.MiddleCenter;
             textStyle.wordWrap = true;
-            textStyle.border = new RectOffset(20, 20, 20, 20);
-            textStyle.normal.background = GUIUtils.MakeBlankTexture((int)(Screen.width / 2.0f), (int)(Screen.height / 2.0f), fontBackground);
+            textStyle.margin = new RectOffset(0, 0, 0, 0);
         }
 
         // Launches draw on start
+        results = null;
         drawGUI = true;
 	}
 
     void OnGUI() {
         if (drawGUI) {
-            // Don't know if this is necessary, but just resets the font in case.
-            if (oldButtonFont == null) {
-                oldButtonFont = GUI.skin.button.font;
-                GUI.skin.button.font = font;
+            if (boxStyle == null && toggleStyle == null) {
+                boxStyle = new GUIStyle(GUI.skin.box);
+                boxStyle.normal.background = GUIUtils.MakeBlankTexture(ComputeWidth(), (int)(Screen.height / 2.0f), fontBackground);
+                toggleStyle = new GUIStyle(GUI.skin.toggle);
+                toggleStyle.font = font;
+                toggleStyle.normal.textColor = fontColor;
+                toggleStyle.onNormal.textColor = fontColor;
+                toggleStyle.onHover.textColor = Color.gray;
+                toggleStyle.fontSize = fontSize;
             }
 
             // Draws the LIKERT STUFFIE
-            GUILayout.BeginArea(new Rect(Screen.width / 4.0f, 0, Screen.width / 2.0f, Screen.height), GUI.skin.box);
+            GUILayout.BeginArea(new Rect((Screen.width - ComputeWidth()) / 2, 0, ComputeWidth(), Screen.height), boxStyle);
             scrollPosition = GUILayout.BeginScrollView(scrollPosition);
 
             // Header
-            GUILayout.Label(headerText);
+            textStyle.alignment = TextAnchor.MiddleCenter;
+            GUILayout.Label(headerText, textStyle);
 
             // Populates the questions
+            textStyle.alignment = TextAnchor.MiddleLeft;
             foreach (LikertQuestion lq in likertQuestions) {                
                 // TODO (add style)
                 GUILayout.Label(lq.Question, textStyle);
                 if (lq.CanSelectMultiple) {
                     GUILayout.BeginHorizontal();
                     for (int i = 0; i < lq.GetNumOptions(); i++) {
-                        bool toggled = GUILayout.Toggle(lq.IsSelected(i), lq.Options[i]);
+                        bool toggled = GUILayout.Toggle(lq.IsSelected(i), lq.Options[i], toggleStyle);
                         lq.SetOption(i, toggled);
                     }
                     GUILayout.EndHorizontal();
                 } else {
                     // We use a selection grid.
                     int currentlySelected = lq.GetSelected();
-                    int index = GUILayout.SelectionGrid(currentlySelected, lq.Options, lq.GetNumOptions(), "toggle");
+                    int index = GUILayout.SelectionGrid(currentlySelected, lq.Options, lq.GetNumOptions(), toggleStyle);
                     if (currentlySelected != index) {
                         lq.ToggleOption(index);
                     }
                 }
+                GUILayout.Space(10);
             }
 
             GUILayout.EndScrollView();
@@ -86,9 +110,8 @@ public class LikertGUI : MonoBehaviour {
             // Draws the submission button.
             if (GUILayout.Button("Submit")) {
                 if (VerifyResults()) {
+                    results = BuildResultString();
                     drawGUI = false;
-                    // SUBMIT THINGS
-                    DebugConsole.LogError(GetResultString());
                 } else {
                 }
             }
@@ -99,14 +122,14 @@ public class LikertGUI : MonoBehaviour {
 
     private bool VerifyResults() {
         foreach (LikertQuestion lq in likertQuestions) {
-            if (!lq.ContainsAtLeastOneAnswer()) {
+            if (!lq.ContainsAtLeastOneAnswer() && !lq.CanSelectMultiple) {
                 return false;
             }
         }
         return true;
     }
 
-    private string GetResultString() {
+    private string BuildResultString() {
         string result = "";
         for (int i = 0; i < likertQuestions.Count; i++) {
             LikertQuestion lq = likertQuestions[i];
@@ -117,25 +140,30 @@ public class LikertGUI : MonoBehaviour {
         }
         return result;
     }
+
+    // HACK (kasiu): Window is 3/5 of the screen. This really should be specified to the component.
+    private int ComputeWidth() {
+        return (int)((3 * Screen.width) / 5.0f);
+    }
 }
 
 public static class LikertParser
 {
-    public static List<LikertQuestion> ParseLikertFile(string text) {
+    public static List<LikertQuestion> ParseLikertFile(string text, char delimeter) {
         List<LikertQuestion> list = new List<LikertQuestion>();
         // Assumes each questions is on a newline.
         string[] questions = text.Split('\n');
 
         foreach (string question in questions) {
             // Question components are split with colons.
-            string[] components = question.Split(':');
+            string[] components = question.Split(delimeter);
             if (components.Length != 3) {
                 DebugConsole.LogError("Poorly formatted likert file. Aborting with empty list. " + components.Length);
                 return new List<LikertQuestion>();
             }
             // Choices are split with commas.
             string[] options = components[1].Split(',');
-            bool multipleAnswers = (components[2].ToLower().Equals("yes")) ? true : false;
+            bool multipleAnswers = (components[2].Trim().ToLower().Equals("yes")) ? true : false;
             LikertQuestion lq = new LikertQuestion(components[0], options, multipleAnswers);
             list.Add(lq);
         }
@@ -168,6 +196,7 @@ public class LikertQuestion
             if (Options.Length % 2 != 0) {
                 index = (Options.Length + 1) / 2;
             }
+            index = (index <= 0) ? 0 : index - 1;
             optionsSelected[index] = true;
         }
     }
