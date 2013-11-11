@@ -566,10 +566,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1908136420}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e72d6a77a56006f49b0936693b9246c8, type: 3}
+  m_Script: {fileID: 11500000, guid: ada2eb89a30af494d8a7ce0e3bf3bee4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  file: {fileID: 4900000, guid: 36afabf608c8c0a429a42f88cf687905, type: 3}
+  leftButtonText: I Accept
+  rightButtonText: Go Back
   sceneName: ShopNGwap
+  width: 400
+  height: 100
+  font: {fileID: 12800000, guid: 7dd7c561d4f3b4e4aadec2240752c38c, type: 3}
+  fontSize: 12
+  fontColor: {r: 0, g: 0, b: 0, a: 1}
+  fontBackground: {r: 1, g: 1, b: 1, a: .784313738}
+  closeText: 
 --- !u!1 &2050211195
 GameObject:
   m_ObjectHideFlags: 0

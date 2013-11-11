@@ -1,14 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-/// <summary>
-/// Attach this to a button or object to pop up some dialogue that closes on the button press.
-/// </summary>
-public class ScrollableTextArea : MonoBehaviour {
-    /// <summary>
-    /// Loads a text file.
-    /// </summary>
+public class NextSceneBox : MonoBehaviour {
     public TextAsset file;
+    public string leftButtonText;
+    public string rightButtonText;
+    public string sceneName;
+
+    // HACK (kasiu): Doesn't currently check dimensions.
+    public int width = -1;
+    public int height = -1;
 
     // Font specifics
     public Font font;
@@ -20,31 +21,35 @@ public class ScrollableTextArea : MonoBehaviour {
     // Privates
     private Vector2 scrollPosition;
     private bool drawGUI = false;
-    private string text;
     private GUIStyle textStyle;
-
+    private string text;
     private Font oldButtonFont;
 
 	// Use this for initialization
 	void Start () {
         text = file.text;
-        
-        // XXX (kasiu): Checking is not robust
+
+        // XXX (kasiu): CHECKING IS STILL NOT ROBUST :P
         if (font != null) {
             textStyle = new GUIStyle();
             textStyle.font = font;
             textStyle.fontSize = fontSize;
             textStyle.normal.textColor = fontColor;
+            textStyle.alignment = TextAnchor.MiddleCenter;
             textStyle.wordWrap = true;
             textStyle.border = new RectOffset(20, 20, 20, 20);
             textStyle.normal.background = GUIUtils.MakeBlankTexture((int)(Screen.width / 2.0f), (int)(Screen.height / 2.0f), fontBackground);
         }
 
         // Defaults
-        closeText = (closeText.Length == 0) ? "Close" : closeText;
+        width = (width < 0 || width > Screen.width) ? 400 : width;
+        height = (height < 0 || height > Screen.height) ? 200 : height;
+        leftButtonText = (leftButtonText.Length == 0) ? "Continue" : leftButtonText;
+        rightButtonText = (rightButtonText.Length == 0) ? "Back" : rightButtonText;	
 	}
-
-    void OnGUI() {
+	
+	// Update is called once per frame
+	void OnGUI () {
         if (drawGUI) {
             // Don't know if this is necessary, but just resets the font in case.
             if (oldButtonFont == null) {
@@ -52,19 +57,27 @@ public class ScrollableTextArea : MonoBehaviour {
                 GUI.skin.button.font = font;
             }
 
-            // Sticks this in the center of the screen
-            GUILayout.BeginArea(new Rect(Screen.width / 4.0f, Screen.height / 4.0f, Screen.width / 2.0f, Screen.height / 2.0f), GUI.skin.box);
+            GUILayout.BeginArea(new Rect((Screen.width - width) / 2.0f, (Screen.height - height) / 2.0f, width, height), GUI.skin.box);
 
             scrollPosition = GUILayout.BeginScrollView(scrollPosition);
             GUILayout.Label(text, textStyle);
             GUILayout.EndScrollView();
-            if(GUILayout.Button(closeText)) {
-                drawGUI = false;
+
+            // BUTTONS
+            GUILayout.BeginHorizontal();
+            if (GUILayout.Button(leftButtonText)) {
                 GUI.skin.button.font = oldButtonFont;
+                drawGUI = false;
+                Application.LoadLevel(sceneName);
             }
+            if (GUILayout.Button(rightButtonText)) {
+                GUI.skin.button.font = oldButtonFont;
+                drawGUI = false;
+            }
+            GUILayout.EndHorizontal();
             GUILayout.EndArea();
         }
-    }
+	}
 
     void OnMouseDown() {
         drawGUI = true;
