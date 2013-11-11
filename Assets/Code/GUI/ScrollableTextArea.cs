@@ -22,8 +22,7 @@ public class ScrollableTextArea : MonoBehaviour {
     private bool drawGUI = false;
     private string text;
     private GUIStyle textStyle;
-
-    private Font oldButtonFont;
+    private GUIStyle buttonStyle;
 
 	// Use this for initialization
 	void Start () {
@@ -47,9 +46,9 @@ public class ScrollableTextArea : MonoBehaviour {
     void OnGUI() {
         if (drawGUI) {
             // Don't know if this is necessary, but just resets the font in case.
-            if (oldButtonFont == null) {
-                oldButtonFont = GUI.skin.button.font;
-                GUI.skin.button.font = font;
+            if (buttonStyle == null) {
+                buttonStyle = new GUIStyle(GUI.skin.button);
+                buttonStyle.font = font;
             }
 
             // Sticks this in the center of the screen
@@ -58,9 +57,8 @@ public class ScrollableTextArea : MonoBehaviour {
             scrollPosition = GUILayout.BeginScrollView(scrollPosition);
             GUILayout.Label(text, textStyle);
             GUILayout.EndScrollView();
-            if(GUILayout.Button(closeText)) {
+            if(GUILayout.Button(closeText, buttonStyle)) {
                 drawGUI = false;
-                GUI.skin.button.font = oldButtonFont;
             }
             GUILayout.EndArea();
         }
