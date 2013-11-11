@@ -112,6 +112,14 @@ public class DBGameStateManager : MonoBehaviour {
         return true;
     }
 
+    public bool SendSurveyResults(string results) {
+        if (Network.isClient) {
+            NetworkClient.Instance.SendServerMess(NetworkClient.MessType_ToServer.SNGSavePlayerLikertData, results);
+            return true;
+        }
+        return false;
+    }
+
     void OnGUI() {
         if (!hasSpawnedObjects && !IsReadyToSpawn()) {
             // TODO (kasiu): Display a loading message.
@@ -133,9 +141,11 @@ public class DBGameStateManager : MonoBehaviour {
             GameState.Singleton.CurrentState == State.Lose)) {
             // HACK (kasiu): Currently using a comma-delimeted thingy.
             // NetworkClient.Instance.SendServerMess(NetworkClient.MessType_ToServer.SNGSavePlayerData, "");
-            NetworkClient.Instance.SendServerMess(NetworkClient.MessType_ToServer.SNGSaveDBTrace, DBStringHelper.traceToString(GameState.Singleton.clickTrace, ':'));
-            NetworkClient.Instance.SendServerMess(NetworkClient.MessType_ToServer.SNGSavePlayerScore, ((int)(GameState.Singleton.score)).ToString());
-            sentTraceToDB = true;
+            if (Network.isClient) {
+                NetworkClient.Instance.SendServerMess(NetworkClient.MessType_ToServer.SNGSaveDBTrace, DBStringHelper.traceToString(GameState.Singleton.clickTrace, ':'));
+                NetworkClient.Instance.SendServerMess(NetworkClient.MessType_ToServer.SNGSavePlayerScore, ((int)(GameState.Singleton.score)).ToString());
+                sentTraceToDB = true;
+            }
         }
 	}
 

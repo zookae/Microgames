@@ -168,51 +168,6 @@ MonoBehaviour:
   fontColor: {r: 0, g: 0, b: 0, a: 1}
   fontBackground: {r: 1, g: 1, b: 1, a: .784313738}
   closeText: 
---- !u!1 &277488566
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 277488567}
-  - 114: {fileID: 277488568}
-  m_Layer: 0
-  m_Name: Test
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &277488567
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 277488566}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .550000012, y: .349999994, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
---- !u!114 &277488568
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 277488566}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b2fccdf7261555418457f94b82308ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  file: {fileID: 4900000, guid: 40f6c97b8f2b88743ac7e08dfe9f6323, type: 3}
-  headerFile: {fileID: 4900000, guid: 05a7ed5f58ee75a4d9c08ee8ae7b9bfc, type: 3}
-  font: {fileID: 12800000, guid: 7dd7c561d4f3b4e4aadec2240752c38c, type: 3}
-  fontSize: 12
-  fontColor: {r: 0, g: 0, b: 0, a: 1}
-  fontBackground: {r: 1, g: 1, b: 1, a: .784313738}
-  closeText: 
 --- !u!1 &319739248
 GameObject:
   m_ObjectHideFlags: 0

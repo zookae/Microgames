@@ -19,13 +19,6 @@ public enum ScoringMode {
 }
 
 public class GameState : MonoBehaviour {
-
-    /// <summary>
-    /// Rounds/levels/whatever you wish to call them
-    /// </summary>
-    public int CurrentRound = 0;
-    public int TotalRounds = 1;
-
     /// <summary>
     /// The time the game has run so far.
     /// </summary>
@@ -103,7 +96,9 @@ public class GameState : MonoBehaviour {
 
         Singleton = this; // save singleton instance
 
-        DontDestroyOnLoad(gameObject); // ensure not destroyed b/t scenes
+        // XXX (kasiu): BUT I NEED IT TO BE DESTROYED BETWEEN SCENES
+        // Alex, don't kill me.
+        //DontDestroyOnLoad(gameObject); // ensure not destroyed b/t scenes
     }
 
     // cf: http://clearcutgames.net/home/?p=437

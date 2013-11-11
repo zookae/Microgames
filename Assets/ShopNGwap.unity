@@ -297,6 +297,7 @@ GameObject:
   - 114: {fileID: 1588099218}
   - 114: {fileID: 1588099217}
   - 114: {fileID: 1588099219}
+  - 114: {fileID: 1588099214}
   m_Layer: 0
   m_Name: GlobalState
   m_TagString: Untagged
@@ -326,6 +327,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca1925a628e18674a99387db6db3bde5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1588099214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1588099211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b2b0fda695ccb041acea930a40594de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  surveyRound: 1
+  titleSceneName: ShopNGwapTitle
+  gameSceneName: ShopNGwap
+  font: {fileID: 12800000, guid: 7dd7c561d4f3b4e4aadec2240752c38c, type: 3}
+  fontSize: 12
+  fontColor: {r: 0, g: 0, b: 0, a: 1}
+  fontBackground: {r: 1, g: 1, b: 1, a: .784313738}
+  closeText: 
 --- !u!114 &1588099215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -337,8 +357,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2732e0bc5395ca24991c3a33b0197f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentRound: 0
-  TotalRounds: 1
   TimeUsed: 0
   MaxTime: 15
   CurrentState: 0
@@ -359,8 +377,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e34b7789a9049894484b4036436f111b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xPos: 50
-  yPos: 50
+  xPos: 30
+  yPos: 30
   xSize: 100
   ySize: 100
   fontSize: 20

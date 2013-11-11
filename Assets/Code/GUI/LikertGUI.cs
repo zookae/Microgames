@@ -113,6 +113,8 @@ public class LikertGUI : MonoBehaviour {
                     results = BuildResultString();
                     drawGUI = false;
                 } else {
+                    // POPUP SOME WEIRD GUI
+                    // XXX (kasiu): Technically, we should never get here, since Verify is always valid due to our setup.
                 }
             }
             GUILayout.EndArea();
