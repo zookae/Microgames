@@ -19,6 +19,13 @@ public enum ScoringMode {
 }
 
 public class GameState : MonoBehaviour {
+
+    /// <summary>
+    /// Rounds/levels/whatever you wish to call them
+    /// </summary>
+    public int CurrentRound = 0;
+    public int TotalRounds = 1;
+
     /// <summary>
     /// The time the game has run so far.
     /// </summary>

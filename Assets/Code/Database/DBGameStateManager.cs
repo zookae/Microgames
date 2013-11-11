@@ -42,10 +42,10 @@ public class DBGameStateManager : MonoBehaviour {
             NetworkClient.Instance.SendServerMess(NetworkClient.MessType_ToServer.SNGRequestNewGame, "");
             NetworkClient.Instance.SendServerMess(NetworkClient.MessType_ToServer.SNGRequestTrace, "");
         } else {
-            // Load a proxy so we can debug things.
+            // Load a proxy so we can debug things in the editor.
             SetMode(ProxyGameGenerator.SelectRandomScoringMode());
             SetObjectList(ProxyGameGenerator.SelectRandomObjectSet(7));
-            SetTagList(ProxyGameGenerator.SelectRandomTagSet());
+            SetTagList(ProxyGameGenerator.SelectRandomTagSet(mode));
             SetPartnerTrace(ProxyGameGenerator.SelectRandomPartnerTrace(objectList, tagList, 0.0f, GameState.Singleton.MaxTime));
         }
     }

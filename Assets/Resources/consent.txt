@@ -1,0 +1,92 @@
+CONSENT LETTER FOR ENROLLING ADULT PARTICIPANTS IN A RESEARCH STUDY
+
+School of Interactive Computing
+Georgia Institute of Technology
+Atlanta, GA
+	
+September 18, 2013
+	
+	
+Dear Subject,
+	
+You are being asked to participate in a research study. The study is for a project titled “Evaluating Game Scoring Mechanisms in Games With a Purpose”. The principle investigator on the project is Dr. Mark Riedl. 
+
+This project compares the effects of technique for giving points (scoring) in games with a purpose (GWAPs). GWAPs are games where the actions taken in the game provide information to computer systems to use that information. We have devised several alternative scoring systems for a GWAP. 
+
+In this study, you will be playing a GWAP about marking objects with the locations where they can be purchased. Different versions of this game give you points for different actions (explained in the game). We will also ask you about your level of engagement in the game.
+
+Our goal is to develop GWAPs that provide better player experiences and collect better data. The ultimate objective is to adapt these results for systems that automatically adapt GWAPs to individual player preferences and in order to improve data quality. We need your assistance in this study to gather information about how different scoring systems work.
+
+Exclusion/Inclusion Criteria: 
+
+Access to a computer and the game website is required to participate. You must be an English speaker and age 18 or over.
+	
+Procedures: 
+
+If you choose to participate in this research study, you will be asked to play a game that occurs over rounds. You may complete as many rounds as you choose and stop at any time. Each round will pair you with another player – either a person or a replay of the actions a previous person took (if no people are available to play with you at that time). You will be asked to provide ratings on your experience of the game. Example ratings include how challenging or fun the round was or how engaging the game was. The task has no bounds on how long you spend, although we expect most people to spend around ten minutes in total.
+
+Risks or Discomforts: 
+
+The risks involved are no greater than those involved in using a computer to play an online game.
+
+Benefits: 
+
+We do not expect you will gain direct benefits from participating in the study. Our hope is to develop better GWAPs to improve player experiences and data collection quality. In doing so, our work will benefit the broader academic community by developing ways to improve the use of games for data collection.
+
+Compensation to You:  
+
+There is no compensation for this study. 
+
+Confidentiality:
+
+Your privacy will be protected to the extent allowed by law. To protect your privacy, your records will be kept under a “session number.” When you first start the game, we generate this number and assign it to your gameplay session when you first start the game. We will also generate a browser cookie, which will be stored on your browser. A copy of this cookie, along with associated session numbers, will be stored along with your records. If you quit the game and play again, we will attempt to link the new session numbers to your prior records using this cookie. You may choose not to allow this cookie to be installed, in which case any mappings between session numbers and your browser cookie will not be generated. Any other identifying information (e.g. computer IP address) will not be stored. Your records will be kept in locked files. Only study staff will be allowed to look at them.
+
+When our study is concluded, we will destroy all mappings between session numbers and browser cookies, as well as our copies of the cookies, to ensure confidentiality. The only information linking you to this study is your local copy of the browser cookie, which you may wish to delete following completion of all intended sessions. Detailed instructions on how to remove the browser cookie can be found here: <URL to be defined when approved>
+
+Your IP address or any other fact that might point to you will not appear when results of this study are presented. We are only interested in group information. The reporting of the results will only contain group aggregated results. It will not contain your personal information.
+
+You may choose to email us. Only the experimenters listed at the bottom of this letter may read and reply to your email. Because emails may contain your name we will delete the emails once the study is complete. No link will be maintained that could connect your identity with your study responses.
+
+To make sure that this research is being done properly, the Georgia Institute of Technology Internal Review Board (IRB) may review study records.
+
+Costs to You: 
+
+There are no costs to you, other than your time.
+
+In Case of Injury/Harm:
+
+If you are injured as a result of being in this study, please contact the Principal Investigator, Mark Riedl, Ph.D.  Neither the Principal Investigator nor Georgia Institute of Technology has made provision for payment of costs associated with any injury resulting from participation in this study.
+	
+Participant Rights:
+
+•	Your participation is voluntary. You do not have to be in this study if you don't want to be.
+•	You have the right to change your mind and leave the study at any time without giving any reason and without penalty.
+•	Any new information that may make you change your mind about being in this study will be given to you.
+•	Please save a copy of this consent form to keep for your records.
+•	You do not waive any of your legal rights by participating in this research.
+	
+Questions about the Study:
+
+If you have any questions regarding the conduct or research goals of this study please contact one of the investigators listed on the bottom of this letter. 
+
+Questions about Your Rights as a Research Participant:
+
+If you have any questions about your rights as a research participant, you may contact: 
+
+Ms. Melanie Clark, Georgia Institute of Technology
+Office of Research Integrity Assurance, at (404) 894-6942.
+
+Ms. Kelly Winn, Georgia Institute of Technology
+Office of Research Integrity Assurance, at (404) 385- 2175.
+
+	
+If you play the game that brought you to this letter, it means that you have read (or have had read to you) the information contained in this letter, and would like to be a volunteer in this research study. 
+	
+	
+Thank you! 
+
+Dr. Mark Riedl  		(riedl@cc.gatech.edu)
+
+Kristin Siu	 		(kasiu@gatech.edu)
+
+Alexander Zook		(a.zook@gatech.edu)

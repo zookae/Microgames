@@ -97,8 +97,12 @@ public static class ProxyGameGenerator
         return DBGWAPLoader.GenerateRandomObjectSet(7);
     }
 
-    public static List<string> SelectRandomTagSet() {
-        return DBGWAPLoader.GenerateRandomTagset();
+    public static List<string> SelectRandomTagSet(ScoringMode scoringMode) {
+        List<string> tagSet = DBGWAPLoader.GenerateRandomTagset();
+        if (scoringMode == ScoringMode.Both) {
+            tagSet.Add(tagSet[tagSet.Count - 1]);
+        }
+        return tagSet;
     }
 
     public static List<Triple<double, string, string>> SelectRandomPartnerTrace(List<string> objects, List<string> tags, float minTime, float maxTime) {

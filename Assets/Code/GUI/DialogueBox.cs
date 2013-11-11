@@ -20,6 +20,7 @@ public class DialogueBox : MonoBehaviour {
     void OnGUI() {
         if (active && !closed) {
             // Draw
+            
         }
     }
 
