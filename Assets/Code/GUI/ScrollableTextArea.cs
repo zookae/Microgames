@@ -36,7 +36,7 @@ public class ScrollableTextArea : MonoBehaviour {
             textStyle.normal.textColor = fontColor;
             textStyle.wordWrap = true;
             textStyle.border = new RectOffset(20, 20, 20, 20);
-            textStyle.normal.background = GUIUtils.MakeBlankTexture((int)(Screen.width / 2.0f), (int)(Screen.height / 2.0f), fontBackground);
+            //textStyle.normal.background = GUIUtils.MakeBlankTexture((int)(Screen.width / 2.0f), (int)(Screen.height / 2.0f), fontBackground);
         }
 
         // Defaults

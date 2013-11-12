@@ -298,6 +298,7 @@ GameObject:
   - 114: {fileID: 1588099217}
   - 114: {fileID: 1588099219}
   - 114: {fileID: 1588099214}
+  - 114: {fileID: 1588099221}
   m_Layer: 0
   m_Name: GlobalState
   m_TagString: Untagged
@@ -439,3 +440,18 @@ MonoBehaviour:
   - {fileID: 100008, guid: c48fc629225038946bdc51d2f6ad5e85, type: 2}
   mappingAsset: {fileID: 4900000, guid: 372bcc6a27789ab4198f892edf9cbbf4, type: 3}
   spawner: {fileID: 100000, guid: b2ba5db2ab631f743ace8556b4fd645e, type: 2}
+--- !u!114 &1588099221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1588099211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc677a50d05e5264d9e217d4b992a096, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  origin: {x: 0, y: 0}
+  font: {fileID: 12800000, guid: 7dd7c561d4f3b4e4aadec2240752c38c, type: 3}
+  fontSize: 12
+  fontColor: {r: 0, g: 0, b: 0, a: 1}

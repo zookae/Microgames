@@ -16,4 +16,14 @@ public static class GUIUtils {
 
         return tex;
     }
+
+    /// <summary>
+    /// Helper to compute the position for a centered box.
+    /// </summary>
+    /// <param name="width"></param>
+    /// <param name="height"></param>
+    /// <returns>The screen space position for a box.</returns>
+    public static Vector2 ComputeCenteredPosition(int width, int height) {
+        return new Vector2((Screen.width - width) / 2.0f, (Screen.height - height) / 2.0f);
+    }
 }

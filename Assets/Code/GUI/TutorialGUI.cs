@@ -2,33 +2,43 @@
 using System.Collections;
 
 public class TutorialGUI : MonoBehaviour {
-
+    /// <summary>
+    /// Assumes the text file can be split on newlines.
+    /// Each line is a separate instruction.
+    /// </summary>
     public TextAsset tutorialText;
-
-    private Vector2[] positions;
-    private string[] instructions;
-    private int numInstructions;
+    public int width = -1;
+    public int height = -1;
 
     // Font specifics
     public Font font;
     public int fontSize;
     public Color fontColor;
-    public Color fontBackground;
-    public string closeText;
 
     // Hidden
+    private Vector2[] positions;
+    private string[] instructions;
     private int currentInstruction;
     private bool drawGUI = false;
     private bool tutorialViewed = false;
     private Vector2 scrollPosition;
     private GUIStyle textStyle;
     private GUIStyle buttonStyle;
+    private GUIStyle boxStyle;
 
 	// Use this for initialization
-	void Start () {       
-        drawGUI = false;
-        currentInstruction = -1;
-        numInstructions = -1;
+	void Start () {
+        if (tutorialText != null) {
+            instructions = tutorialText.text.Split('\n');
+            currentInstruction = 0;
+            drawGUI = true;
+        } else {
+            drawGUI = false;
+            currentInstruction = -1;
+        }
+
+        width = (width < 0) ? 100 : width;
+        height = (height < 0) ? 100 : height;
 
         // XXX (kasiu): Checking is not robust
         if (font != null) {
@@ -38,7 +48,6 @@ public class TutorialGUI : MonoBehaviour {
             textStyle.normal.textColor = fontColor;
             textStyle.wordWrap = true;
             textStyle.border = new RectOffset(20, 20, 20, 20);
-            textStyle.normal.background = GUIUtils.MakeBlankTexture((int)(Screen.width / 2.0f), (int)(Screen.height / 2.0f), fontBackground);
         }
 	}
 
@@ -52,7 +61,13 @@ public class TutorialGUI : MonoBehaviour {
 
     void OnGUI() {
         if (drawGUI) {
-            GUILayout.BeginArea(new Rect(Screen.width / 4.0f, Screen.height / 4.0f, Screen.width / 2.0f, Screen.height / 2.0f), GUI.skin.box);
+            if (buttonStyle == null) {
+                buttonStyle = new GUIStyle(GUI.skin.button);
+                buttonStyle.font = font;
+            }
+            
+            Vector2 pos = GUIUtils.ComputeCenteredPosition(width, height);
+            GUILayout.BeginArea(new Rect(pos.x, pos.y, width, height), GUI.skin.box);
             scrollPosition = GUILayout.BeginScrollView(scrollPosition);
             GUILayout.Label(instructions[currentInstruction], textStyle);
             GUILayout.EndScrollView();
@@ -80,12 +95,15 @@ public class TutorialGUI : MonoBehaviour {
 	void Update () {
         if (instructions == null && !drawGUI) {
             drawGUI = false;
-        } else if (instructions != null && !drawGUI && !tutorialViewed) {
+        } else if (tutorialText != null && !drawGUI && !tutorialViewed) {
             // Start up!
-            currentInstruction = 0;
-            numInstructions = instructions.Length;
-            drawGUI = true;
-        }
-	
+            ParseTextAsset();
+        }	
 	}
+
+    public void ParseTextAsset() {
+        instructions = tutorialText.text.Split('\n');
+        currentInstruction = 0;
+        drawGUI = true;
+    }
 }

@@ -108,6 +108,8 @@ public class DBGameStateManager : MonoBehaviour {
         }
 
         tagList = tags;
+        GameState.Singleton.labelTags = new List<string>();
+        GameState.Singleton.labelTags.Add(tags[0]);
         hasReceivedTags = true;
         return true;
     }

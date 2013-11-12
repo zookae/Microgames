@@ -178,16 +178,3 @@ public class EndGameDialogueManager : MonoBehaviour {
         }
 	}
 }
-
-public static class GameRoundCounter
-{
-    private static int current = 0;
-
-    public static int GetCurrentRound() {
-        return current;
-    }
-
-    public static void AdvanceRound() {
-        current++;
-    }
-}
