@@ -292,7 +292,7 @@ public class DBManipulation  {
         int gametype = -1;
         openConnection();
         System.Text.StringBuilder sbSQL = new System.Text.StringBuilder();
-        sbSQL.Append("SELECT gametype FROM gwapplayer WHERE playerid == ").Append(playerid);
+        sbSQL.Append("SELECT gametype FROM playertype WHERE playerid == ").Append(playerid);
         DebugConsole.Log(sbSQL.ToString());
         System.Data.IDataReader res = this.db.BasicQuery(sbSQL.ToString());
         if (res.Read() && !res.IsDBNull(0)) {
@@ -346,21 +346,6 @@ public class DBManipulation  {
         closeConnection();
     }
 
-    internal void SaveGameType(int gameid, int gametype) {
-        DebugConsole.Log("Saving trace results.");
-        openConnection();
-        System.Text.StringBuilder sbSQL = new System.Text.StringBuilder();
-        sbSQL.Append("INSERT INTO gametype(gameid,gametype,dAdded) VALUES(");
-        sbSQL.Append(gameid.ToString()).Append(",");
-        sbSQL.Append(gametype.ToString()).Append(",");
-        sbSQL.Append("CURRENT_TIMESTAMP").Append(")");
-
-        DebugConsole.Log(sbSQL.ToString());
-        System.Data.IDataReader res = this.db.BasicQuery(sbSQL.ToString());
-
-        closeConnection();
-    }
-
     internal void SaveGameGwapData(int gameid, int score, int playerid, string objectset, string tagset) {
         DebugConsole.Log("Saving trace results.");
         openConnection();
@@ -378,20 +363,34 @@ public class DBManipulation  {
         closeConnection();
     }
 
-    // Saves overall player information
-    internal void SavePlayerInfo(string udid, int gametype) {
-        DebugConsole.Log("Saving (probably new) player information.");
+    // ACTUAL!
+    internal void SavePlayerGameType(int playerid, int gametype) {
+        DebugConsole.Log("Saving trace results.");
         openConnection();
         System.Text.StringBuilder sbSQL = new System.Text.StringBuilder();
-        sbSQL.Append("INSERT OR IGNORE INTO gwapplayer(playerid,gametype,likertScores,dAdded) VALUES(");
-        sbSQL.Append(getPlayerID(udid)).Append(",");
-        sbSQL.Append(gametype).Append(",");
-        sbSQL.Append("\"NONE\",");
+        sbSQL.Append("INSERT INTO playertype(playerid,gametype,dAdded) VALUES(");
+        sbSQL.Append(playerid.ToString()).Append(",");
+        sbSQL.Append(gametype.ToString()).Append(",");
         sbSQL.Append("CURRENT_TIMESTAMP").Append(")");
 
         DebugConsole.Log(sbSQL.ToString());
         System.Data.IDataReader res = this.db.BasicQuery(sbSQL.ToString());
-        DebugConsole.Log("INSERTED STUFF INTO gwapplayer");
+
+        closeConnection();
+    }
+
+    internal void SaveGameType(int gameid, int gametype) {
+        DebugConsole.Log("Saving trace results.");
+        openConnection();
+        System.Text.StringBuilder sbSQL = new System.Text.StringBuilder();
+        sbSQL.Append("INSERT INTO gametype(gameid,gametype,dAdded) VALUES(");
+        sbSQL.Append(gameid.ToString()).Append(",");
+        sbSQL.Append(gametype.ToString()).Append(",");
+        sbSQL.Append("CURRENT_TIMESTAMP").Append(")");
+
+        DebugConsole.Log(sbSQL.ToString());
+        System.Data.IDataReader res = this.db.BasicQuery(sbSQL.ToString());
+
         closeConnection();
     }
 

@@ -216,8 +216,10 @@ public class GameStateServer : MonoBehaviour
             // For some reason, the gwapplayer table is refusing to update reliably. Here's a stupid check.
             DebugConsole.Log("Attempting to check for gwapplayer update.");
             int gamemode = dbManip.LookupPlayerGametype(rgd.dPlayerData[player].playerid);
+            DebugConsole.Log("Game mode found = " + gamemode);
             if (gamemode == -1) {
-                dbManip.SavePlayerInfo(dbManip.getPlayerUDID(rgd.dPlayerData[player].playerid), rgd.gameMode);
+                DebugConsole.Log("Need to add a new player.");
+                dbManip.SavePlayerGameType(rgd.dPlayerData[player].playerid, rgd.gameMode);
             }
 
             break;
