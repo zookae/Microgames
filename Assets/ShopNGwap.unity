@@ -292,7 +292,6 @@ GameObject:
   - 4: {fileID: 1588099212}
   - 114: {fileID: 1588099213}
   - 114: {fileID: 1588099215}
-  - 114: {fileID: 1588099216}
   - 114: {fileID: 1588099220}
   - 114: {fileID: 1588099218}
   - 114: {fileID: 1588099217}
@@ -367,23 +366,6 @@ MonoBehaviour:
   - Tag1
   labelTags:
   - Tag1
---- !u!114 &1588099216
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1588099211}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e34b7789a9049894484b4036436f111b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  xPos: 30
-  yPos: 30
-  xSize: 100
-  ySize: 100
-  fontSize: 20
-  fontColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!114 &1588099217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -451,7 +433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc677a50d05e5264d9e217d4b992a096, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  origin: {x: 0, y: 0}
+  origin: {x: 10, y: 10}
   font: {fileID: 12800000, guid: 7dd7c561d4f3b4e4aadec2240752c38c, type: 3}
-  fontSize: 12
+  fontSize: 14
   fontColor: {r: 0, g: 0, b: 0, a: 1}

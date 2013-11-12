@@ -32,21 +32,27 @@ public class InfoGUI : MonoBehaviour {
         textStyle.font = font;
         textStyle.fontSize = fontSize;
         textStyle.normal.textColor = fontColor;
+
+        if (origin == null) {
+            origin = Vector2.zero;
+        }
 	}
 
     void OnGUI() {
+        GUILayout.BeginArea(new Rect(origin.x, origin.y, Screen.width, Screen.height));
         GUILayout.BeginVertical(); //origin.x, origin.y);
-        GUILayout.Label("Round: " + GameRoundCounter.GetCurrentRound() + 1, textStyle);
-        GUILayout.Label("Score: " + GameState.Singleton.score, textStyle);
-        if (GameState.Singleton.labelTags.Count > 0) {
+        if (GameState.Singleton.labelTags.Count > 0)
+        {
             GUILayout.Label("Your Location: " + GameState.Singleton.labelTags[0], textStyle);
         }
+        GUILayout.Label("Round: " + (GameRoundCounter.GetCurrentRound() + 1), textStyle);
+        GUILayout.Label("Score: " + GameState.Singleton.score, textStyle);
         GUILayout.EndVertical();
+        GUILayout.EndArea();
     }
 	
 	// Update is called once per frame
 	void Update () {
-        // Check to see if any items need to be rendered
-	
+        // Check to see if any items need to be rendered	
 	}
 }
