@@ -53,7 +53,7 @@ public static class DBGWAPLoader {
         List<Triple<double, string, string>> partnerTrace = new List<Triple<double, string, string>>();
         for (int t = 0; t < numTimes; t++) {
             Triple<double, string, string> triple = new Triple<double, string, string>();
-            triple.First = System.Convert.ToDouble(times[0]);
+            triple.First = System.Convert.ToDouble(times[t]);
             triple.Second = objectSubset[t];
             triple.Third = SelectRandomSubset(1, tags)[0];
             partnerTrace.Add(triple);
