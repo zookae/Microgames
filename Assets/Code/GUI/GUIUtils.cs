@@ -26,4 +26,10 @@ public static class GUIUtils {
     public static Vector2 ComputeCenteredPosition(int width, int height) {
         return new Vector2((Screen.width - width) / 2.0f, (Screen.height - height) / 2.0f);
     }
+
+    public static void SpawnFloatingText(Vector2 position, Vector2 velocity, string text) {
+        GameObject obj = new GameObject();
+        //obj.AddComponent<>();
+        //obj
+    }
 }

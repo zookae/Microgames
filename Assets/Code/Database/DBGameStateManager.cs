@@ -43,6 +43,7 @@ public class DBGameStateManager : MonoBehaviour {
             NetworkClient.Instance.SendServerMess(NetworkClient.MessType_ToServer.SNGRequestTrace, "");
         } else {
             // Load a proxy so we can debug things in the editor.
+            Debug.Log("We're loading a proxy game because we're probably in the editor.");
             SetMode(ProxyGameGenerator.SelectRandomScoringMode());
             SetObjectList(ProxyGameGenerator.SelectRandomObjectSet(7));
             SetTagList(ProxyGameGenerator.SelectRandomTagSet(mode));

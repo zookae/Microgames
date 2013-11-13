@@ -1,0 +1,53 @@
+Baseball Glove,Department Store
+Baseball Hat,Department Store
+Blanket,Department Store
+Breakfast Pastry,Supermarket
+Butternut Squash,Supermarket
+Cabbage,Supermarket
+Canned Tomatoes,Supermarket
+Paint,Hardware Store
+Cardboard Box,Hardware Store
+Celery,Supermarket
+Cheese,Supermarket
+Chocolate,Supermarket,Pharmacy
+Coconut,Supermarket
+Cranberries,Supermarket
+Dress,Department Store
+Dress Shirt,Department Store
+Eggs,Supermarket
+Garden Hose,Hardware Store
+Jelly,Supermarket
+Hammer,Hardware Store
+Ice Cream,Supermarket
+Jacket,Department Store
+Jeans,Department Store
+Mattress,Department Store
+Muffins,Supermarket
+Mushrooms,Supermarket
+Necklace,Department Store
+Onion,Supermarket
+Orange Juice,Supermarket
+Peas,Supermarket
+Pie Crust,Supermarket
+Pillowcase,Department Store
+Pineapple,Supermarket
+Pipes,Hardware Store
+Pork Chop,Supermarket
+Pot,Hardware Store
+Power Drill,Hardware Store
+Scarf,Department Store
+Screwdriver,Hardware Store
+Shovel,Hardware Store
+Shrimp,Supermarket
+Sneakers,Department Store
+Socks,Department Store
+Spinach,Supermarket
+Suitcase,Department Store
+Sweater,Department Store
+Swimsuit,Department Store
+T-Shirt,Department Store
+Tuna,Supermarket
+Underwear,Department Store
+Vitamins,Supermarket,Pharmacy
+Wrench,Hardware Store
+Yogurt,Supermarket

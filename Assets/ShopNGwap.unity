@@ -294,7 +294,6 @@ GameObject:
   - 114: {fileID: 1588099215}
   - 114: {fileID: 1588099220}
   - 114: {fileID: 1588099218}
-  - 114: {fileID: 1588099217}
   - 114: {fileID: 1588099219}
   - 114: {fileID: 1588099214}
   - 114: {fileID: 1588099221}
@@ -379,26 +378,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   barDisplay: 0
-  position: {x: 100, y: 100}
   size: {x: 300, y: 20}
   progressBarEmpty: {r: 0, g: 0, b: 0, a: 1}
   progressBarFull: {r: .985294104, g: 0, b: 0, a: 1}
   maxtime: 15
---- !u!114 &1588099217
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1588099211}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7b6ad2c41e8e544da72da88938556e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  barDisplay: 0
-  progressBarEmpty: {fileID: 2800000, guid: 66d0b1060f1263748aaa24b917861f3d, type: 3}
-  progressBarFull: {fileID: 2800000, guid: 4c86ac4639b24f24bb598c0d75a3828a, type: 3}
-  MaxTime: 15
 --- !u!114 &1588099218
 MonoBehaviour:
   m_ObjectHideFlags: 0

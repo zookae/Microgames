@@ -40,14 +40,15 @@ public class LoadObject : MonoBehaviour {
             Vector3 position = GenerateRandomPosition(layoutPositions[layoutCounter]);
             GameObject newObject = (GameObject)GameObject.Instantiate(prefab,
                 position, prefab.transform.rotation);
+            newObject.AddComponent("ScoreTriggerLookupAgreement");
             if (GameState.Singleton.ScoringMode == ScoringMode.Collaborative) {
-                newObject.AddComponent("ScoreTriggerTagAgreement");
+                //newObject.AddComponent("ScoreTriggerTagAgreement");
             } else if (GameState.Singleton.ScoringMode == ScoringMode.Competitive) {
-                newObject.AddComponent("ScoreTriggerTagBlocked");
+                //newObject.AddComponent("ScoreTriggerTagBlocked");
             } else { // Both
                 // XXX (kasiu): Currently adds both. This is bad.
-                newObject.AddComponent("ScoreTriggerTagAgreement");
-                newObject.AddComponent("ScoreTriggerTagBlocked");
+                //newObject.AddComponent("ScoreTriggerTagAgreement");
+                //newObject.AddComponent("ScoreTriggerTagBlocked");
             }
 
             DebugConsole.Log("Added object of : " + prefab.name);
@@ -64,7 +65,8 @@ public class LoadObject : MonoBehaviour {
             MouseHoverTooltip mhtComponent = newObject.GetComponent<MouseHoverTooltip>();
             mhtComponent.text = objName;
             mhtComponent.fontSize = 10;
-            mhtComponent.fontColor = Color.white;
+            mhtComponent.fontColor = Color.black;
+            mhtComponent.fontBackground = Color.white;
 
             Transform spriteChild = newObject.transform.FindChild("TexturedQuad");
             if (spriteChild != null) {

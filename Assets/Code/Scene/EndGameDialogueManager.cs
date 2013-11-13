@@ -58,7 +58,7 @@ public class EndGameDialogueManager : MonoBehaviour {
             //textStyle.alignment = TextAnchor.MiddleCenter;
             textStyle.wordWrap = true;
             textStyle.margin = new RectOffset(0, 0, 0, 0);
-            textStyle.normal.background = GUIUtils.MakeBlankTexture(width, height, fontBackground);
+            //textStyle.normal.background = GUIUtils.MakeBlankTexture(width, height, fontBackground);
         }
 	}
 

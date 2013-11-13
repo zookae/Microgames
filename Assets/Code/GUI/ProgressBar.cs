@@ -6,7 +6,7 @@ public class ProgressBar : MonoBehaviour {
 	public float barDisplay;
 	
 	Vector2 pos = new Vector2(Screen.width/2,Screen.height-100);
-	Vector2 size = new Vector2(100,20);
+	Vector2 size = new Vector2(400,50);
 	
 	public Texture2D progressBarEmpty;
 	public Texture2D progressBarFull;

@@ -210,7 +210,14 @@ public class GameStateServer : MonoBehaviour
                 NetworkClient.Instance.SendClientMess(player, NetworkClient.MessType_ToClient.SNGObjectSet, DBStringHelper.listToString(objectSet, ','));
             }
             if (tagSet != null) {
-                NetworkClient.Instance.SendClientMess(player, NetworkClient.MessType_ToClient.SNGTagSet, DBStringHelper.listToString(tagSet, ','));
+                if (rgd.gameMode == 3) {
+                    List<string> modifiedTagSet = new List<string>(tagSet);
+                    modifiedTagSet[1] = tagSet[1] + "-compete";
+                    modifiedTagSet.Add(tagSet[1] + "-collab");
+                    NetworkClient.Instance.SendClientMess(player, NetworkClient.MessType_ToClient.SNGTagSet, DBStringHelper.listToString(modifiedTagSet, ','));
+                } else {
+                    NetworkClient.Instance.SendClientMess(player, NetworkClient.MessType_ToClient.SNGTagSet, DBStringHelper.listToString(tagSet, ','));
+                }
             }
 
             int gamemode = dbManip.LookupPlayerGametype(rgd.dPlayerData[player].playerid);
@@ -228,7 +235,17 @@ public class GameStateServer : MonoBehaviour
             DebugConsole.Log("Got a random timing thing from the database.");
             
             // Construct and send the partner trace.
-            List<Triple<double, string, string>> partnerTrace = DBGWAPLoader.ConstructRandomPartnerTrace(times, rgd.objectSet, rgd.tagSet);
+            List<Triple<double, string, string>> partnerTrace;
+            if (rgd.gameMode == 3) { // BOTH MODE
+                List<string> opponentTrace = new List<string>();
+                opponentTrace.Add(rgd.tagSet[1]);
+                opponentTrace.Add(rgd.tagSet[0] + "-compete");
+                opponentTrace.Add(rgd.tagSet[0] + "-collab");
+                partnerTrace = DBGWAPLoader.ConstructRandomPartnerTrace(times, rgd.objectSet, opponentTrace);
+            } else {
+                partnerTrace = DBGWAPLoader.ConstructRandomPartnerTrace(times, rgd.objectSet, rgd.tagSet);
+            }
+
             if (partnerTrace != null) {
                 NetworkClient.Instance.SendClientMess(player, NetworkClient.MessType_ToClient.SNGOpponentTrace, DBStringHelper.traceToString(partnerTrace, ':'));
                 DebugConsole.Log("SENT A TRACE!");

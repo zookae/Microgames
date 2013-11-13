@@ -6,7 +6,7 @@ public class ScoreTriggerTagAgreement : MonoBehaviour {
     /// <summary>
     /// The base score for labeling (and presumably matching).
     /// </summary>
-    public float baseScore = 10;
+    public float baseScore = 0;
 
     /// <summary>
     /// The bonus score for agreeing

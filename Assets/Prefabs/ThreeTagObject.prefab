@@ -99,7 +99,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: -.800000072, y: 0, z: -.200000003}
+  m_LocalPosition: {x: -.800000072, y: 0, z: 0}
   m_LocalScale: {x: .666666687, y: .666666448, z: 2}
   m_Children: []
   m_Father: {fileID: 400008}
@@ -110,7 +110,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 0, y: 0, z: .800000012}
+  m_LocalPosition: {x: .800000072, y: 0, z: .349999994}
   m_LocalScale: {x: .666666687, y: .666666448, z: 2}
   m_Children: []
   m_Father: {fileID: 400008}
@@ -121,7 +121,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100004}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: .800000072, y: 0, z: -.200000003}
+  m_LocalPosition: {x: .800000072, y: 0, z: -.349999994}
   m_LocalScale: {x: .666666687, y: .666666448, z: 2}
   m_Children: []
   m_Father: {fileID: 400008}
@@ -324,8 +324,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fontSize: 10
-  x: 0
-  y: 0
+  defaultFont: {fileID: 0}
   splitName: []
 --- !u!114 &11400002
 MonoBehaviour:
@@ -339,8 +338,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fontSize: 10
-  x: 0
-  y: 0
+  defaultFont: {fileID: 0}
   splitName: []
 --- !u!114 &11400004
 MonoBehaviour:
@@ -354,8 +352,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fontSize: 10
-  x: 0
-  y: 0
+  defaultFont: {fileID: 0}
   splitName: []
 --- !u!136 &13600000
 CapsuleCollider:

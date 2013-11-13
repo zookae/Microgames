@@ -6,7 +6,7 @@ public class ScoreTriggerTagBlocked : MonoBehaviour {
     /// <summary>
     /// The base score for labeling (and matching the gold standard).
     /// </summary>
-    public float baseScore = 10;
+    public float baseScore = 0;
 
     /// <summary>
     /// The penalty for being blocked.
