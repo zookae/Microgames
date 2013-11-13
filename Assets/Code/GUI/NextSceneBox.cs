@@ -7,9 +7,8 @@ public class NextSceneBox : MonoBehaviour {
     public string rightButtonText;
     public string sceneName;
 
-    // HACK (kasiu): Doesn't currently check dimensions.
-    public int width = -1;
-    public int height = -1;
+    public int width;
+    public int height;
 
     // Font specifics
     public Font font;
@@ -21,9 +20,10 @@ public class NextSceneBox : MonoBehaviour {
     // Privates
     private Vector2 scrollPosition;
     private bool drawGUI = false;
-    private GUIStyle textStyle;
     private string text;
-    private Font oldButtonFont;
+    private GUIStyle textStyle;
+    private GUIStyle boxStyle;
+    private GUIStyle buttonStyle;
 
 	// Use this for initialization
 	void Start () {
@@ -38,12 +38,11 @@ public class NextSceneBox : MonoBehaviour {
             textStyle.alignment = TextAnchor.MiddleCenter;
             textStyle.wordWrap = true;
             textStyle.border = new RectOffset(20, 20, 20, 20);
-            textStyle.normal.background = GUIUtils.MakeBlankTexture((int)(Screen.width / 2.0f), (int)(Screen.height / 2.0f), fontBackground);
         }
 
         // Defaults
-        width = (width < 0 || width > Screen.width) ? 400 : width;
-        height = (height < 0 || height > Screen.height) ? 200 : height;
+        width = (width <= 0 || width > Screen.width) ? 400 : width;
+        height = (height <= 0 || height > Screen.height) ? 200 : height;
         leftButtonText = (leftButtonText.Length == 0) ? "Continue" : leftButtonText;
         rightButtonText = (rightButtonText.Length == 0) ? "Back" : rightButtonText;	
 	}
@@ -52,26 +51,27 @@ public class NextSceneBox : MonoBehaviour {
 	void OnGUI () {
         if (drawGUI) {
             // Don't know if this is necessary, but just resets the font in case.
-            if (oldButtonFont == null) {
-                oldButtonFont = GUI.skin.button.font;
-                GUI.skin.button.font = font;
+            if (boxStyle == null && buttonStyle == null) {
+                buttonStyle = new GUIStyle(GUI.skin.button);
+                buttonStyle.font = font;
+                boxStyle = new GUIStyle(GUI.skin.box);
+                boxStyle.normal.background = GUIUtils.MakeBlankTexture(width, height, fontBackground);
             }
 
-            GUILayout.BeginArea(new Rect((Screen.width - width) / 2.0f, (Screen.height - height) / 2.0f, width, height), GUI.skin.box);
+            Vector2 position = GUIUtils.ComputeCenteredPosition(width, height);
+            GUILayout.BeginArea(new Rect(position.x, position.y, width, height), GUI.skin.box);
 
-            scrollPosition = GUILayout.BeginScrollView(scrollPosition);
+            scrollPosition = GUILayout.BeginScrollView(scrollPosition, boxStyle);
             GUILayout.Label(text, textStyle);
             GUILayout.EndScrollView();
 
             // BUTTONS
             GUILayout.BeginHorizontal();
             if (GUILayout.Button(leftButtonText)) {
-                GUI.skin.button.font = oldButtonFont;
                 drawGUI = false;
                 Application.LoadLevel(sceneName);
             }
             if (GUILayout.Button(rightButtonText)) {
-                GUI.skin.button.font = oldButtonFont;
                 drawGUI = false;
             }
             GUILayout.EndHorizontal();

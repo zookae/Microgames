@@ -10,6 +10,12 @@ public class ScrollableTextArea : MonoBehaviour {
     /// </summary>
     public TextAsset file;
 
+    /// <summary>
+    /// Width and height of the text area.
+    /// </summary>
+    public int width = -1;
+    public int height = -1;
+
     // Font specifics
     public Font font;
     public int fontSize;
@@ -23,6 +29,7 @@ public class ScrollableTextArea : MonoBehaviour {
     private string text;
     private GUIStyle textStyle;
     private GUIStyle buttonStyle;
+    private GUIStyle boxStyle;
 
 	// Use this for initialization
 	void Start () {
@@ -36,8 +43,10 @@ public class ScrollableTextArea : MonoBehaviour {
             textStyle.normal.textColor = fontColor;
             textStyle.wordWrap = true;
             textStyle.border = new RectOffset(20, 20, 20, 20);
-            //textStyle.normal.background = GUIUtils.MakeBlankTexture((int)(Screen.width / 2.0f), (int)(Screen.height / 2.0f), fontBackground);
         }
+
+        width = (width <= 0) ? Screen.width / 2 : width;
+        height = (height <= 0) ? Screen.height / 2 : height;
 
         // Defaults
         closeText = (closeText.Length == 0) ? "Close" : closeText;
@@ -49,12 +58,15 @@ public class ScrollableTextArea : MonoBehaviour {
             if (buttonStyle == null) {
                 buttonStyle = new GUIStyle(GUI.skin.button);
                 buttonStyle.font = font;
+                boxStyle = new GUIStyle(GUI.skin.box);
+                boxStyle.normal.background = GUIUtils.MakeBlankTexture(width, height, fontBackground);
             }
 
             // Sticks this in the center of the screen
-            GUILayout.BeginArea(new Rect(Screen.width / 4.0f, Screen.height / 4.0f, Screen.width / 2.0f, Screen.height / 2.0f), GUI.skin.box);
+            Vector2 position = GUIUtils.ComputeCenteredPosition(width, height);
+            GUILayout.BeginArea(new Rect(position.x, position.y, width, height), GUI.skin.box);
 
-            scrollPosition = GUILayout.BeginScrollView(scrollPosition);
+            scrollPosition = GUILayout.BeginScrollView(scrollPosition, boxStyle);
             GUILayout.Label(text, textStyle);
             GUILayout.EndScrollView();
             if(GUILayout.Button(closeText, buttonStyle)) {

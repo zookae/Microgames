@@ -163,6 +163,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   file: {fileID: 4900000, guid: ffdcbc676e3741d40b4ff23f41a472e0, type: 3}
+  width: -1
+  height: -1
   font: {fileID: 12800000, guid: 7dd7c561d4f3b4e4aadec2240752c38c, type: 3}
   fontSize: 12
   fontColor: {r: 0, g: 0, b: 0, a: 1}

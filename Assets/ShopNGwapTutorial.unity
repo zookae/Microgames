@@ -210,8 +210,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 416002040}
-  m_LocalRotation: {x: .30609414, y: .212972537, z: .291397721, w: .880929351}
-  m_LocalPosition: {x: -6.71226072, y: 2.68928528, z: -5.10604906}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -295,7 +295,6 @@ GameObject:
   - 114: {fileID: 1588099220}
   - 114: {fileID: 1588099218}
   - 114: {fileID: 1588099217}
-  - 114: {fileID: 1588099219}
   - 114: {fileID: 1588099214}
   - 114: {fileID: 1588099221}
   - 114: {fileID: 1588099216}
@@ -375,15 +374,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1588099211}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1c58867c1e8ee24295258ae72ac1e1c, type: 3}
+  m_Script: {fileID: 11500000, guid: a43bb5c464a15df49aa94d26e5b8ec13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barDisplay: 0
-  position: {x: 100, y: 100}
-  size: {x: 300, y: 20}
-  progressBarEmpty: {r: 0, g: 0, b: 0, a: 1}
-  progressBarFull: {r: .985294104, g: 0, b: 0, a: 1}
-  maxtime: 15
+  nextSceneName: ShopNGwap
+  position: {x: 0, y: 0}
+  windowDimensions: {x: 200, y: 100}
+  font: {fileID: 12800000, guid: 7dd7c561d4f3b4e4aadec2240752c38c, type: 3}
+  fontSize: 12
+  fontColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!114 &1588099217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -413,17 +412,6 @@ MonoBehaviour:
   termState: 2
   valueThreshold: 15
   threshType: 0
---- !u!114 &1588099219
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1588099211}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb85f19e80af737498d43c5f7d7c06b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1588099220
 MonoBehaviour:
   m_ObjectHideFlags: 0

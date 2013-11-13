@@ -8,6 +8,9 @@ public enum SurveyRoundState
     SurveyResultsSent
 }
 
+/// <summary>
+/// HACK (kasiu): This thing is a wreck. I'll deal with it later.
+/// </summary>
 public class EndGameDialogueManager : MonoBehaviour {
 
     // Keeps track of important levels
@@ -85,7 +88,7 @@ public class EndGameDialogueManager : MonoBehaviour {
         if (drawGUI) {
             if (boxStyle == null) {
                 boxStyle = new GUIStyle(GUI.skin.box);
-                //boxStyle.normal.background = GUIUtils.MakeBlankTexture(width, height, fontBackground);
+                boxStyle.normal.background = GUIUtils.MakeBlankTexture(width, height, fontBackground);
                 buttonStyle = new GUIStyle(GUI.skin.button);
                 buttonStyle.font = font;
                 buttonStyle.fontSize = fontSize;
@@ -97,7 +100,7 @@ public class EndGameDialogueManager : MonoBehaviour {
                 // Draw continue dialogue
                 GUILayout.BeginArea(new Rect((Screen.width - width) / 2.0f, (Screen.height - height) / 2.0f, width, height), GUI.skin.box);
 
-                scrollPosition = GUILayout.BeginScrollView(scrollPosition);
+                scrollPosition = GUILayout.BeginScrollView(scrollPosition, boxStyle);
                 GUILayout.Label(scoreText, textStyle);
                 GUILayout.EndScrollView();
 
@@ -124,7 +127,7 @@ public class EndGameDialogueManager : MonoBehaviour {
                         break;
                     case SurveyRoundState.SurveyResultsSent:
                         // Display continue dialogue
-                        string text = "Thanks very much for giving us a hand! The study's over, but you can play some more rounds or return to the start menu if you like. If you choose to play more rounds, you can quit at any time.";
+                        string text = "That's it! Thanks for playing!" + '\n' + "The study is over, but you can play some more rounds or return to the start menu if you like. If you choose to play more rounds, you can quit at any time.";
                         // Otherwise, spawn a box that lets the player quit or continue
                         DisplayContinueOrQuitDialogue(text);
                         break;
@@ -141,7 +144,7 @@ public class EndGameDialogueManager : MonoBehaviour {
         // Otherwise, spawn a box that lets the player quit or continue
         GUILayout.BeginArea(new Rect((Screen.width - width) / 2.0f, (Screen.height - height) / 2.0f, width, height), GUI.skin.box);
 
-        scrollPosition = GUILayout.BeginScrollView(scrollPosition);
+        scrollPosition = GUILayout.BeginScrollView(scrollPosition, boxStyle);
         GUILayout.Label(text, textStyle);
         GUILayout.EndScrollView();
 

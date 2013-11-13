@@ -213,8 +213,6 @@ public class GameStateServer : MonoBehaviour
                 NetworkClient.Instance.SendClientMess(player, NetworkClient.MessType_ToClient.SNGTagSet, DBStringHelper.listToString(tagSet, ','));
             }
 
-            // For some reason, the gwapplayer table is refusing to update reliably. Here's a stupid check.
-            DebugConsole.Log("Attempting to check for gwapplayer update.");
             int gamemode = dbManip.LookupPlayerGametype(rgd.dPlayerData[player].playerid);
             DebugConsole.Log("Game mode found = " + gamemode);
             if (gamemode == -1) {
@@ -274,6 +272,7 @@ public class GameStateServer : MonoBehaviour
             } else {
                 rgd.gameMode = UnityEngine.Random.Range(1, 4);
                 DebugConsole.Log("Found a new player! Assigning a random gametype of " + rgd.gameMode);
+                dbManip.SavePlayerGameType(rgd.dPlayerData[player].playerid, rgd.gameMode);
                 //dbManip.SavePlayerInformation(dbManip.getPlayerUDID(rgd.dPlayerData[player].playerid), rgd.gameMode);
             }
             break;

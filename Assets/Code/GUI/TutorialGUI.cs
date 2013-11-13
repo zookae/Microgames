@@ -7,8 +7,8 @@ public class TutorialGUI : MonoBehaviour {
     /// Each line is a separate instruction.
     /// </summary>
     public TextAsset tutorialText;
-    public int width = -1;
-    public int height = -1;
+    public int width;
+    public int height;
 
     // Font specifics
     public Font font;
@@ -26,19 +26,21 @@ public class TutorialGUI : MonoBehaviour {
     private GUIStyle buttonStyle;
     private GUIStyle boxStyle;
 
+    public bool IsTutorialFinished() {
+        return tutorialViewed;
+    }
+
 	// Use this for initialization
 	void Start () {
         if (tutorialText != null) {
-            instructions = tutorialText.text.Split('\n');
-            currentInstruction = 0;
-            drawGUI = true;
+            ParseTextAsset();
         } else {
             drawGUI = false;
             currentInstruction = -1;
         }
 
-        width = (width < 0) ? 100 : width;
-        height = (height < 0) ? 100 : height;
+        width = (width <= 0) ? 100 : width;
+        height = (height <= 0) ? 100 : height;
 
         // XXX (kasiu): Checking is not robust
         if (font != null) {
@@ -64,11 +66,13 @@ public class TutorialGUI : MonoBehaviour {
             if (buttonStyle == null) {
                 buttonStyle = new GUIStyle(GUI.skin.button);
                 buttonStyle.font = font;
+                boxStyle = new GUIStyle(GUI.skin.box);
+                boxStyle.normal.background = GUIUtils.MakeBlankTexture((int)(Screen.width / 2.0f), (int)(Screen.height / 2.0f), new Color(1.0f, 1.0f, 1.0f, 0.8f));
             }
             
             Vector2 pos = GUIUtils.ComputeCenteredPosition(width, height);
             GUILayout.BeginArea(new Rect(pos.x, pos.y, width, height), GUI.skin.box);
-            scrollPosition = GUILayout.BeginScrollView(scrollPosition);
+            scrollPosition = GUILayout.BeginScrollView(scrollPosition, boxStyle);
             GUILayout.Label(instructions[currentInstruction], textStyle);
             GUILayout.EndScrollView();
             GUILayout.BeginHorizontal();

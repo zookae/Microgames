@@ -75,8 +75,8 @@ public class LikertGUI : MonoBehaviour {
             }
 
             // Draws the LIKERT STUFFIE
-            GUILayout.BeginArea(new Rect((Screen.width - ComputeWidth()) / 2, 0, ComputeWidth(), Screen.height), boxStyle);
-            scrollPosition = GUILayout.BeginScrollView(scrollPosition);
+            GUILayout.BeginArea(new Rect((Screen.width - ComputeWidth()) / 2, 0, ComputeWidth(), Screen.height), GUI.skin.box);
+            scrollPosition = GUILayout.BeginScrollView(scrollPosition, boxStyle);
 
             // Header
             textStyle.alignment = TextAnchor.MiddleCenter;
