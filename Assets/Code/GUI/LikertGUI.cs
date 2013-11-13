@@ -271,11 +271,16 @@ public class LikertQuestion
             if (optionsSelected[i]) {
                 answer += Options[i];
                 if (CanSelectMultiple) {
-                    answer += ";";
+                    answer += ",";
                 }
             }
         }
         if (CanSelectMultiple) {
+            // This 
+            if (answer[answer.Length - 1] == ',') {
+                // Removes trailing comma
+                answer = answer.Substring(0, answer.Length - 1);
+            }
             answer += ")";
         }
         return answer;

@@ -78,9 +78,14 @@ public class DBGameStateManager : MonoBehaviour {
                 this.mode = ScoringMode.Both;
                 break;
             default:
-                return false;
+                return false; // WE SHOULD NEVER GET HERE
         }
         hasReceivedMode = true;
+
+        // We got the tags before we got the mode, so we need to go back and resolve it.
+        if (hasReceivedTags) {
+            ResolveTags();
+        }
         return true;
     }
 
@@ -108,10 +113,35 @@ public class DBGameStateManager : MonoBehaviour {
         }
 
         tagList = tags;
-        GameState.Singleton.labelTags = new List<string>();
-        GameState.Singleton.labelTags.Add(tags[0]);
-        hasReceivedTags = true;
+        if (hasReceivedMode) {
+            ResolveTags();
+        }
         return true;
+    }
+
+    // XXX (kasiu): There is some incomplete logic in here that is based on how I choose to implement
+    //              certain things. In particular, ScoringMode.Both is currently causing some problems.
+    public void ResolveTags() {
+        if (!hasReceivedMode) {
+            return;
+        }
+
+        // Assume tagList has been assigned
+        List<string> tagCopy = tagList;
+        GameState.Singleton.labelTags = new List<string>();
+        GameState.Singleton.labelTags.Add(tagCopy[0]);
+        switch (mode) {
+            case ScoringMode.Collaborative:
+                break;
+            case ScoringMode.Competitive:
+            case ScoringMode.Both:
+                GameState.Singleton.blockTags = new List<string>();
+                GameState.Singleton.blockTags.Add(tagCopy[1]);
+                break;
+            default:
+                break; // we should never get here
+        }
+        hasReceivedTags = true;
     }
 
     public bool SendSurveyResults(string results) {

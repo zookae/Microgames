@@ -303,6 +303,23 @@ public class DBManipulation  {
         return gametype;
     }
 
+    // Returns the gametype for the given player, or -1 if the player doesn't exist.
+    internal bool LookupIfSurveyNeeded(int playerid) {
+        bool needed = true;
+        openConnection();
+        System.Text.StringBuilder sbSQL = new System.Text.StringBuilder();
+        sbSQL.Append("SELECT playerid FROM playersurvey WHERE playerid == ").Append(playerid);
+        DebugConsole.Log(sbSQL.ToString());
+        System.Data.IDataReader res = this.db.BasicQuery(sbSQL.ToString());
+        if (res.Read() && !res.IsDBNull(0)) {
+            needed = false;           
+        }
+        closeConnection();
+        return needed;
+    }
+
+    // Saves game basics and returns the new gameid
+    // XXX (kasiu): Probably unnecessarily complicated.
     internal int SaveGameBasics(string gamename) {
         int gameid = -1;
         DebugConsole.Log("Saving trace results.");
@@ -346,6 +363,7 @@ public class DBManipulation  {
         closeConnection();
     }
 
+    // Saves per-game information.
     internal void SaveGameGwapData(int gameid, int score, int playerid, string objectset, string tagset) {
         DebugConsole.Log("Saving trace results.");
         openConnection();
@@ -363,7 +381,7 @@ public class DBManipulation  {
         closeConnection();
     }
 
-    // ACTUAL!
+    // Saves per-player gametype.
     internal void SavePlayerGameType(int playerid, int gametype) {
         DebugConsole.Log("Saving trace results.");
         openConnection();
@@ -379,6 +397,7 @@ public class DBManipulation  {
         closeConnection();
     }
 
+    // Saves per-game gametype.
     internal void SaveGameType(int gameid, int gametype) {
         DebugConsole.Log("Saving trace results.");
         openConnection();
@@ -394,6 +413,7 @@ public class DBManipulation  {
         closeConnection();
     }
 
+    // Increments the number of rounds the player has finished.
     internal void IncrementPlayerGameCount(int playerid) {
         openConnection();
         System.Text.StringBuilder sbSQL = new System.Text.StringBuilder();
@@ -404,16 +424,27 @@ public class DBManipulation  {
     }
 
     // This is kept separate from the player information because it happens later (generally).
-    internal void SavePlayerLikertScores(string udid, string likertScores) {
-        DebugConsole.Log("Saving Likert score values.");
+    internal void SavePlayerLikertScores(int playerid, string[] answers) {
+        if (answers.Length != 7) {
+            return;
+        }
+        if (!LookupIfSurveyNeeded(playerid)) {
+            return;
+        }
+
+        DebugConsole.Log("Saving survey results/Likert values, etc..");
         openConnection();
         System.Text.StringBuilder sbSQL = new System.Text.StringBuilder();
-        sbSQL.Append("INSERT INTO gwapplayer(likertScores) VALUES(\"");
-        sbSQL.Append(likertScores).Append("\") WHERE");
-        sbSQL.Append(" playerid=").Append(getPlayerID(udid));
+        sbSQL.Append("INSERT INTO playersurvey(playerid,a1,a2,a3,a4,a5,a6,a7,dAdded) VALUES(");
+        sbSQL.Append(playerid.ToString()).Append(",");
+        for (int i = 0; i < answers.Length; i++) {
+            sbSQL.Append("\"").Append(answers[i].ToString()).Append("\",");
+        }
+        sbSQL.Append("CURRENT_TIMESTAMP").Append(")");
 
         DebugConsole.Log(sbSQL.ToString());
         System.Data.IDataReader res = this.db.BasicQuery(sbSQL.ToString());
+
         closeConnection();
     }
 

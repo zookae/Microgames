@@ -38,10 +38,13 @@ public class EndGameDialogueManager : MonoBehaviour {
     private GUIStyle buttonStyle;
     private GUIStyle boxStyle;
 
+    private bool surveySent;
+
 	// Use this for initialization
 	void Start () {
         width = (3 * Screen.width) / 5;
-        height = Screen.height / 5;	
+        height = Screen.height / 5;
+        surveySent = false;
 
         // XXX (kasiu): CHECKING IS STILL NOT ROBUST :P
         if (font != null) {
@@ -121,7 +124,7 @@ public class EndGameDialogueManager : MonoBehaviour {
                         break;
                     case SurveyRoundState.SurveyResultsSent:
                         // Display continue dialogue
-                        string text = "Thanks very much for giving us a hand! The study's technically over, but you can play some more rounds or return to the start menu!";
+                        string text = "Thanks very much for giving us a hand! The study's over, but you can play some more rounds or return to the start menu if you like. If you choose to play more rounds, you can quit at any time.";
                         // Otherwise, spawn a box that lets the player quit or continue
                         DisplayContinueOrQuitDialogue(text);
                         break;
@@ -170,10 +173,11 @@ public class EndGameDialogueManager : MonoBehaviour {
         if (surveyObject != null) {
             LikertGUI lc2 = surveyObject.GetComponent<LikertGUI>();
             string results = lc2.GetResults();
-            if (results != null) {
+            if (results != null && !surveySent) {
                 // SEND THE SURVEY RESULTS OFF....
                 this.gameObject.GetComponent<DBGameStateManager>().SendSurveyResults(results);
                 surveyRoundState = SurveyRoundState.SurveyResultsSent;
+                surveySent = true;
             }
         }
 	}

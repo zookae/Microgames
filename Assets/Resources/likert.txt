@@ -4,3 +4,4 @@ Do play games?^Yes,No^no
 If so, select all that apply below.^Action,Adventure,Casual,Strategy,RPG,Sports^yes
 On a scale from 1-5, how would you rate the level of challenge in this game? (1:no challenge to 5:extremely challenging)^1,2,3,4,5^no
 On a scale from 1-5, how would you rate your enjoyment of the game? (1:no enjoyment to 5:enjoyed very much)^1,2,3,4,5^no
+On a scale from 1-5, how would you rate your likelihood of playing the game again? (1:never to 5: very likely)^1,2,3,4,5^no

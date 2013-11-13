@@ -279,8 +279,9 @@ public class GameStateServer : MonoBehaviour
             break;
 
         case NetworkClient.MessType_ToServer.SNGSavePlayerLikertData:
-            // XXX (kasiu): This does an extra function call to get the UDID. May want to just pass PID to likert insert.
-            dbManip.SavePlayerLikertScores(dbManip.getPlayerUDID(rgd.dPlayerData[player].playerid), args);
+            DebugConsole.Log("Got some survey data! We'll be saving this!");
+            string[] answers = args.Split(':');
+            dbManip.SavePlayerLikertScores(rgd.dPlayerData[player].playerid, answers);
             break;
         
         case NetworkClient.MessType_ToServer.SNGSavePlayerScore:
