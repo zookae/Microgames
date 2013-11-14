@@ -256,9 +256,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fontSize: 10
-  x: 0
-  y: 0
-  keepTagCentered: 0
+  defaultFont: {fileID: 0}
+  fontBackground: {r: 0, g: .588235319, b: .941176474, a: 1}
   splitName: []
 --- !u!114 &11400002
 MonoBehaviour:
@@ -272,9 +271,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fontSize: 10
-  x: 0
-  y: 0
-  keepTagCentered: 0
+  defaultFont: {fileID: 0}
+  fontBackground: {r: .996078432, g: .447058827, b: 0, a: 1}
   splitName: []
 --- !u!136 &13600000
 CapsuleCollider:

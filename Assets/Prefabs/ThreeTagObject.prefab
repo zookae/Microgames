@@ -325,6 +325,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fontSize: 10
   defaultFont: {fileID: 0}
+  fontBackground: {r: .996078432, g: .447058827, b: 0, a: 1}
   splitName: []
 --- !u!114 &11400002
 MonoBehaviour:
@@ -339,6 +340,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fontSize: 10
   defaultFont: {fileID: 0}
+  fontBackground: {r: .529411793, g: .905882359, b: .0313725509, a: 1}
   splitName: []
 --- !u!114 &11400004
 MonoBehaviour:
@@ -353,6 +355,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fontSize: 10
   defaultFont: {fileID: 0}
+  fontBackground: {r: 0, g: .588235319, b: .941176474, a: 1}
   splitName: []
 --- !u!136 &13600000
 CapsuleCollider:
