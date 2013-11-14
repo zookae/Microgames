@@ -1,7 +1,7 @@
 Welcome to Cabbage Quest!
 In this game, you'll be working with a partner to pick the best location to buy items.
 Here's how it works. You and your partner each have a location. We lay out some items.
-Assign each item to a location by clicking the location. If you can’t buy the item at any of the locations, don't click on any. You get points for picking the right locations.
+Assign each item to a location by clicking the location. If you can't buy the item at any of the locations, don't click on any. You get points for picking the right locations.
 You get bonus points if you and your partner agree on the same location!
 The timer at the bottom lets you know how much time until the end of the round.
 Ready? Let's have a quick practice round!

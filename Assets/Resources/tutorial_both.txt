@@ -1,9 +1,9 @@
 Welcome to Cabbage Quest!
 In this game, you'll be working with a partner to pick the best location to buy items.
 Here's how it works. You and your partner each have a location. We lay out some items.
-Assign each item to a location by clicking the location. If you can’t buy the item at any of the locations, don't click on any. You get points for picking the right locations.
-When you assign your partner’s location you have a choice. If you COLLAB and your partner picks that location, you both get bonus points. 
-If you COMPETE and your partner picks their location AND you picked first, you get points and they lose points. But if you picked second you get no points. They can do the same thing to you.
-When you assign your location, you can only pick COLLAB.
+Assign each item to a location by clicking the location. If you can't buy the item at any of the locations, don't click on any. You get points for picking the right locations.
+When you assign your partner's location you have a choice. If you choose "HELP" and your partner picks that location, you both get bonus points. 
+If you choose "COMPETE" and your partner picks their location AND you picked first, you get points and they lose points. But if you picked second you get no points. They can do the same thing to you.
+Note: if/when you assign your location, your selection is implicitly choosing "HELP".
 The timer at the bottom lets you know how much time until the end of the round.
 Ready? Let's have a quick practice round!

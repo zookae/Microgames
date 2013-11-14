@@ -53,6 +53,7 @@ public class ScoreTriggerTagBoth : MonoBehaviour
                             break;
                         }
                         if (pt.Second == transform.name) { // FOUND IT
+                            Debug.Log("FOUND PARTNER " + transform.name);
                             switch (myTag) {
                                 case TagOptions.LabelMine:
                                     if (pt.Third.Contains("-collab")) {
@@ -60,6 +61,7 @@ public class ScoreTriggerTagBoth : MonoBehaviour
                                         string strCollab = "+" + agreementBonus + " points!" + '\n' + "(AGREEMENT)";
                                         Debug.Log(strCollab);
                                     } else if (pt.Third.Contains("-compete")) {
+                                        GameState.Singleton.score -= blockPenalty;
                                         string strBlock = "-" + blockPenalty + " points!" + '\n' + "(SELECTED SECOND)";
                                         Debug.Log(strBlock);
                                     }
@@ -91,6 +93,7 @@ public class ScoreTriggerTagBoth : MonoBehaviour
                     continue;
                 }
                 if (pt.Second == transform.name) { // FOUND IT
+                    Debug.Log("FOUND PARTNER " + transform.name);
                     switch (myTag) {
                         case TagOptions.LabelMine:
                             if (pt.Third.Contains("-collab")) {

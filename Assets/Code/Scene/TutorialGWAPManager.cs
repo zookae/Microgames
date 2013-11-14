@@ -44,6 +44,9 @@ public class TutorialGWAPManager : MonoBehaviour {
             SetMode(ProxyGameGenerator.SelectRandomScoringMode());
         }
         SetObjectList();
+        // HACK (kasiu): Need this for InfoGUI to label early.
+        GameState.Singleton.labelTags = new List<string>();
+        GameState.Singleton.labelTags.Add("Hardware Store");
     }
 
 	// Use this for initialization

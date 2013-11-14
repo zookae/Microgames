@@ -19,7 +19,19 @@ public class TagLabelGUI : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        splitName = this.gameObject.name.Split(' ');
+        // THIS IS A HACK FOR BOTH MODE
+        if (this.gameObject.name.Contains("-collab") || this.gameObject.name.Contains("-compete")) {
+            int index = this.gameObject.name.IndexOf('-');
+            string actualName = this.gameObject.name.Substring(0, index);
+            if (this.gameObject.name.Contains("-collab")) {
+                actualName += " (HELP)";
+            } else {
+                actualName += " (COMPETE)";
+            }
+            splitName = actualName.Split(' ');
+        } else {
+            splitName = this.gameObject.name.Split(' ');
+        }
 	}
 
     /// <summary>

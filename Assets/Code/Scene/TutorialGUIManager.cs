@@ -14,15 +14,22 @@ public class TutorialGUIManager : MonoBehaviour {
     private GameObject tutorialStartObject;
     private GameObject tutorialEndObject;
 
+    private bool tutorialSetup;
+
 	// Use this for initialization
 	void Start () {
         GameState.Singleton.CurrentState = State.Paused;
-        TutorialSetup();
+        tutorialSetup = false;
+        //TutorialSetup();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        // Triggers
+        // Setup tutorial
+        if (this.gameObject.GetComponent<TutorialGWAPManager>() != null && this.gameObject.GetComponent<TutorialGWAPManager>().IsReadyToSpawn() && !tutorialSetup) {
+            TutorialSetup();
+        }
+        // Triggers        
         if (tutorialStartObject != null && tutorialStartObject.GetComponent<TutorialGUI>().IsTutorialFinished()) {
             GameObject.Destroy(tutorialStartObject);
             tutorialStartObject = null; // don't know if this needs to be explicit, but eh
@@ -69,5 +76,6 @@ public class TutorialGUIManager : MonoBehaviour {
         tutorialStartObject.GetComponent<TutorialGUI>().fontColor = fontColor;
         tutorialStartObject.GetComponent<TutorialGUI>().width = (int)windowDimensions.x;
         tutorialStartObject.GetComponent<TutorialGUI>().height = (int)windowDimensions.y;
+        tutorialSetup = true;
     }
 }

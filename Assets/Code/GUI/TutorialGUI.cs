@@ -26,6 +26,10 @@ public class TutorialGUI : MonoBehaviour {
     private GUIStyle buttonStyle;
     private GUIStyle boxStyle;
 
+    // HACK (kasiu)
+    // This pushes the box down.
+    private Vector2 offset = new Vector2(0, 150);
+
     public bool IsTutorialFinished() {
         return tutorialViewed;
     }
@@ -70,7 +74,7 @@ public class TutorialGUI : MonoBehaviour {
                 boxStyle.normal.background = GUIUtils.MakeBlankTexture((int)(Screen.width / 2.0f), (int)(Screen.height / 2.0f), new Color(1.0f, 1.0f, 1.0f, 0.8f));
             }
             
-            Vector2 pos = GUIUtils.ComputeCenteredPosition(width, height);
+            Vector2 pos = GUIUtils.ComputeCenteredPosition(width, height) + offset;
             GUILayout.BeginArea(new Rect(pos.x, pos.y, width, height), GUI.skin.box);
             scrollPosition = GUILayout.BeginScrollView(scrollPosition, boxStyle);
             GUILayout.Label(instructions[currentInstruction], textStyle);

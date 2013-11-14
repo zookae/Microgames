@@ -574,7 +574,7 @@ MonoBehaviour:
   file: {fileID: 4900000, guid: 36afabf608c8c0a429a42f88cf687905, type: 3}
   leftButtonText: I Accept
   rightButtonText: Go Back
-  sceneName: ShopNGwap
+  sceneName: ShopNGwapTutorial
   width: 400
   height: 100
   font: {fileID: 12800000, guid: 7dd7c561d4f3b4e4aadec2240752c38c, type: 3}

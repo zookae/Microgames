@@ -38,6 +38,7 @@ public class ScoreTriggerLookupAgreement : MonoBehaviour {
                         tagName = click.Third;
                     }
 
+                    Debug.Log("Looking up " + click.Second + " with " + tagName);
                     if (ScoreStandardDictionary.MatchesStandard(click.Second, tagName)) {
                         wasTagged = true;
                         string str = "+" + baseScore + " points!";
