@@ -8,18 +8,18 @@ public class MouseHoverTooltip : MonoBehaviour {
     public string text;
 
     private GUIStyle style;
-    private bool active = false;
+    private bool drawGUI = false;
 
     void Start() {
         style = null;
     }
 
     void OnMouseOver() {
-        active = true;
+        drawGUI = true;
     }
 
     void OnMouseExit() {
-        active = false;
+        drawGUI = false;
     }
 
     void OnGUI() {
@@ -31,7 +31,7 @@ public class MouseHoverTooltip : MonoBehaviour {
             style.normal.background = GUIUtils.MakeBlankTexture(100, 100, fontBackground);
         }
 
-        if (active) {
+        if (drawGUI) {
             //GUI.Box(new Rect(Input.mousePosition.x + fontSize, ((Screen.height - Input.mousePosition.y)), fontSize * text.Length, fontSize * 2), text, style);
             GUILayout.BeginArea(new Rect(Input.mousePosition.x + fontSize, ((Screen.height - Input.mousePosition.y)), fontSize * text.Length, fontSize * 2));
             GUILayout.Label(text, style);

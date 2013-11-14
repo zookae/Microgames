@@ -32,10 +32,6 @@ public class InfoGUI : MonoBehaviour {
         textStyle.font = font;
         textStyle.fontSize = fontSize;
         textStyle.normal.textColor = fontColor;
-
-        if (origin == null) {
-            origin = Vector2.zero;
-        }
 	}
 
     void OnGUI() {

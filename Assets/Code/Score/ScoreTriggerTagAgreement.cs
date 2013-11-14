@@ -28,13 +28,13 @@ public class ScoreTriggerTagAgreement : MonoBehaviour {
     /// <summary>
     /// The assigned tag
     /// </summary>
-    public string tag { get; private set; }
+    public string myTag { get; private set; }
 
 	// Use this for initialization
 	void Start () {
         wasTagged = false;
         wasAgreedOn = false;
-        tag = null;
+        myTag = null;
 	}
 	
 	// Update is called once per frame
@@ -48,7 +48,7 @@ public class ScoreTriggerTagAgreement : MonoBehaviour {
             foreach (Triple<double, string, string> click in GameState.Singleton.clickTrace) {
                 if (click.Second == transform.name) {
                     wasTagged = true;
-                    tag = click.Third;
+                    myTag = click.Third;
                     GameState.Singleton.score += baseScore;
                     break;
                 }
@@ -57,7 +57,7 @@ public class ScoreTriggerTagAgreement : MonoBehaviour {
         // Check if the partner has agreed (may be delayed).
         if (wasTagged && !wasAgreedOn) {
             foreach (Triple<double, string, string> click in GameState.Singleton.partnerTrace) {
-                if (click.Second == transform.name && click.Third == tag) {
+                if (click.Second == transform.name && click.Third == myTag) {
                     wasAgreedOn = true;
                     GameState.Singleton.score += agreementBonus;
                     string str = "+" + agreementBonus + " points!\n" + "(AGREEMENT)";

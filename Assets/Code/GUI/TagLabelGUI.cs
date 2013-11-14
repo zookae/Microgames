@@ -10,7 +10,7 @@ public class TagLabelGUI : MonoBehaviour {
     /// <summary>
     /// The default font for the label
     /// </summary>
-    public Font defaultFont = Resources.Load("../Fonts/Nunito-Regular") as Font;
+    public Font defaultFont = Resources.Load("gwap_fonts/Nunito-Regular") as Font;
 
     /// <summary>
     /// If the tag name contains spaces, we store the individual words.

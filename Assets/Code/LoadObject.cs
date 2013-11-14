@@ -85,7 +85,6 @@ public class LoadObject : MonoBehaviour {
     private const float maxRandY = 0.04f;
 
     private Vector3 GenerateRandomPosition(Vector3 position) {
-        Vector3 newPosition = position;
         float randX = Random.Range(-maxRandX, maxRandX);
         float randY = Random.Range(-maxRandY, maxRandY);
         position.x += randX;

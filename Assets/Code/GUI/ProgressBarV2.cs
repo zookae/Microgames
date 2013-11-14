@@ -17,7 +17,7 @@ public class ProgressBarV2 : MonoBehaviour {
     private Texture2D fullStyle;
 
     void Start() {
-        size = (size == null) ? new Vector2(100, 20) : size;
+        size = (size.x == 0 || size.y == 0) ? new Vector2(100, 20) : size;
         //position = (position == null) ? new Vector2(, Screen.height - 100) : position;
         position = new Vector2((Screen.width - size.x) / 2, Screen.height - ((3 * size.y) / 2));
 
