@@ -42,13 +42,14 @@ public class LoadObject : MonoBehaviour {
                 position, prefab.transform.rotation);
             newObject.AddComponent("ScoreTriggerLookupAgreement");
             if (GameState.Singleton.ScoringMode == ScoringMode.Collaborative) {
-                //newObject.AddComponent("ScoreTriggerTagAgreement");
+                newObject.AddComponent("ScoreTriggerTagAgreement");
             } else if (GameState.Singleton.ScoringMode == ScoringMode.Competitive) {
-                //newObject.AddComponent("ScoreTriggerTagBlocked");
+                newObject.AddComponent("ScoreTriggerTagBlocked");
             } else { // Both
                 // XXX (kasiu): Currently adds both. This is bad.
                 //newObject.AddComponent("ScoreTriggerTagAgreement");
                 //newObject.AddComponent("ScoreTriggerTagBlocked");
+                newObject.AddComponent("ScoreTriggerTagBoth");
             }
 
             DebugConsole.Log("Added object of : " + prefab.name);
@@ -93,13 +94,25 @@ public class LoadObject : MonoBehaviour {
     }
 
     private void LoadDummyPositions() {
-        layoutPositions.Add(Vector3.zero);
-        layoutPositions.Add(new Vector3(-1.5f, 2.5f, 0.0f));
-        layoutPositions.Add(new Vector3(1.5f, 2.5f, 0.0f));
-        layoutPositions.Add(new Vector3(-3.0f, 0.0f, 0.0f));
-        layoutPositions.Add(new Vector3(3.0f, 0.0f, 0.0f));
-        layoutPositions.Add(new Vector3(-1.5f, -2.5f, 0.0f));
-        layoutPositions.Add(new Vector3(1.5f, -2.5f, 0.0f));
+        // HACK (kasiu): Both mode has slightly larger elements, so I've tweaked
+        //               the layout slightly.
+        if (GameState.Singleton.ScoringMode == ScoringMode.Both) {
+            layoutPositions.Add(Vector3.zero);
+            layoutPositions.Add(new Vector3(-1.5f, 3.5f, 0.0f));
+            layoutPositions.Add(new Vector3(1.5f, 3.5f, 0.0f));
+            layoutPositions.Add(new Vector3(-3.0f, 0.0f, 0.0f));
+            layoutPositions.Add(new Vector3(3.0f, 0.0f, 0.0f));
+            layoutPositions.Add(new Vector3(-1.5f, -3.5f, 0.0f));
+            layoutPositions.Add(new Vector3(1.5f, -3.5f, 0.0f));
+        } else {
+            layoutPositions.Add(Vector3.zero);
+            layoutPositions.Add(new Vector3(-1.5f, 2.5f, 0.0f));
+            layoutPositions.Add(new Vector3(1.5f, 2.5f, 0.0f));
+            layoutPositions.Add(new Vector3(-3.0f, 0.0f, 0.0f));
+            layoutPositions.Add(new Vector3(3.0f, 0.0f, 0.0f));
+            layoutPositions.Add(new Vector3(-1.5f, -2.5f, 0.0f));
+            layoutPositions.Add(new Vector3(1.5f, -2.5f, 0.0f));
+        }
     }
 
     private void LoadMapping() {

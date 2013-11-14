@@ -40,7 +40,7 @@ public class ScoreTriggerLookupAgreement : MonoBehaviour {
 
                     if (ScoreStandardDictionary.MatchesStandard(click.Second, tagName)) {
                         wasTagged = true;
-                        string str = "+10 points!";
+                        string str = "+" + baseScore + " points!";
                         Debug.Log(str);
                         // TODO (kasiu): Spawn score thing.
                         GameState.Singleton.score += baseScore;

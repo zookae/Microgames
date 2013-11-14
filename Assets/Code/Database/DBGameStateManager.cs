@@ -47,7 +47,7 @@ public class DBGameStateManager : MonoBehaviour {
             SetMode(ProxyGameGenerator.SelectRandomScoringMode());
             SetObjectList(ProxyGameGenerator.SelectRandomObjectSet(7));
             SetTagList(ProxyGameGenerator.SelectRandomTagSet(mode));
-            SetPartnerTrace(ProxyGameGenerator.SelectRandomPartnerTrace(objectList, tagList, 0.0f, GameState.Singleton.MaxTime));
+            SetPartnerTrace(ProxyGameGenerator.SelectRandomPartnerTrace(objectList, tagList, 0.0f, GameState.Singleton.MaxTime, GameState.Singleton.ScoringMode));
         }
     }
 
@@ -135,6 +135,9 @@ public class DBGameStateManager : MonoBehaviour {
             case ScoringMode.Collaborative:
                 break;
             case ScoringMode.Competitive:
+                GameState.Singleton.blockTags = new List<string>();
+                GameState.Singleton.blockTags.Add(tagCopy[1]);
+                break;
             case ScoringMode.Both:
                 GameState.Singleton.blockTags = new List<string>();
                 GameState.Singleton.blockTags.Add(tagCopy[1]);

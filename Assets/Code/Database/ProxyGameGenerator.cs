@@ -20,14 +20,29 @@ public static class ProxyGameGenerator
     public static List<string> SelectRandomTagSet(ScoringMode scoringMode) {
         List<string> tagSet = DBGWAPLoader.GenerateRandomTagset();
         if (scoringMode == ScoringMode.Both) {
-            tagSet.Add(tagSet[tagSet.Count - 1]);
+            string lastTag = tagSet[tagSet.Count - 1];
+            tagSet[tagSet.Count - 1] = lastTag + "-compete";            
+            tagSet.Add(lastTag + "-collab");
         }
         return tagSet;
     }
 
-    public static List<Triple<double, string, string>> SelectRandomPartnerTrace(List<string> objects, List<string> tags, float minTime, float maxTime) {
+    public static List<Triple<double, string, string>> SelectRandomPartnerTrace(List<string> objects, List<string> tags, float minTime, float maxTime, ScoringMode mode) {
         List<Triple<double, string, string>> list = new List<Triple<double, string, string>>();
         int numTimes = Random.Range(1, objects.Count + 1);
+
+        List<string> newTags;
+        if (mode == ScoringMode.Both) {
+            // MODIFY TAGS
+            string myTag = TagUtils.TrimBothModeTag(tags[1]);
+            string opponentTag = tags[0];
+            newTags = new List<string>();
+            newTags.Add(myTag);
+            newTags.Add(opponentTag + "-compete");
+            newTags.Add(opponentTag + "-collab");
+        } else {
+            newTags = tags;
+        }
 
         // HACK (kasiu): Doesn't guarantee a good time distribution.
         List<double> times = new List<double>();
@@ -41,8 +56,8 @@ public static class ProxyGameGenerator
             Triple<double, string, string> triple = new Triple<double, string, string>();
             triple.First = times[i];
             triple.Second = objectSubset[i];
-            int randomTag = Random.Range(0, 2);
-            triple.Third = tags[randomTag];
+            int randomTag = Random.Range(0, newTags.Count);
+            triple.Third = newTags[randomTag];
 
             list.Add(triple);
         }        

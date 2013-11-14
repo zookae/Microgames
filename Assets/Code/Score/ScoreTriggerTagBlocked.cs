@@ -48,20 +48,22 @@ public class ScoreTriggerTagBlocked : MonoBehaviour {
                     wasTagged = true;
                     this.click = ct;
                     GameState.Singleton.score += baseScore;
-                    Debug.Log("OH GOODNESS! OUR SCORE CHANGED!");
+                    //Debug.Log("OH GOODNESS! OUR SCORE CHANGED!");
                     break;
                 }
             }
 
             // Check to see if it's been blocked (and dock points).
+            // NOTE (kasiu): This really doesn't need to be isolated: refactor back into above loop
             if (wasTagged) {
                 foreach (Triple<double, string, string> pt in GameState.Singleton.partnerTrace) {
                     if (wasAssignmentBeaten(pt, click)) {
                         // We've been blocked BOO HISS.
                         wasBlockResolved = true;
                         GameState.Singleton.score -= blockPenalty;
-                        Debug.Log("BOOHISS, WE WERE BLOCKED!");
-                    } 
+                        string str = "-" + blockPenalty + " points!\n" + "(SELECTED SECOND)";
+                        Debug.Log(str);
+                    }
                 }
             }
         } else { // Tagged, but block hasn't been resolved.
@@ -69,7 +71,8 @@ public class ScoreTriggerTagBlocked : MonoBehaviour {
                 if (wasAssignmentBeaten(click, pt)) {
                     wasBlockResolved = true;
                     GameState.Singleton.score += blockPenalty;
-                    Debug.Log("YEAH! WE BEAT THAT GUY!");
+                    string str = "+" + blockPenalty + " points!\n" + "(SELECTED FIRST)";
+                    Debug.Log(str);
                 }
             }
         }

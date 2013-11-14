@@ -50,7 +50,6 @@ public class ScoreTriggerTagAgreement : MonoBehaviour {
                     wasTagged = true;
                     tag = click.Third;
                     GameState.Singleton.score += baseScore;
-                    Debug.Log("OH GOODNESS! OUR SCORE CHANGED!");
                     break;
                 }
             }
@@ -61,7 +60,8 @@ public class ScoreTriggerTagAgreement : MonoBehaviour {
                 if (click.Second == transform.name && click.Third == tag) {
                     wasAgreedOn = true;
                     GameState.Singleton.score += agreementBonus;
-                    Debug.Log("BONUS CHEESECAKE! OUR PARTNER AGREED!");
+                    string str = "+" + agreementBonus + " points!\n" + "(AGREEMENT)";
+                    Debug.Log(str);
                     break;
                 }
             }

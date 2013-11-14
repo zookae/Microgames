@@ -89,7 +89,13 @@ public class LikertGUI : MonoBehaviour {
                 GUILayout.Label(lq.Question, textStyle);
                 if (lq.CanSelectMultiple) {
                     GUILayout.BeginHorizontal();
-                    for (int i = 0; i < lq.GetNumOptions(); i++) {
+                    for (int i = 0; i < lq.GetNumOptions() / 2; i++) {
+                        bool toggled = GUILayout.Toggle(lq.IsSelected(i), lq.Options[i], toggleStyle);
+                        lq.SetOption(i, toggled);
+                    }
+                    GUILayout.EndHorizontal();
+                    GUILayout.BeginHorizontal();
+                    for (int i = lq.GetNumOptions() / 2; i < lq.GetNumOptions(); i++) {
                         bool toggled = GUILayout.Toggle(lq.IsSelected(i), lq.Options[i], toggleStyle);
                         lq.SetOption(i, toggled);
                     }
