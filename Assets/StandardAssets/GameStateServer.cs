@@ -229,6 +229,21 @@ public class GameStateServer : MonoBehaviour
 
             break;
 
+        case NetworkClient.MessType_ToServer.SNGRequestGameMode:
+            if (rgd.gameMode == -1) {
+                int gt = dbManip.LookupPlayerGametype(rgd.dPlayerData[player].playerid);
+                if (gt != -1) {
+                    DebugConsole.Log("Found an old player. Their gametype is : " + gt);
+                    rgd.gameMode = gt;
+                } else {
+                    rgd.gameMode = UnityEngine.Random.Range(1, 4);
+                    DebugConsole.Log("Found a new player! Assigning a random gametype of " + rgd.gameMode);
+                    dbManip.SavePlayerGameType(rgd.dPlayerData[player].playerid, rgd.gameMode);
+                }
+            }
+            NetworkClient.Instance.SendClientMess(player, NetworkClient.MessType_ToClient.SNGGameMode, rgd.gameMode.ToString());
+            break;
+
         case NetworkClient.MessType_ToServer.SNGRequestTrace:
             // (OH GOD BAD HARDCODED NUMBERS)
             string[] times = (dbManip.LookupRandomTraces(1, 1))[0].Split(',');
@@ -280,7 +295,6 @@ public class GameStateServer : MonoBehaviour
             break;
 
         case NetworkClient.MessType_ToServer.SNGSavePlayerData:
-            // XXX (kasiu): Not used anymore.
             // used for SNG only
             int gametype = dbManip.LookupPlayerGametype(rgd.dPlayerData[player].playerid);
             if (gametype != -1) {

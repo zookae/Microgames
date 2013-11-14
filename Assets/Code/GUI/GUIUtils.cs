@@ -28,7 +28,7 @@ public static class GUIUtils {
     }
 
     public static void SpawnFloatingText(Vector2 position, Vector2 velocity, string text) {
-        GameObject obj = new GameObject();
+        //GameObject obj = new GameObject();
         //obj.AddComponent<>();
         //obj
     }

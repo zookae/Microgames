@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class TutorialManager : MonoBehaviour {
+public class TutorialGUIManager : MonoBehaviour {
 
     public string nextSceneName;
     public Vector2 position;
@@ -18,7 +18,6 @@ public class TutorialManager : MonoBehaviour {
 	void Start () {
         GameState.Singleton.CurrentState = State.Paused;
         TutorialSetup();
-
 	}
 	
 	// Update is called once per frame
@@ -31,7 +30,7 @@ public class TutorialManager : MonoBehaviour {
             GameState.Singleton.CurrentState = State.Running;
         }
 
-        if (GameState.Singleton.CurrentState == State.Win || GameState.Singleton.CurrentState == State.Lose) {
+        if (tutorialEndObject == null && (GameState.Singleton.CurrentState == State.Win || GameState.Singleton.CurrentState == State.Lose)) {
             tutorialEndObject = new GameObject();
             tutorialEndObject.AddComponent<TutorialGUI>();
             tutorialEndObject.GetComponent<TutorialGUI>().tutorialText = Resources.Load("tutorial_finished") as TextAsset;

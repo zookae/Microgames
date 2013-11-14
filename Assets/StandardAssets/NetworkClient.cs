@@ -44,6 +44,7 @@ public class NetworkClient : MonoBehaviour {
 		, PlayAgain                 //client sends when they want to play again
         // MORE ShopNGwap stuff
         , SNGRequestNewGame         // client sends whenever it initiates a new game
+        , SNGRequestGameMode        // client sends whenever it wants the player's game mode (tutorial only?)
         , SNGRequestTrace           // client sends whenever it wants a trace
         , SNGSaveDBTrace            // client sends whenever it wants to save traces to the database
         , SNGSavePlayerData         // client sends whenever it wants to save player data

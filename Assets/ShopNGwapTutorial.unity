@@ -292,12 +292,12 @@ GameObject:
   - 4: {fileID: 1588099212}
   - 114: {fileID: 1588099213}
   - 114: {fileID: 1588099215}
-  - 114: {fileID: 1588099220}
+  - 114: {fileID: 1588099219}
   - 114: {fileID: 1588099218}
-  - 114: {fileID: 1588099217}
   - 114: {fileID: 1588099214}
   - 114: {fileID: 1588099221}
   - 114: {fileID: 1588099216}
+  - 114: {fileID: 1588099217}
   m_Layer: 0
   m_Name: GlobalState
   m_TagString: Untagged
@@ -379,7 +379,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextSceneName: ShopNGwap
   position: {x: 0, y: 0}
-  windowDimensions: {x: 200, y: 100}
+  windowDimensions: {x: 400, y: 200}
   font: {fileID: 12800000, guid: 7dd7c561d4f3b4e4aadec2240752c38c, type: 3}
   fontSize: 12
   fontColor: {r: 0, g: 0, b: 0, a: 1}
@@ -391,13 +391,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1588099211}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7b6ad2c41e8e544da72da88938556e6, type: 3}
+  m_Script: {fileID: 11500000, guid: d1c58867c1e8ee24295258ae72ac1e1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   barDisplay: 0
-  progressBarEmpty: {fileID: 2800000, guid: 66d0b1060f1263748aaa24b917861f3d, type: 3}
-  progressBarFull: {fileID: 2800000, guid: 4c86ac4639b24f24bb598c0d75a3828a, type: 3}
-  MaxTime: 15
+  size: {x: 300, y: 20}
+  progressBarEmpty: {r: 0, g: 0, b: 0, a: 1}
+  progressBarFull: {r: .977941155, g: 0, b: 0, a: 1}
+  maxtime: 15
 --- !u!114 &1588099218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -412,7 +413,7 @@ MonoBehaviour:
   termState: 2
   valueThreshold: 15
   threshType: 0
---- !u!114 &1588099220
+--- !u!114 &1588099219
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -420,7 +421,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1588099211}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c0024b2f2e0b584daea92dde705b63d, type: 3}
+  m_Script: {fileID: 11500000, guid: 52636e7ec9f332849b1dd621d6cfae38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   prefabs:

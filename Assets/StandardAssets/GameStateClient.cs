@@ -233,7 +233,13 @@ public class GameStateClient : MonoBehaviour
             if (args != null && args.Length > 0 && args[0] != null) {
                 DebugConsole.Log(args[0] + " is args[0]");
                 DBGameStateManager dsm = GameState.Singleton.GetComponent<DBGameStateManager>();
-                dsm.SetMode(Convert.ToInt32(args[0]));
+                if (dsm != null) {
+                    dsm.SetMode(Convert.ToInt32(args[0]));
+                }
+                TutorialGWAPManager tgm = GameState.Singleton.GetComponent<TutorialGWAPManager>();
+                if (tgm != null) {
+                    tgm.SetMode(Convert.ToInt32(args[0]));
+                }
             }
             break;
         case NetworkClient.MessType_ToClient.SNGObjectSet:
