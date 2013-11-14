@@ -27,9 +27,13 @@ public static class GUIUtils {
         return new Vector2((Screen.width - width) / 2.0f, (Screen.height - height) / 2.0f);
     }
 
-    public static void SpawnFloatingText(Vector2 position, Vector2 velocity, string text) {
-        //GameObject obj = new GameObject();
-        //obj.AddComponent<>();
-        //obj
+    public static void SpawnFloatingText(Vector3 position, string text, Color color, float lifetime) {
+        GameObject obj = new GameObject();
+        obj.name = "Floating Score Box";
+        obj.transform.position = position;
+        obj.AddComponent<FloatAndFadeText>();
+        obj.GetComponent<FloatAndFadeText>().text = text;
+        obj.GetComponent<FloatAndFadeText>().fontColor = color;
+        obj.GetComponent<FloatAndFadeText>().lifetime = lifetime;
     }
 }

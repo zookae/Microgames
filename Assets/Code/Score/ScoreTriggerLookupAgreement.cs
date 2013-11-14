@@ -38,13 +38,12 @@ public class ScoreTriggerLookupAgreement : MonoBehaviour {
                         tagName = click.Third;
                     }
 
-                    Debug.Log("Looking up " + click.Second + " with " + tagName);
                     if (ScoreStandardDictionary.MatchesStandard(click.Second, tagName)) {
                         wasTagged = true;
-                        string str = "+" + baseScore + " points!";
-                        Debug.Log(str);
-                        // TODO (kasiu): Spawn score thing.
                         GameState.Singleton.score += baseScore;
+                        string str = "+" + baseScore + " points!";
+                        GUIUtils.SpawnFloatingText(this.gameObject.transform.position, str, Color.black, 2.0f);
+                        Debug.Log(str);
                         break;
                     }
                 }

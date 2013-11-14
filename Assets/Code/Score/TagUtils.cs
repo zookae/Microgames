@@ -14,4 +14,14 @@ public static class TagUtils
 
         return tag;
     }
+
+    public static Vector3 GetPositionOfChildTag(GameObject obj, string childName) {
+        if (obj == null) {
+            // XXX (kasiu): We should throw an exception here.
+            return Vector3.zero;
+        } else if (obj.transform.FindChild(childName) == null) {
+            return obj.transform.position;
+        }
+        return obj.transform.FindChild(childName).transform.position;
+    }
 }

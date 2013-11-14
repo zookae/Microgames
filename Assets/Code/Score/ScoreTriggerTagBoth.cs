@@ -53,16 +53,18 @@ public class ScoreTriggerTagBoth : MonoBehaviour
                             break;
                         }
                         if (pt.Second == transform.name) { // FOUND IT
-                            Debug.Log("FOUND PARTNER " + transform.name);
+                            //Debug.Log("FOUND PARTNER " + transform.name);
                             switch (myTag) {
                                 case TagOptions.LabelMine:
                                     if (pt.Third.Contains("-collab")) {
                                         GameState.Singleton.score += agreementBonus;
                                         string strCollab = "+" + agreementBonus + " points!" + '\n' + "(AGREEMENT)";
+                                        GUIUtils.SpawnFloatingText(TagUtils.GetPositionOfChildTag(this.gameObject, click.Third), strCollab, Color.black, 2.0f);
                                         Debug.Log(strCollab);
                                     } else if (pt.Third.Contains("-compete")) {
                                         GameState.Singleton.score -= blockPenalty;
                                         string strBlock = "-" + blockPenalty + " points!" + '\n' + "(SELECTED SECOND)";
+                                        GUIUtils.SpawnFloatingText(TagUtils.GetPositionOfChildTag(this.gameObject, click.Third), strBlock, Color.black, 2.0f);
                                         Debug.Log(strBlock);
                                     }
                                     break;
@@ -70,11 +72,13 @@ public class ScoreTriggerTagBoth : MonoBehaviour
                                     // They agreed with us.
                                     GameState.Singleton.score += agreementBonus;
                                     string strAgree = "+" + agreementBonus + " points!" + '\n' + "(AGREEMENT)";
+                                    GUIUtils.SpawnFloatingText(TagUtils.GetPositionOfChildTag(this.gameObject, click.Third), strAgree, Color.black, 2.0f);
                                     Debug.Log(strAgree);
                                     break;
                                 case TagOptions.BlockPartner:
                                     // They beat us to it, so NOTHING HAPPENS :(
                                     string strBeaten = "+0 points!" + '\n' + "(SELECTED SECOND)";
+                                    GUIUtils.SpawnFloatingText(TagUtils.GetPositionOfChildTag(this.gameObject, click.Third), strBeaten, Color.black, 2.0f);
                                     Debug.Log(strBeaten);
                                     break;
                                 default:
@@ -93,7 +97,7 @@ public class ScoreTriggerTagBoth : MonoBehaviour
                     continue;
                 }
                 if (pt.Second == transform.name) { // FOUND IT
-                    Debug.Log("FOUND PARTNER " + transform.name);
+                    //Debug.Log("FOUND PARTNER " + transform.name);
                     switch (myTag) {
                         case TagOptions.LabelMine:
                             if (pt.Third.Contains("-collab")) {

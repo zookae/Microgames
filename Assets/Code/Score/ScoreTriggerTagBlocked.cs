@@ -62,6 +62,7 @@ public class ScoreTriggerTagBlocked : MonoBehaviour {
                         wasBlockResolved = true;
                         GameState.Singleton.score -= blockPenalty;
                         string str = "-" + blockPenalty + " points!\n" + "(SELECTED SECOND)";
+                        GUIUtils.SpawnFloatingText(TagUtils.GetPositionOfChildTag(this.gameObject, click.Third), str, Color.black, 2.0f);
                         Debug.Log(str);
                     }
                 }
@@ -72,6 +73,7 @@ public class ScoreTriggerTagBlocked : MonoBehaviour {
                     wasBlockResolved = true;
                     GameState.Singleton.score += blockPenalty;
                     string str = "+" + blockPenalty + " points!\n" + "(SELECTED FIRST)";
+                    GUIUtils.SpawnFloatingText(TagUtils.GetPositionOfChildTag(this.gameObject, click.Third), str, Color.black, 2.0f);
                     Debug.Log(str);
                 }
             }

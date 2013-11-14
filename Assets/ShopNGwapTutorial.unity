@@ -294,7 +294,6 @@ GameObject:
   - 114: {fileID: 1588099215}
   - 114: {fileID: 1588099219}
   - 114: {fileID: 1588099218}
-  - 114: {fileID: 1588099214}
   - 114: {fileID: 1588099221}
   - 114: {fileID: 1588099216}
   - 114: {fileID: 1588099217}
@@ -327,25 +326,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca1925a628e18674a99387db6db3bde5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1588099214
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1588099211}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b2b0fda695ccb041acea930a40594de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  surveyRound: 1
-  titleSceneName: ShopNGwapTitle
-  gameSceneName: ShopNGwap
-  font: {fileID: 12800000, guid: 7dd7c561d4f3b4e4aadec2240752c38c, type: 3}
-  fontSize: 12
-  fontColor: {r: 0, g: 0, b: 0, a: 1}
-  fontBackground: {r: 1, g: 1, b: 1, a: .784313738}
-  closeText: 
 --- !u!114 &1588099215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -362,8 +342,7 @@ MonoBehaviour:
   CurrentState: 0
   ScoringMode: 0
   score: 0
-  blockTags:
-  - Tag1
+  blockTags: []
   labelTags:
   - Tag1
 --- !u!114 &1588099216
@@ -379,7 +358,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextSceneName: ShopNGwap
   position: {x: 0, y: 0}
-  windowDimensions: {x: 400, y: 200}
+  windowDimensions: {x: 250, y: 150}
   font: {fileID: 12800000, guid: 7dd7c561d4f3b4e4aadec2240752c38c, type: 3}
   fontSize: 12
   fontColor: {r: 0, g: 0, b: 0, a: 1}

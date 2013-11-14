@@ -61,6 +61,7 @@ public class ScoreTriggerTagAgreement : MonoBehaviour {
                     wasAgreedOn = true;
                     GameState.Singleton.score += agreementBonus;
                     string str = "+" + agreementBonus + " points!\n" + "(AGREEMENT)";
+                    GUIUtils.SpawnFloatingText(TagUtils.GetPositionOfChildTag(this.gameObject, click.Third), str, Color.black, 2.0f);
                     Debug.Log(str);
                     break;
                 }
