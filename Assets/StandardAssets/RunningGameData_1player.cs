@@ -194,10 +194,12 @@ class RunningGameData_1player: RunningGameData
 	{
 		if( /* this.iNumSeen > 0 && */ bHaveSavedScores == false )
 		{//only save if the player has seen at least 1 relation, and has not reached 'end game'
-            gss.dbManip.SavePlayerScoreStats(dPlayerData[player], this.iOfPlayAgain);
+			// XXX (kasiu): I commented this out because it was giving a log error.
+			// PROBABLY USEFUL AND RELEVANT FOR HEART ESP
+            //gss.dbManip.SavePlayerScoreStats(dPlayerData[player], this.iOfPlayAgain);
 			
-			bHaveSavedScores = true;
-			iOfPlayAgain++; //update count of play again
+			//bHaveSavedScores = true;
+			//iOfPlayAgain++; //update count of play again
 		}
 	}
 	

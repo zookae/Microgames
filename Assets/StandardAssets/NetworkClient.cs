@@ -88,7 +88,7 @@ public class NetworkClient : MonoBehaviour {
 		SetupServerNames();
         MasterServer.ClearHostList();
         MasterServer.RequestHostList(NetworkServer.SERVER_GAMETYPENAME);
-        DebugConsole.IsOpen = true;
+        //DebugConsole.IsOpen = true;
 #else //!UNITY_WEBPLAYER
 		System.Console.WriteLine( "NetworkClient.Awake()!" );
         string[] args = System.Environment.GetCommandLineArgs();
