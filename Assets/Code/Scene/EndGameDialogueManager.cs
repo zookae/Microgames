@@ -169,7 +169,8 @@ public class EndGameDialogueManager : MonoBehaviour {
         // Listens in on GameState for the number of rounds
         if ((GameState.Singleton.CurrentState == State.Win ||
             GameState.Singleton.CurrentState == State.Lose) &&
-            !drawGUI) {
+            (!drawGUI && surveyRoundState != SurveyRoundState.SurveyResultsSent)) {
+            // That last clause fixes a bug where the score window can pop up again by accident.
                 drawGUI = true;
         }
 

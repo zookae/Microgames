@@ -362,10 +362,8 @@ MonoBehaviour:
   CurrentState: 0
   ScoringMode: 0
   score: 0
-  blockTags:
-  - Tag1
-  labelTags:
-  - Tag1
+  blockTags: []
+  labelTags: []
 --- !u!114 &1588099216
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -28,6 +28,7 @@ public class LikertGUI : MonoBehaviour {
     private GUIStyle boxStyle;
 
     private bool printErrorText;
+    private string errorText;
 
     // Caches the results and returns them
     private string results;
@@ -62,6 +63,7 @@ public class LikertGUI : MonoBehaviour {
         results = null;
         drawGUI = true;
         printErrorText = false;
+        errorText = "";
 	}
 
     void OnGUI() {
@@ -89,15 +91,17 @@ public class LikertGUI : MonoBehaviour {
             if (printErrorText) {
                 Color fontColor = textStyle.normal.textColor;
                 textStyle.normal.textColor = Color.red;
-                GUILayout.Label("Looks like there was an error filling out the survey.", textStyle);
+                GUILayout.Label(errorText, textStyle);
                 textStyle.normal.textColor = fontColor;
             }
 
             // Populates the questions
             textStyle.alignment = TextAnchor.MiddleLeft;
-            foreach (LikertQuestion lq in likertQuestions) {                
+            for (int q = 0; q < likertQuestions.Count; q++ ) {
+                LikertQuestion lq = likertQuestions[q];
                 // TODO (add style)
-                GUILayout.Label(lq.Question, textStyle);
+                string questionText = (q + 1) + ".\t" + lq.Question;
+                GUILayout.Label(questionText, textStyle);
                 if (lq.QuestionType == SurveyQuestionType.MultipleOptionSelect) {
                     GUILayout.BeginHorizontal();
                     for (int i = 0; i < lq.GetNumOptions() / 2; i++) {
@@ -135,8 +139,6 @@ public class LikertGUI : MonoBehaviour {
                     drawGUI = false;
                     printErrorText = false;
                 } else {
-                    // POPUP SOME WEIRD GUI
-                    // XXX (kasiu): Technically, we should never get here, since Verify is always valid due to our setup.
                     printErrorText = true;
                 }
             }
@@ -146,13 +148,16 @@ public class LikertGUI : MonoBehaviour {
     }
 
     private bool VerifyResults() {
-        foreach (LikertQuestion lq in likertQuestions) {
+        for (int i = 0; i < likertQuestions.Count; i++) {
+            LikertQuestion lq= likertQuestions[i];
             if (!lq.ContainsAtLeastOneAnswer() && lq.QuestionType == SurveyQuestionType.SingleOptionSelect) {
+                errorText = "Please select a choice for question " + (i + 1) + ". Thanks!";
                 return false;
             }
             if (lq.QuestionType == SurveyQuestionType.ManualEntry) {
                 string answer = lq.GetManualText();
                 if (answer == null || answer.Length < 2 || !ContainsOnlyNumbers(answer)) {
+                    errorText = "Looks like there was an error filling out the field in question " + (i + 1) + ". Thanks!";
                     return false;
                 }
             }
