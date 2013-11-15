@@ -35,6 +35,7 @@ public class InfoGUI : MonoBehaviour {
 	}
 
     void OnGUI() {
+        GUI.depth = (int)GUIDepthLevels.DISPLAY_ELEMENT;
         GUILayout.BeginArea(new Rect(origin.x, origin.y, Screen.width, Screen.height));
         GUILayout.BeginVertical(); //origin.x, origin.y);
         if (GameState.Singleton.labelTags.Count > 0)

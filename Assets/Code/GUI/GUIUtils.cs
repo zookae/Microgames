@@ -1,6 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public enum GUIDepthLevels
+{
+    INFO_WINDOW = 1,
+    DISPLAY_ELEMENT = 2,
+    GAME_DYNAMIC = 3,
+    GAME_STATIC = 4,
+    BACKGROUND = 5
+}
+
 public static class GUIUtils {
     // Generates a blank texture.
     // http://forum.unity3d.com/threads/66015-Changing-the-Background-Color-for-BeginHorizontal

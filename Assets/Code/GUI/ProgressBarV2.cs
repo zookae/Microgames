@@ -27,7 +27,8 @@ public class ProgressBarV2 : MonoBehaviour {
     }
 
     void OnGUI() {
-        if (GameState.Singleton.CurrentState == State.Running) {
+        //if (GameState.Singleton.CurrentState == State.Running) {
+            GUI.depth = (int)GUIDepthLevels.DISPLAY_ELEMENT;
             GUI.BeginGroup(new Rect(position.x, position.y, size.x, size.y));
             GUI.Box(new Rect(0, 0, size.x, size.y), emptyStyle);
             // draw the filled-in part:
@@ -35,7 +36,7 @@ public class ProgressBarV2 : MonoBehaviour {
             GUI.Box(new Rect(0, 0, size.x, size.y), fullStyle);
             GUI.EndGroup();
             GUI.EndGroup();
-        }
+        //}
     }
 
     void Update() {

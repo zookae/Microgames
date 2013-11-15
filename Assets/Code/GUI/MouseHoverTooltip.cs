@@ -32,6 +32,7 @@ public class MouseHoverTooltip : MonoBehaviour {
         }
 
         if (drawGUI) {
+            GUI.depth = (int)GUIDepthLevels.DISPLAY_ELEMENT;
             //GUI.Box(new Rect(Input.mousePosition.x + fontSize, ((Screen.height - Input.mousePosition.y)), fontSize * text.Length, fontSize * 2), text, style);
             GUILayout.BeginArea(new Rect(Input.mousePosition.x + fontSize, ((Screen.height - Input.mousePosition.y)), fontSize * text.Length, fontSize * 2));
             GUILayout.Label(text, style);

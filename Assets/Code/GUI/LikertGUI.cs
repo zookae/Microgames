@@ -75,6 +75,7 @@ public class LikertGUI : MonoBehaviour {
             }
 
             // Draws the LIKERT STUFFIE
+            GUI.depth = (int)GUIDepthLevels.INFO_WINDOW;
             GUILayout.BeginArea(new Rect((Screen.width - ComputeWidth()) / 2, 0, ComputeWidth(), Screen.height), GUI.skin.box);
             scrollPosition = GUILayout.BeginScrollView(scrollPosition, boxStyle);
 

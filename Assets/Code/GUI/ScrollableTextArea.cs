@@ -63,6 +63,7 @@ public class ScrollableTextArea : MonoBehaviour {
             }
 
             // Sticks this in the center of the screen
+            GUI.depth = (int)GUIDepthLevels.INFO_WINDOW;
             Vector2 position = GUIUtils.ComputeCenteredPosition(width, height);
             GUILayout.BeginArea(new Rect(position.x, position.y, width, height), GUI.skin.box);
 

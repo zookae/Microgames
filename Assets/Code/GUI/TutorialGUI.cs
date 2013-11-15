@@ -73,7 +73,8 @@ public class TutorialGUI : MonoBehaviour {
                 boxStyle = new GUIStyle(GUI.skin.box);
                 boxStyle.normal.background = GUIUtils.MakeBlankTexture((int)(Screen.width / 2.0f), (int)(Screen.height / 2.0f), new Color(1.0f, 1.0f, 1.0f, 0.8f));
             }
-            
+
+            GUI.depth = (int)GUIDepthLevels.INFO_WINDOW;
             Vector2 pos = GUIUtils.ComputeCenteredPosition(width, height) + offset;
             GUILayout.BeginArea(new Rect(pos.x, pos.y, width, height), GUI.skin.box);
             scrollPosition = GUILayout.BeginScrollView(scrollPosition, boxStyle);

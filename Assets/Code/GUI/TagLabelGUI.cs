@@ -75,7 +75,8 @@ public class TagLabelGUI : MonoBehaviour {
             boxStyle.normal.background = GUIUtils.MakeBlankTexture((int)textSize.x * 2, (int)textSize.y * 2, fontBackground);
         }
 
-        if (GameState.Singleton.TimeUsed <= GameState.Singleton.MaxTime) {
+        //if (GameState.Singleton.TimeUsed <= GameState.Singleton.MaxTime) {
+            GUI.depth = (int)GUIDepthLevels.GAME_STATIC;
             Vector3 pixelPosition = Camera.main.WorldToScreenPoint(this.gameObject.transform.position);
             // NOTE (kasiu): Screen.height - pixelPosition.y sets the y position correctly because FOO SCREENSPACE axes reversal :(
             //for (var i = 0; i < splitName.Length; i++) {
@@ -93,6 +94,6 @@ public class TagLabelGUI : MonoBehaviour {
             GUILayout.Label(newlinedName, textStyle);
             GUILayout.EndArea();
             //GUI.Box(new Rect(p.x, p.y, fontSize * maxStringLength, fontSize * 2 * splitName.Length), newlinedName, textStyle); //, style);
-        }
+        //}
     }
 }

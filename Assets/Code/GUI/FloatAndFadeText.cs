@@ -25,6 +25,7 @@ public class FloatAndFadeText : MonoBehaviour {
             style.normal.textColor = fontColor;
         }
 
+        GUI.depth = (int)GUIDepthLevels.GAME_DYNAMIC;
         Vector3 position = this.gameObject.transform.position + ((currentTime / lifetime) * velocity);
         Vector3 screenPos = Camera.main.WorldToScreenPoint(position);
         GUILayout.BeginArea(new Rect(screenPos.x, Screen.height - screenPos.y, text.Length * style.fontSize, style.fontSize * 10));
