@@ -54,7 +54,7 @@ public class NextSceneBox : MonoBehaviour {
             if (boxStyle == null && buttonStyle == null) {
                 buttonStyle = new GUIStyle(GUI.skin.button);
                 buttonStyle.font = font;
-                boxStyle = new GUIStyle(GUI.skin.box);
+                boxStyle = new GUIStyle(GUI.skin.box);               
                 boxStyle.normal.background = GUIUtils.MakeBlankTexture(width, height, fontBackground);
             }
 
@@ -68,11 +68,11 @@ public class NextSceneBox : MonoBehaviour {
 
             // BUTTONS
             GUILayout.BeginHorizontal();
-            if (GUILayout.Button(leftButtonText)) {
+            if (GUILayout.Button(leftButtonText, buttonStyle)) {
                 drawGUI = false;
                 Application.LoadLevel(sceneName);
             }
-            if (GUILayout.Button(rightButtonText)) {
+            if (GUILayout.Button(rightButtonText, buttonStyle)) {
                 drawGUI = false;
             }
             GUILayout.EndHorizontal();
