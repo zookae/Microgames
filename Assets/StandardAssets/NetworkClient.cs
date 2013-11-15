@@ -82,15 +82,25 @@ public class NetworkClient : MonoBehaviour {
 	}
 
     void Awake() {
-        // check if I'm client
+        // check if I'm web client
+#if UNITY_WEBPLAYER
+		Debug.Log( "(from Debug.Log)NetworkClient.Awake()!" );
+		SetupServerNames();
+        MasterServer.ClearHostList();
+        MasterServer.RequestHostList(NetworkServer.SERVER_GAMETYPENAME);
+        DebugConsole.IsOpen = true;
+#else //!UNITY_WEBPLAYER
+		System.Console.WriteLine( "NetworkClient.Awake()!" );
         string[] args = System.Environment.GetCommandLineArgs();
         if (System.Array.IndexOf(args, "server") < 0) {
+
             //i am the client
             SetupServerNames();
             MasterServer.ClearHostList();
             MasterServer.RequestHostList(NetworkServer.SERVER_GAMETYPENAME);
             DebugConsole.IsOpen = true;
         }
+#endif //!UNITY_WEBPLAYER
     }
 
     void OnMasterServerEvent(MasterServerEvent mse) {
@@ -130,6 +140,27 @@ public class NetworkClient : MonoBehaviour {
 	//clients progress to the first real game scene and the server remains on the simple sceneNetworking
 	void Start()
 	{
+#if UNITY_WEBPLAYER
+		if ( !doneStart )
+		{
+			DebugConsole.Log("NetworkClient.Start() start. Am client.");
+			DontDestroyOnLoad( target );
+		
+			//try to get the web parameters
+			//if( Application.isWebPlayer )
+	        //	Application.ExternalEval("var unity = unityObject.getObjectById(\"unityPlayer\");unity.SendMessage(\"" + name + "\", \"ReceiveURL\", document.URL);");
+
+            //SetupServerNames();
+			
+		    //MasterServer.RequestHostList( NetworkServer.SERVER_GAMETYPENAME );
+
+            //don't load the next screen unless we're the client
+            //Application.LoadLevel(1);
+
+			DebugConsole.Log("NetworkClient.Start() done");
+		}
+#else //!UNITY_WEBPLAYER
+
         string[] args = System.Environment.GetCommandLineArgs();
         if (!doneStart && System.Array.IndexOf(args, "server") < 0)
 		{
@@ -159,6 +190,7 @@ public class NetworkClient : MonoBehaviour {
 //#endif
 			DebugConsole.Log("NetworkClient.Start() done");
 		}
+#endif //!UNITY_WEBPLAYER
 	}
 	 
 	

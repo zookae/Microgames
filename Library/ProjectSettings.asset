@@ -148,6 +148,9 @@ PlayerSettings:
   scriptingDefineSymbols:
     data:
       first: 1
+      second: EIL_PRODUCTION
+    data:
+      first: 2
       second: 
   metroPackageName: RobotLab_Unity
   metroPackageLogo: 

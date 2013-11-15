@@ -16,8 +16,8 @@ public class NetworkServer : MonoBehaviour {
 	//server settings
 	//http://docs.unity3d.com/Documentation/Components/net-MasterServer.html
 	//set *HOSTNAME to null if you want to use Unity defaults (dont worry about the ports for default)
-    public static string MASTERSERVER_HOSTNAME = null;//"dorothy.cc.gt.atl.ga.us";"127.0.0.1";
-	public static int MASTERSERVER_PORT = 23466;
+    public static string MASTERSERVER_HOSTNAME = "dorothy.cc.gt.atl.ga.us";//null;//"dorothy.cc.gt.atl.ga.us";"127.0.0.1";
+	public static int MASTERSERVER_PORT = 23466; //this is the default port that the masterserver uses (even with the downloadable .net project)
     public static string FACILITATOR_HOSTNAME = null;//"dorothy.cc.gt.atl.ga.us";"127.0.0.1"
 	public static int FACILITATOR_PORT = 23468;
 	
@@ -26,9 +26,9 @@ public class NetworkServer : MonoBehaviour {
 	public static ServerInfo MASTERSERVER;// = MASTERSERVER_DEFAULTS;
 	public static ServerInfo FACILITATOR;// = FACILITATOR_DEFAULTS;
 	
-	public static string SERVER_GAMETYPENAME = "EILab_bulletertheller @ home";
-	public static string SERVER_GAMENAME = "EI lab bullethell version 2.";
-	public static string SERVER_GAMECOMMENT = "Bullethell with parameter tuning";
+	public static string SERVER_GAMETYPENAME = "EILab_cabbage @ home";
+	public static string SERVER_GAMENAME = "EI lab cabbage version 2.";
+	public static string SERVER_GAMECOMMENT = "Cabbage pre-pilot";
 	
 	private static int SERVER_MAX_CONNECTIONS = 32;
 	private static int SERVER_LISTEN_PORT = 50466;
@@ -74,7 +74,7 @@ public class NetworkServer : MonoBehaviour {
 	static NetworkServer _instance;
 	private static bool doneStart = false;
 #if UNITY_WEBPLAYER
-#else
+#else //!UNITY_WEBPLAYER
 	
 	/// <summary>
 	/// Static instance of the NetworkServer.
@@ -113,9 +113,9 @@ public class NetworkServer : MonoBehaviour {
 		{
 			//Application.targetFrameRate = 1;
 			DebugConsole.Log("NetworkServer.Start() start");
-#if !EIL_PRODUCTION
+//#if !EIL_PRODUCTION
 			DebugConsole.IsOpen = true;
-#endif
+//#endif //!EIL_PRODUCTION
 			
 			processCommandLineArgs();
 			
@@ -424,5 +424,5 @@ public class NetworkServer : MonoBehaviour {
 	{
 		StopServer();
 	}
-#endif
+#endif //!UNITY_WEBPLAYER
 }

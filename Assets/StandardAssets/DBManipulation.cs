@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿#if !UNITY_WEBPLAYER
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -465,3 +466,5 @@ public class DBManipulation  {
         closeConnection();
     }
 }
+
+#endif //!UNITY_WEBPLAYER

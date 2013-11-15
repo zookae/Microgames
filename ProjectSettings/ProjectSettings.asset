@@ -10,8 +10,8 @@ PlayerSettings:
   targetGlesGraphics: 1
   targetResolution: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
-  productName: RobotLab_Unity
+  companyName: EILab
+  productName: Cabbage Quest v2013_11_14_2017
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   defaultScreenWidth: 1024
@@ -148,6 +148,9 @@ PlayerSettings:
   scriptingDefineSymbols:
     data:
       first: 1
+      second: EIL_PRODUCTION
+    data:
+      first: 2
       second: 
   metroPackageName: RobotLab_Unity
   metroPackageLogo: 

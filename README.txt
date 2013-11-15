@@ -12,6 +12,7 @@ How to use:
   when doing WEBPLAYER build, it will NOT compile while Assets/Plugins exists (because of dlls etc); rename or move folder to build
   it is essential that API compatibility level be set to .NET 2.0 (NOT subset) for db stuff to compile [file, build settings, player settings, "other settings"]
   You can access the Network Manager by selecting Edit->Project Settings->Network from the menu bar; increase the debug level to dig into networking issues
+  When you want to build in production mode (without all the debug tracing, etc.), add to "Scripting Define Symbols" the following: EIL_PRODUCTION
 
 NetworkServer.cs
   masterserver ip/port; 
