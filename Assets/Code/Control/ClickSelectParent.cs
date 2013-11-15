@@ -33,7 +33,15 @@ public class ClickSelectParent : MonoBehaviour {
                     new Triple<double, string, string>(GameState.Singleton.TimeUsed,
                         clickObj.parent.name, clickObj.name);
                 GameState.Singleton.clickTrace.Add(tagging);
-                ChangeColor(clickObj.transform.parent.gameObject, clickObj.renderer.material.color);
+                if (clickObj.renderer != null) {
+                    ChangeColor(clickObj.transform.parent.gameObject, clickObj.renderer.material.color);
+                } else {
+                    // THIS IS A BAD HACK. BAD HACK
+                    // XXX (kasiu): Will break
+                    if (clickObj.GetComponent<TagLabelGUI>() != null) {
+                        ChangeColor(clickObj.transform.parent.gameObject, clickObj.GetComponent<TagLabelGUI>().fontBackground);
+                    }
+                }
                 // TODO (kasiu): Eventually store tagging in the DB
             }
         }
