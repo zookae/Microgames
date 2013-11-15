@@ -27,6 +27,8 @@ public class LikertGUI : MonoBehaviour {
     private GUIStyle toggleStyle;
     private GUIStyle boxStyle;
 
+    private bool printErrorText;
+
     // Caches the results and returns them
     private string results;
 
@@ -59,6 +61,7 @@ public class LikertGUI : MonoBehaviour {
         // Launches draw on start
         results = null;
         drawGUI = true;
+        printErrorText = false;
 	}
 
     void OnGUI() {
@@ -83,12 +86,19 @@ public class LikertGUI : MonoBehaviour {
             textStyle.alignment = TextAnchor.MiddleCenter;
             GUILayout.Label(headerText, textStyle);
 
+            if (printErrorText) {
+                Color fontColor = textStyle.normal.textColor;
+                textStyle.normal.textColor = Color.red;
+                GUILayout.Label("Looks like there was an error filling out the survey.", textStyle);
+                textStyle.normal.textColor = fontColor;
+            }
+
             // Populates the questions
             textStyle.alignment = TextAnchor.MiddleLeft;
             foreach (LikertQuestion lq in likertQuestions) {                
                 // TODO (add style)
                 GUILayout.Label(lq.Question, textStyle);
-                if (lq.CanSelectMultiple) {
+                if (lq.QuestionType == SurveyQuestionType.MultipleOptionSelect) {
                     GUILayout.BeginHorizontal();
                     for (int i = 0; i < lq.GetNumOptions() / 2; i++) {
                         bool toggled = GUILayout.Toggle(lq.IsSelected(i), lq.Options[i], toggleStyle);
@@ -101,13 +111,17 @@ public class LikertGUI : MonoBehaviour {
                         lq.SetOption(i, toggled);
                     }
                     GUILayout.EndHorizontal();
-                } else {
+                } else if (lq.QuestionType == SurveyQuestionType.SingleOptionSelect) {
                     // We use a selection grid.
                     int currentlySelected = lq.GetSelected();
                     int index = GUILayout.SelectionGrid(currentlySelected, lq.Options, lq.GetNumOptions(), toggleStyle);
                     if (currentlySelected != index) {
                         lq.ToggleOption(index);
                     }
+                } else if (lq.QuestionType == SurveyQuestionType.ManualEntry) {
+                    string manualEntry = (lq.GetManualText() == null) ? "" : lq.GetManualText();
+                    string newEntry = GUILayout.TextField(manualEntry, 3);
+                    lq.SetManualText(newEntry);
                 }
                 GUILayout.Space(10);
             }
@@ -119,9 +133,11 @@ public class LikertGUI : MonoBehaviour {
                 if (VerifyResults()) {
                     results = BuildResultString();
                     drawGUI = false;
+                    printErrorText = false;
                 } else {
                     // POPUP SOME WEIRD GUI
                     // XXX (kasiu): Technically, we should never get here, since Verify is always valid due to our setup.
+                    printErrorText = true;
                 }
             }
             GUILayout.EndArea();
@@ -131,7 +147,24 @@ public class LikertGUI : MonoBehaviour {
 
     private bool VerifyResults() {
         foreach (LikertQuestion lq in likertQuestions) {
-            if (!lq.ContainsAtLeastOneAnswer() && !lq.CanSelectMultiple) {
+            if (!lq.ContainsAtLeastOneAnswer() && lq.QuestionType == SurveyQuestionType.SingleOptionSelect) {
+                return false;
+            }
+            if (lq.QuestionType == SurveyQuestionType.ManualEntry) {
+                string answer = lq.GetManualText();
+                if (answer == null || answer.Length < 2 || !ContainsOnlyNumbers(answer)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    private bool ContainsOnlyNumbers(string answer) {
+        string trimmedAnswer = answer.Trim();
+        foreach (char c in trimmedAnswer) {
+            if (!char.IsDigit(c)) {
+                Debug.Log(answer + " is contains " + c + " which is not a digit ");
                 return false;
             }
         }
@@ -147,6 +180,7 @@ public class LikertGUI : MonoBehaviour {
                 result += ":";
             }
         }
+        Debug.Log(result);
         return result;
     }
 
@@ -154,6 +188,14 @@ public class LikertGUI : MonoBehaviour {
     private int ComputeWidth() {
         return (int)((3 * Screen.width) / 5.0f);
     }
+}
+
+public enum SurveyQuestionType
+{
+    SingleOptionSelect,
+    MultipleOptionSelect,
+    ManualEntry,
+    Invalid
 }
 
 public static class LikertParser
@@ -172,8 +214,23 @@ public static class LikertParser
             }
             // Choices are split with commas.
             string[] options = components[1].Split(',');
-            bool multipleAnswers = (components[2].Trim().ToLower().Equals("yes")) ? true : false;
-            LikertQuestion lq = new LikertQuestion(components[0], options, multipleAnswers);
+            SurveyQuestionType questionType;
+            string type = components[2].Trim().ToLower();
+            switch (type) {
+                case "yes":
+                    questionType = SurveyQuestionType.MultipleOptionSelect;
+                    break;
+                case "no":
+                    questionType = SurveyQuestionType.SingleOptionSelect;
+                    break;
+                case "text":
+                    questionType = SurveyQuestionType.ManualEntry;
+                    break;
+                default:
+                    questionType = SurveyQuestionType.Invalid;
+                    break;
+            }
+            LikertQuestion lq = new LikertQuestion(components[0], options, questionType);
             list.Add(lq);
         }
 
@@ -186,21 +243,23 @@ public class LikertQuestion
 {
     public string Question { get; private set;}
     public string[] Options { get; private set;}
-    public bool CanSelectMultiple { get; private set; }
+    public SurveyQuestionType QuestionType { get; private set; }
 
     private bool[] optionsSelected;
+    private string manualText;
 
-    public LikertQuestion(string question, string[] options, bool canSelectMultiple) {
+    public LikertQuestion(string question, string[] options, SurveyQuestionType questionType) {
         this.Question = question;
         this.Options = options;
-        this.CanSelectMultiple = canSelectMultiple;
+        this.QuestionType = questionType;
 
         // Bools all default to false
         optionsSelected = new bool[Options.Length];
+        manualText = "";
 
-        // Need to set a default value for the can-select multiple
+        // Need to set a default value for the single-selects
         // Defaults to the middle value
-        if (!CanSelectMultiple) {
+        if (QuestionType == SurveyQuestionType.SingleOptionSelect) {
             int index = Options.Length / 2;
             if (Options.Length % 2 != 0) {
                 index = (Options.Length + 1) / 2;
@@ -226,7 +285,7 @@ public class LikertQuestion
             return false;
         }
 
-        if (CanSelectMultiple) {
+        if (QuestionType == SurveyQuestionType.MultipleOptionSelect) {
             optionsSelected[index] = !optionsSelected[index];
             return true;
         } else {
@@ -269,20 +328,40 @@ public class LikertQuestion
         return false;
     }
 
+    public string GetManualText() {
+        if (QuestionType != SurveyQuestionType.ManualEntry) {
+            return null;
+        }
+        return manualText;
+    }
+
+    public bool SetManualText(string text) {
+        if (QuestionType != SurveyQuestionType.ManualEntry || text == null) {
+            return false;
+        }
+        manualText = text;
+        return true;
+    }
+
     public string AnswerToString() {
         string answer = "";
-        if (CanSelectMultiple) {
+
+        if (QuestionType == SurveyQuestionType.ManualEntry) {
+            return (manualText == null) ? answer : manualText;
+        }
+
+        if (QuestionType == SurveyQuestionType.MultipleOptionSelect) {
             answer += "(";
         }
         for (int i = 0; i < Options.Length; i++) {
             if (optionsSelected[i]) {
                 answer += Options[i];
-                if (CanSelectMultiple) {
+                if (QuestionType == SurveyQuestionType.MultipleOptionSelect) {
                     answer += ",";
                 }
             }
         }
-        if (CanSelectMultiple) {
+        if (QuestionType == SurveyQuestionType.MultipleOptionSelect) {
             // This 
             if (answer[answer.Length - 1] == ',') {
                 // Removes trailing comma
@@ -294,5 +373,5 @@ public class LikertQuestion
     }
 
     // HAH. NO DEFAULT CONSTRUCTOR FOR YOUUU
-    private LikertQuestion() : this(null, null, false) { }
+    private LikertQuestion() : this(null, null, SurveyQuestionType.Invalid) { }
 }
