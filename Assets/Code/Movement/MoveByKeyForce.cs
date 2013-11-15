@@ -13,7 +13,7 @@ public class MoveByKeyForce : MonoBehaviour {
     public Vector3 maxVelocity;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         gameObject.AddComponent<Rigidbody>();
         rbody = gameObject.GetComponent<Rigidbody>();
         rbody.useGravity = false;

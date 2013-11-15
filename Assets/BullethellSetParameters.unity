@@ -86,6 +86,7 @@ GameObject:
   - 92: {fileID: 252043993}
   - 124: {fileID: 252043992}
   - 81: {fileID: 252043991}
+  - 114: {fileID: 252043996}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -149,10 +150,43 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 252043990}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .0426824093, y: -.0550705194, z: -8.34327984}
+  m_LocalPosition: {x: .0426824093, y: -.291690469, z: -8.34327984}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!114 &252043996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 252043990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cee0eb9bc45e326498ece4c5806445e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 252043994}
+  screenSize:
+    x: 0
+    y: 0
+    width: 0
+    height: 0
 --- !u!1 &503241151
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,7 +265,6 @@ GameObject:
   - 114: {fileID: 740268414}
   - 114: {fileID: 740268413}
   - 114: {fileID: 740268412}
-  - 114: {fileID: 740268411}
   - 114: {fileID: 740268410}
   - 114: {fileID: 740268421}
   - 114: {fileID: 740268422}
@@ -254,20 +287,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95b99aae923cf814bb514b0eb51c2875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &740268411
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400008, guid: 4e511e70134259e46bdbb9f39bb03c7a,
-    type: 2}
-  m_PrefabInternal: {fileID: 1204450628}
-  m_GameObject: {fileID: 740268409}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76951532b5632824e84da916a5ce8ff6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  explosion: {fileID: 100000, guid: 897f0917a523d78438edfaee8f5daab2, type: 2}
-  lifespan: 1
 --- !u!114 &740268412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -480,6 +499,7 @@ Prefab:
       objectReference: {fileID: 1698286401}
     m_RemovedComponents:
     - {fileID: 11400006, guid: 4e511e70134259e46bdbb9f39bb03c7a, type: 2}
+    - {fileID: 11400008, guid: 4e511e70134259e46bdbb9f39bb03c7a, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 4e511e70134259e46bdbb9f39bb03c7a, type: 2}
   m_RootGameObject: {fileID: 1003462383}
   m_IsPrefabParent: 0
@@ -499,7 +519,6 @@ GameObject:
   - 114: {fileID: 1003462388}
   - 114: {fileID: 1003462389}
   - 114: {fileID: 1003462391}
-  - 114: {fileID: 1003462393}
   - 114: {fileID: 1003462395}
   - 114: {fileID: 1003462394}
   - 114: {fileID: 1003462392}
@@ -646,20 +665,6 @@ MonoBehaviour:
   bulletBounds: {fileID: 1698286401}
   bulletLife: 10
   moveTarget: {fileID: 1131612260}
---- !u!114 &1003462393
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400008, guid: 4e511e70134259e46bdbb9f39bb03c7a,
-    type: 2}
-  m_PrefabInternal: {fileID: 908732477}
-  m_GameObject: {fileID: 1003462383}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76951532b5632824e84da916a5ce8ff6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  explosion: {fileID: 100000, guid: 897f0917a523d78438edfaee8f5daab2, type: 2}
-  lifespan: 1
 --- !u!114 &1003462394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -702,9 +707,8 @@ GameObject:
   - 114: {fileID: 1131612263}
   - 114: {fileID: 1131612264}
   - 114: {fileID: 1131612266}
-  - 114: {fileID: 1131612268}
-  - 114: {fileID: 1131612267}
   - 114: {fileID: 1131612261}
+  - 114: {fileID: 1131612269}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -821,7 +825,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff6da5b0e0d035a43b21592826e07b60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boundingObject: {fileID: 1698286401}
+  screenPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &1131612266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -835,7 +839,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 0}
   lifespan: 3
---- !u!114 &1131612267
+--- !u!114 &1131612269
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -843,50 +847,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1131612256}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55129442e0a0ffb4186b9e5503e63534, type: 3}
+  m_Script: {fileID: 11500000, guid: 389ba1501f24dab4eb549d661ebe48c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawn: {fileID: 100000, guid: 09c6d6e37053b5a4eb04bba7da7d6b9d, type: 2}
-  assignTag: Bullet
-  haveGravity: 0
-  bulletSpeed: 3
-  frequency: .5
-  bulletBounds: {fileID: 1698286401}
-  bulletLife: 5
-  targetTag: Enemy
-  senseFrequency: .5
-  minActDistance: 1
-  minFireSpacing: 1
-  moveSpeed: 3
-  targetObjects: []
-  actDelta: 0
-  senseDelta: 0
-  spawnee: {fileID: 100000, guid: 09c6d6e37053b5a4eb04bba7da7d6b9d, type: 2}
-  curTarget: {fileID: 0}
-  moveVec: {x: 0, y: 0, z: 0}
---- !u!114 &1131612268
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1131612256}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9871126029b1d7e48a688d3c36c43016, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveByForce: 0
-  avoidTag: BulletBad
-  senseFrequency: .300000012
-  actFrequency: .200000003
-  minActDistance: 3
-  moveSpeed: 3
-  moveForce: 0
-  avoidObject: []
-  avoidMagnitude: 0
-  moveVec: {x: 0, y: 0, z: 0}
-  avoidPos: 0
-  avoidNeg: 0
+  force: 0
+  drag: 0
+  maxVelocity: {x: 10, y: 10, z: 0}
 --- !u!1001 &1204450628
 Prefab:
   m_ObjectHideFlags: 0
@@ -930,7 +896,8 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11400008, guid: 4e511e70134259e46bdbb9f39bb03c7a, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 4e511e70134259e46bdbb9f39bb03c7a, type: 2}
   m_RootGameObject: {fileID: 740268409}
   m_IsPrefabParent: 0
@@ -1112,8 +1079,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1698286401}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: -.276058227, z: 3.29087015e-08}
+  m_LocalScale: {x: 1.34000003, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!114 &1698286406
@@ -1361,6 +1328,7 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11400006, guid: 4e511e70134259e46bdbb9f39bb03c7a, type: 2}
+    - {fileID: 11400008, guid: 4e511e70134259e46bdbb9f39bb03c7a, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 4e511e70134259e46bdbb9f39bb03c7a, type: 2}
   m_RootGameObject: {fileID: 2051483789}
   m_IsPrefabParent: 0
@@ -1380,7 +1348,6 @@ GameObject:
   - 114: {fileID: 2051483795}
   - 114: {fileID: 2051483793}
   - 114: {fileID: 2051483792}
-  - 114: {fileID: 2051483791}
   - 114: {fileID: 2051483790}
   - 114: {fileID: 2051483801}
   - 114: {fileID: 2051483802}
@@ -1404,20 +1371,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95b99aae923cf814bb514b0eb51c2875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2051483791
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400008, guid: 4e511e70134259e46bdbb9f39bb03c7a,
-    type: 2}
-  m_PrefabInternal: {fileID: 2030128852}
-  m_GameObject: {fileID: 2051483789}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76951532b5632824e84da916a5ce8ff6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  explosion: {fileID: 100000, guid: 897f0917a523d78438edfaee8f5daab2, type: 2}
-  lifespan: 1
 --- !u!114 &2051483792
 MonoBehaviour:
   m_ObjectHideFlags: 0
