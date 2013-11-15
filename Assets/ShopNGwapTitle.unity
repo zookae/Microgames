@@ -593,6 +593,7 @@ GameObject:
   - 132: {fileID: 2050211196}
   - 114: {fileID: 2050211198}
   - 114: {fileID: 2050211199}
+  - 114: {fileID: 2050211200}
   m_Layer: 0
   m_Name: Text-Credits
   m_TagString: Untagged
@@ -658,6 +659,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obj: {fileID: 2096463355}
   desiredOffset: {x: -.0299999993, y: -.00999999978, z: 0}
+--- !u!114 &2050211200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2050211195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44284558d379a3142af207ba2f7ec2b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  file: {fileID: 4900000, guid: 622e82be398086c49954a5a9f93bc69c, type: 3}
+  width: 300
+  height: 150
+  font: {fileID: 12800000, guid: 7dd7c561d4f3b4e4aadec2240752c38c, type: 3}
+  fontSize: 12
+  fontColor: {r: 0, g: 0, b: 0, a: 1}
+  fontBackground: {r: 1, g: 1, b: 1, a: .784313738}
+  closeText: 
 --- !u!1 &2096463355
 GameObject:
   m_ObjectHideFlags: 0
