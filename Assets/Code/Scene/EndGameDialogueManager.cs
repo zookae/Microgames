@@ -42,12 +42,14 @@ public class EndGameDialogueManager : MonoBehaviour {
     private GUIStyle boxStyle;
 
     private bool surveySent;
+	private int totalScore;
 
 	// Use this for initialization
 	void Start () {
         width = (3 * Screen.width) / 5;
         height = Screen.height / 5;
         surveySent = false;
+		totalScore = 0;
 
         // XXX (kasiu): CHECKING IS STILL NOT ROBUST :P
         if (font != null) {
@@ -69,7 +71,7 @@ public class EndGameDialogueManager : MonoBehaviour {
     private string GenerateScoreText() {
         string text = "";
         text += "Your score for this round was " + (int)GameState.Singleton.score + " points!\n";
-		text += "Your total score is now " + ((int)GameRoundCounter.GetTotalScore() + (int)GameState.Singleton.score) + " points!\n";
+		text += "Your total score is now " + totalScore + " points!\n";
         text += "You assigned " + GameState.Singleton.clickTrace.Count + (GameState.Singleton.clickTrace.Count == 1 ? " object" : " objects") + "!\n";
         text += "Your partner assigned " + GameState.Singleton.partnerTrace.Count + (GameState.Singleton.partnerTrace.Count == 1 ? " object" : " objects") + "!\n";
         text += "Great job!";
@@ -110,7 +112,7 @@ public class EndGameDialogueManager : MonoBehaviour {
                 if (GUILayout.Button("Continue!", buttonStyle)) {
                     drawGUI = false;
                     GameRoundCounter.AdvanceRound();
-                    GameRoundCounter.AddScore((int)GameState.Singleton.score);
+					GameRoundCounter.AddScore((int)GameState.Singleton.score);					
                     // The following line is a hack to keep the survey from drawing after the round changes.
                     surveyRoundState = SurveyRoundState.SurveyObjectSpawned;                    
                     Application.LoadLevel(gameSceneName);
@@ -146,8 +148,8 @@ public class EndGameDialogueManager : MonoBehaviour {
         if (GUILayout.Button("Continue!", buttonStyle)) {
             drawGUI = false;
             GameRoundCounter.AdvanceRound();
-            GameRoundCounter.AddScore((int)GameState.Singleton.score);
-            Application.LoadLevel(gameSceneName);
+			GameRoundCounter.AddScore((int)GameState.Singleton.score);			
+			Application.LoadLevel(gameSceneName);
         }
         if (GUILayout.Button("Finish!", buttonStyle)) {
             surveyObject = new GameObject();
@@ -169,6 +171,9 @@ public class EndGameDialogueManager : MonoBehaviour {
             (!drawGUI && surveyRoundState != SurveyRoundState.SurveyResultsSent)) {
             // That last clause fixes a bug where the score window can pop up again by accident.
                 drawGUI = true;
+				if (totalScore == 0) {
+					totalScore = (int)GameState.Singleton.score + GameRoundCounter.GetTotalScore();
+				}
         }
 
         if (surveyObject != null) {
