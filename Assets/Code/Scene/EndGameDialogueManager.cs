@@ -69,6 +69,7 @@ public class EndGameDialogueManager : MonoBehaviour {
     private string GenerateScoreText() {
         string text = "";
         text += "Your score for this round was " + (int)GameState.Singleton.score + " points!\n";
+		text += "Your total score is now " + ((int)GameRoundCounter.GetTotalScore() + (int)GameState.Singleton.score) + " points!\n";
         text += "You assigned " + GameState.Singleton.clickTrace.Count + (GameState.Singleton.clickTrace.Count == 1 ? " object" : " objects") + "!\n";
         text += "Your partner assigned " + GameState.Singleton.partnerTrace.Count + (GameState.Singleton.partnerTrace.Count == 1 ? " object" : " objects") + "!\n";
         text += "Great job!";

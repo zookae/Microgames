@@ -43,7 +43,7 @@ public class InfoGUI : MonoBehaviour {
             GUILayout.Label("Your Location: " + GameState.Singleton.labelTags[0], textStyle);
         }
         GUILayout.Label("Round: " + (GameRoundCounter.GetCurrentRound() + 1), textStyle);
-        GUILayout.Label("Score: " + GameState.Singleton.score, textStyle);
+        GUILayout.Label("Round Score: " + GameState.Singleton.score, textStyle);
         GUILayout.Label("Total Score: " + GameRoundCounter.GetTotalScore(), textStyle);
         GUILayout.EndVertical();
         GUILayout.EndArea();
