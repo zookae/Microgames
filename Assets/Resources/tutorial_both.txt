@@ -1,9 +1,15 @@
 Welcome to Cabbage Quest!
 In this game, you'll be working with a partner to pick the best location to buy items.
-Here's how it works. You and your partner each have a location. We lay out some items.
-Assign each item to a location by clicking the location. If you can't buy the item at any of the locations, don't click on any. You get points for picking the right locations.
-When you assign your partner's location you have a choice. If you choose "HELP" and your partner picks that location, you both get bonus points. 
-If you choose "COMPETE" and your partner picks their location AND you picked first, you get points and they lose points. But if you picked second you get no points. They can do the same thing to you.
-Note: if/when you assign your location, your selection is implicitly choosing "HELP".
+Here's how it works. 
+You and your partner each have a location. Your location is listed in the upper-left corner.
+We lay out some items that you can buy, along with their locations.
+Assign each item to a location by clicking the label. If you can't buy the item at any of the locations, don't click on any.
+You get 10 points for picking the right location for an item.
+If you decide to assign your partner's location to an item you have two choices: "COMPETE" and "HELP".
+If you choose "COMPETE" and your partner picks that location AFTER you, you'll get an additional 10 bonus points AND your partner will lose 10 points for choosing second.
+If you choose "HELP" and your partner picks that location, you both get an additional 10 bonus points.
+If you assign your location to an item, you may gain or lose points based on whether or not your partner chose "COMPETE" or "HELP" using your location. For example, if you assign your location after they do, you'll lose 10 points for choosing second.
+Nothing happens if you both choose different locations.
+Try to think about what your partner is most likely to do and think of "COMPETE" and "HELP" like attacking versus defending.
 The timer at the bottom lets you know how much time until the end of the round.
 Ready? Let's have a quick practice round!
