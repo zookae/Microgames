@@ -109,6 +109,7 @@ public class EndGameDialogueManager : MonoBehaviour {
                 if (GUILayout.Button("Continue!", buttonStyle)) {
                     drawGUI = false;
                     GameRoundCounter.AdvanceRound();
+                    GameRoundCounter.AddScore((int)GameState.Singleton.score);
                     // The following line is a hack to keep the survey from drawing after the round changes.
                     surveyRoundState = SurveyRoundState.SurveyObjectSpawned;                    
                     Application.LoadLevel(gameSceneName);
@@ -144,6 +145,7 @@ public class EndGameDialogueManager : MonoBehaviour {
         if (GUILayout.Button("Continue!", buttonStyle)) {
             drawGUI = false;
             GameRoundCounter.AdvanceRound();
+            GameRoundCounter.AddScore((int)GameState.Singleton.score);
             Application.LoadLevel(gameSceneName);
         }
         if (GUILayout.Button("Finish!", buttonStyle)) {

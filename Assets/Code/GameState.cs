@@ -122,9 +122,11 @@ public class GameState : MonoBehaviour {
     }
 }
 
+// XXX (kasiu): also hides global score.
 public static class GameRoundCounter
 {
     private static int current = 0;
+    private static int totalScore = 0;
 
     public static int GetCurrentRound() {
         return current;
@@ -132,5 +134,13 @@ public static class GameRoundCounter
 
     public static void AdvanceRound() {
         current++;
+    }
+
+    public static int GetTotalScore() {
+        return totalScore;
+    }
+
+    public static void AddScore(int score) {
+        totalScore += score;
     }
 }
