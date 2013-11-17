@@ -82,6 +82,7 @@ public class EndGameDialogueManager : MonoBehaviour {
         lg.fontSize = fontSize;
         lg.fontColor = fontColor;
         lg.fontBackground = fontBackground;
+        lg.nextSceneName = titleSceneName;
     }
 
     void OnGUI() {
@@ -108,34 +109,24 @@ public class EndGameDialogueManager : MonoBehaviour {
                 if (GUILayout.Button("Continue!", buttonStyle)) {
                     drawGUI = false;
                     GameRoundCounter.AdvanceRound();
+                    // The following line is a hack to keep the survey from drawing after the round changes.
+                    surveyRoundState = SurveyRoundState.SurveyObjectSpawned;                    
                     Application.LoadLevel(gameSceneName);
                 }
                 GUILayout.EndArea();
-            } else if (GameRoundCounter.GetCurrentRound() == surveyRound) {
+            } else {
                 // Spawn the survey object
                 switch (surveyRoundState) {
                     case SurveyRoundState.WaitingToSpawn:
-                        surveyObject = new GameObject();
-                        surveyObject.transform.position = new Vector3(0, 0, -5f);
-                        surveyObject.AddComponent<LikertGUI>();
-                        LikertGUI lc = surveyObject.GetComponent<LikertGUI>();
-                        SetupLikertGUI(ref lc);
-                        surveyRoundState = SurveyRoundState.SurveyObjectSpawned;
+                        string text = '\n' + "Feel free to continue or finish up with the post-game survey.";
+                        // Otherwise, spawn a box that lets the player quit or continue
+                        DisplayContinueOrQuitDialogue(scoreText + text);
                         break;
                     case SurveyRoundState.SurveyObjectSpawned:
+                    case SurveyRoundState.SurveyResultsSent:
                         // Draw nothing
                         break;
-                    case SurveyRoundState.SurveyResultsSent:
-                        // Display continue dialogue
-                        string text = "That's it! Thanks for playing!" + '\n' + "The study is over, but you can play some more rounds or return to the start menu if you like. If you choose to play more rounds, you can quit at any time.";
-                        // Otherwise, spawn a box that lets the player quit or continue
-                        DisplayContinueOrQuitDialogue(text);
-                        break;
                 }
-            } else {
-                // Display dialogue
-                // Otherwise, spawn a box that lets the player quit or continue
-                DisplayContinueOrQuitDialogue(scoreText);
             }
         }
     }
@@ -155,10 +146,13 @@ public class EndGameDialogueManager : MonoBehaviour {
             GameRoundCounter.AdvanceRound();
             Application.LoadLevel(gameSceneName);
         }
-        if (GUILayout.Button("Quit to Start!", buttonStyle)) {
-            drawGUI = false;
-            GameRoundCounter.AdvanceRound();
-            Application.LoadLevel(titleSceneName);
+        if (GUILayout.Button("Finish!", buttonStyle)) {
+            surveyObject = new GameObject();
+            surveyObject.transform.position = new Vector3(0, 0, -5f);
+            surveyObject.AddComponent<LikertGUI>();
+            LikertGUI lc = surveyObject.GetComponent<LikertGUI>();
+            SetupLikertGUI(ref lc);
+            surveyRoundState = SurveyRoundState.SurveyObjectSpawned;
         }
         GUILayout.EndHorizontal();
         GUILayout.EndArea();

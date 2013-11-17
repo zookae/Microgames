@@ -16,11 +16,12 @@ public class LikertGUI : MonoBehaviour {
     public Color fontColor;
     public Color fontBackground;
     public string closeText;
+    public string nextSceneName;
 
     private List<LikertQuestion> likertQuestions;
     private bool drawGUI;
     private Vector2 scrollPosition;
-    private string headerText;
+    private string headerText;    
 
     // HAH! Figured out the style stuff!
     private GUIStyle textStyle;
@@ -138,6 +139,9 @@ public class LikertGUI : MonoBehaviour {
                     results = BuildResultString();
                     drawGUI = false;
                     printErrorText = false;
+                    if (nextSceneName != null && nextSceneName.Length > 0) {
+                        Application.LoadLevel(nextSceneName);
+                    }
                 } else {
                     printErrorText = true;
                 }
