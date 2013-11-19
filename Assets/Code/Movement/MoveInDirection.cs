@@ -68,6 +68,8 @@ public class MoveInDirection : MoveControl {
 
         // assign component to GameObject in the environment that has matching name
         GameObject cO = GameObject.Find(targetNode.InnerText); // find target in the environment
+        if (cO == null)
+            return;
         cO.gameObject.AddComponent<MoveInDirection>(); // already know this component because of type
         MoveInDirection cref = cO.gameObject.GetComponent<MoveInDirection>(); // cache for efficiency
 

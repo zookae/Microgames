@@ -1,4 +1,16 @@
 <Components>
+  <Instance iname="Enemy">
+    <asset>Enemy</asset>
+    <position>-4,3,-1</position>
+  </Instance>
+  <Instance iname="Enemy2">
+    <asset>Enemy</asset>
+    <position>-2,-1</position>
+  </Instance>
+  <Instance iname="Bullet">
+    <asset>Bullet</asset>
+  </Instance>
+  
   <Component cname="MoveInDirection">
     <target>Bullet</target>
     <moveSpeed>5.0</moveSpeed>
@@ -14,10 +26,11 @@
   </Component>
   -->
 
+  
   <Component cname="ClickFireMouse">
     <target>Player</target>
     <spawn>Bullet</spawn>
-    <moveSpeed>7.0</moveSpeed>
+    <bulletSpeed>7.0</bulletSpeed>
   </Component>
 
   <Component cname="MoveByKeyForce">

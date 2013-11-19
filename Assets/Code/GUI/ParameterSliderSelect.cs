@@ -15,12 +15,19 @@ public class ParameterSliderSelect : ParameterSlider {
     private float timeDelta = 0.1f;
     public ParamType ptype;
 
-    void Awake() {
+    /// <summary>
+    /// Adds components to be manipulated. 
+    /// Needs to be in Start so every object has been added to scene already.
+    /// </summary>
+    void Start() {
         newValue = (paramMax - paramMin) / 2;
         //Debug.Log("[ParameterSliderSelect] initializing value: " + newValue);
 
         GameObject[] objs = GameObject.FindGameObjectsWithTag(entity);
+        Debug.Log("[ParameterSliderSelect] objects found: ");
         foreach (GameObject o in objs) {
+            Debug.Log("[ParameterSliderSelect] object " + o.name);
+            Debug.Log("[ParameterSliderSelect] parameter type " + ptype);
             if (ptype == ParamType.BULLET_SIZE ||
                 ptype == ParamType.BULLET_SPEED ||
                 ptype == ParamType.FIRERATE) {
@@ -39,6 +46,7 @@ public class ParameterSliderSelect : ParameterSlider {
                 newValue);
         GameState.Singleton.actionTrace.Add(pch);
     }
+
     
     void OnGUI() {
         float oldValue = newValue;
@@ -66,3 +74,4 @@ public class ParameterSliderSelect : ParameterSlider {
     }
 
 }
+

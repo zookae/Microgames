@@ -3,6 +3,7 @@ using System.Collections;
 
 using System.Xml;
 using System;
+using UnityEditor;
 
 public class ClickFireMouse : ShootAtPoint {
 
@@ -53,7 +54,10 @@ public class ClickFireMouse : ShootAtPoint {
 
         // look up and parse each attribute needed for script
         cref.cam = (Camera)GameObject.FindObjectOfType(typeof(Camera)); // find the camera
-        cref.spawn = GameObject.Find(root.SelectSingleNode("spawn").InnerText);
-        cref.moveSpeed = float.Parse(root.SelectSingleNode("moveSpeed").InnerText);
+        
+        // lookup prefab from Assets/Prefabs folder and set it
+        cref.spawn = LoadComponent.GetPrefabByName(root.SelectSingleNode("spawn").InnerText);
+
+        cref.bulletSpeed = float.Parse(root.SelectSingleNode("bulletSpeed").InnerText);
     }
 }

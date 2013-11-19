@@ -1,12 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ShootAtPoint : Spawn {
-
-    /// <summary>
-    /// Speed for the shot object to move
-    /// </summary>
-    public float moveSpeed;
+public class ShootAtPoint : Shoot {
 
     /// <summary>
     /// Object to fire toward
@@ -17,14 +12,18 @@ public class ShootAtPoint : Spawn {
     /// Create a bullet and set it to move in a given direction
     /// </summary>
     public GameObject ShootAtTar() {
-        Debug.Log("called ShootAtTar");
+        //Debug.Log("called ShootAtTar");
         GameObject bullet = SpawnTriggerable();
         bullet.AddComponent<MoveToPoint>();
         bullet.GetComponent<MoveToPoint>().movementPoint = moveTarget;
         bullet.GetComponent<MoveToPoint>().moveTarget = moveTarget;
-        bullet.GetComponent<MoveToPoint>().moveRate = moveSpeed;
+        bullet.GetComponent<MoveToPoint>().moveRate = bulletSpeed;
 
         return bullet;
+    }
+
+    public override GameObject Fire() {
+        return ShootAtTar();
     }
 
 }

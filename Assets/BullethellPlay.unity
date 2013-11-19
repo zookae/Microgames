@@ -809,7 +809,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff6da5b0e0d035a43b21592826e07b60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boundingObject: {fileID: 1698286401}
+  screenPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &1131612266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -989,6 +989,7 @@ GameObject:
   - 23: {fileID: 1698286402}
   - 114: {fileID: 1698286412}
   - 114: {fileID: 1698286407}
+  - 114: {fileID: 1698286406}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -1045,6 +1046,23 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!114 &1698286406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1698286401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c6d8a7d851fb074baa3229ef29f4481, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xPos: 105
+  yPos: 100
+  xSize: 100
+  ySize: 25
+  fontSize: 0
+  fontColor: {r: 1, g: .976267755, b: .139705896, a: 1}
 --- !u!114 &1698286407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1064,7 +1082,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1698286401}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e34b7789a9049894484b4036436f111b, type: 3}
   m_Name: 
