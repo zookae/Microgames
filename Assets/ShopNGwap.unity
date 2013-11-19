@@ -338,7 +338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b2b0fda695ccb041acea930a40594de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  surveyRound: 1
+  surveyRound: 4
   titleSceneName: ShopNGwapTitle
   gameSceneName: ShopNGwap
   font: {fileID: 12800000, guid: 7dd7c561d4f3b4e4aadec2240752c38c, type: 3}
@@ -362,10 +362,8 @@ MonoBehaviour:
   CurrentState: 0
   ScoringMode: 0
   score: 0
-  blockTags:
-  - Tag1
-  labelTags:
-  - Tag1
+  blockTags: []
+  labelTags: []
 --- !u!114 &1588099216
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -69,7 +69,7 @@ public class ScoreTriggerTagBlocked : MonoBehaviour {
             }
         } else { // Tagged, but block hasn't been resolved.
             foreach (Triple<double, string, string> pt in GameState.Singleton.partnerTrace) {
-                if (wasAssignmentBeaten(click, pt)) {
+                if (wasAssignmentBeaten(click, pt) && GameState.Singleton.TimeUsed >= pt.First) {
                     wasBlockResolved = true;
                     GameState.Singleton.score += blockPenalty;
                     string str = "+" + blockPenalty + " points!\n" + "(SELECTED FIRST)";

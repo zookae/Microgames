@@ -1,6 +1,6 @@
-Age:^18-20,20-25,25-30,35-40,40+^no
+Age:^18-20,20-25,25-30,35-40,40+^text
 Gender:^Male,Female^no
-Do play games?^Yes,No^no
+Do you play games?^Yes,No^no
 If so, select all that apply below.^Action,Adventure,Sports,Shooter,Puzzle,Role-Playing Game (RPG),Casual,Strategy,Simulation,Fighting,Party^yes
 On a scale from 1-5, how challenging was this game? (1:no challenge to 5:extremely challenging)^1,2,3,4,5^no
 On a scale from 1-5, how much did you enjoy this game? (1:no enjoyment to 5:enjoyed very much)^1,2,3,4,5^no

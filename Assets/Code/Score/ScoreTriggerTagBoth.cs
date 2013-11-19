@@ -96,13 +96,15 @@ public class ScoreTriggerTagBoth : MonoBehaviour
                 if (pt.First < this.click.First) {
                     continue;
                 }
-                if (pt.Second == transform.name) { // FOUND IT
+                // Resolve if we find it (ANDANDNAND) if it's the right time
+                if (pt.Second == transform.name && GameState.Singleton.TimeUsed >= pt.First) { // FOUND IT
                     //Debug.Log("FOUND PARTNER " + transform.name);
                     switch (myTag) {
                         case TagOptions.LabelMine:
                             if (pt.Third.Contains("-collab")) {
                                 GameState.Singleton.score += agreementBonus;
                                 string strCollab = "+" + agreementBonus + " points!" + '\n' + "(AGREEMENT)";
+                                GUIUtils.SpawnFloatingText(TagUtils.GetPositionOfChildTag(this.gameObject, click.Third), strCollab, Color.black, 2.0f);
                                 Debug.Log(strCollab);
                             } else if (pt.Third.Contains("-compete")) {
                                 // We beat them to it, but we don't gain/lose anything. Here's where they'd lose points.
@@ -112,12 +114,14 @@ public class ScoreTriggerTagBoth : MonoBehaviour
                             // They agreed with us.
                             GameState.Singleton.score += agreementBonus;
                             string strAgree = "+" + agreementBonus + " points!" + '\n' + "(AGREEMENT)";
+                            GUIUtils.SpawnFloatingText(TagUtils.GetPositionOfChildTag(this.gameObject, click.Third), strAgree, Color.black, 2.0f);
                             Debug.Log(strAgree);
                             break;
                         case TagOptions.BlockPartner:
                             // We beat them.
                             GameState.Singleton.score += blockPenalty;
                             string strBlock = "+" + blockPenalty + " points!" + '\n' + "(SELECTED FIRST)";
+                            GUIUtils.SpawnFloatingText(TagUtils.GetPositionOfChildTag(this.gameObject, click.Third), strBlock, Color.black, 2.0f);
                             Debug.Log(strBlock);
                             break;
                         default:

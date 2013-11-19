@@ -217,7 +217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3c817fc0f6affd42a5299f950021ffb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fontSize: 10
+  fontSize: 12
   defaultFont: {fileID: 0}
   fontBackground: {r: 0, g: .588235319, b: .941176474, a: 1}
   splitName: []
@@ -232,7 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3c817fc0f6affd42a5299f950021ffb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fontSize: 10
+  fontSize: 12
   defaultFont: {fileID: 0}
   fontBackground: {r: .996078432, g: .447058827, b: 0, a: 1}
   splitName: []
