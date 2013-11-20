@@ -166,6 +166,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: 
 --- !u!1 &503241151
 GameObject:
   m_ObjectHideFlags: 0
@@ -488,6 +491,7 @@ GameObject:
   - 114: {fileID: 1003462391}
   - 114: {fileID: 1003462394}
   - 114: {fileID: 1003462392}
+  - 114: {fileID: 1003462393}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -631,6 +635,25 @@ MonoBehaviour:
   bulletBounds: {fileID: 1698286401}
   bulletLife: 10
   moveTarget: {fileID: 1131612260}
+--- !u!114 &1003462393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1003462383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23356fd937935f94e8560392b6fbf6fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawn: {fileID: 100000, guid: b8305c140ea2f4d4da503de7fa33df80, type: 2}
+  assignTag: BulletBad
+  haveGravity: 0
+  bulletSpeed: 0
+  frequency: .5
+  bulletBounds: {fileID: 1698286401}
+  bulletLife: 5
+  moveDir: 1
 --- !u!114 &1003462394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1351,6 +1374,7 @@ GameObject:
   - 114: {fileID: 2051483801}
   - 114: {fileID: 2051483802}
   - 114: {fileID: 2051483794}
+  - 114: {fileID: 2051483790}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -1358,6 +1382,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &2051483790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2051483789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d363b5aa715819041a7f4a8456f85ca3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawn: {fileID: 100000, guid: b8305c140ea2f4d4da503de7fa33df80, type: 2}
+  assignTag: BulletBad
+  haveGravity: 0
+  bulletSpeed: 0
+  frequency: .5
+  bulletBounds: {fileID: 1698286401}
+  bulletLife: 5
+  moveTarget: {fileID: 1131612260}
 --- !u!114 &2051483792
 MonoBehaviour:
   m_ObjectHideFlags: 0

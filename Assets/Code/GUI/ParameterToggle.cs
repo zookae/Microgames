@@ -54,7 +54,8 @@ public class ParameterToggle : MonoBehaviour {
         //Debug.Log("[ParameterToggle].setComponents method is " + mi.ToString());
         foreach (GameObject g in targetObjects) {
             if (g == null) {
-                targetObjects.Remove(g);
+                //targetObjects.Remove(g);
+				continue;
             }
             //Debug.Log("[ParameterToggle].setComponents gameobject is " + g.name);
             foreach (Shoot s in g.GetComponents<Shoot>()) {
