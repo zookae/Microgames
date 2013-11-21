@@ -317,6 +317,16 @@ public class GameStateServer : MonoBehaviour
         case NetworkClient.MessType_ToServer.SNGSavePlayerScore:
             dbManip.SaveGameScore(rgd.gameID, System.Convert.ToInt32(args));
             break;
+			
+		/*
+		  * BULLETHELL CODE
+		*/ 
+		case NetworkClient.MessType_ToServer.BHSaveParamTrace:
+            DebugConsole.Log("Got a trace from a player.");
+            dbManip.SaveTraceResults(rgd.gameID, 4, args); // trace type 4 = bullethell parameter tuning trace
+            // Increment player score:
+            dbManip.IncrementPlayerBHDesignCount(rgd.dPlayerData[player].playerid);
+            break;
 
         default:
 			DebugConsole.Log( "MessageFromClient: default" );

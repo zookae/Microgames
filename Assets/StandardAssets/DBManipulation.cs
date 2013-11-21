@@ -423,6 +423,16 @@ public class DBManipulation  {
         db.BasicQuery(sbSQL.ToString());
         closeConnection();
     }
+	
+	// Increments the number of times the player done design in bullethell
+    internal void IncrementPlayerBHDesignCount(int playerid) {
+        openConnection();
+        System.Text.StringBuilder sbSQL = new System.Text.StringBuilder();
+        sbSQL.Append("UPDATE OR IGNORE bh_param_tuning SET tuningPerformed = tuningPerformed+1 WHERE playerid=").Append(playerid);
+        DebugConsole.Log(sbSQL.ToString());
+        db.BasicQuery(sbSQL.ToString());
+        closeConnection();
+    }
 
     // This is kept separate from the player information because it happens later (generally).
     internal void SavePlayerLikertScores(int playerid, string[] answers) {

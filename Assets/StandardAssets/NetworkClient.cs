@@ -50,6 +50,8 @@ public class NetworkClient : MonoBehaviour {
         , SNGSavePlayerData         // client sends whenever it wants to save player data
         , SNGSavePlayerLikertData   // client sends whenever it wants to save likert scores
         , SNGSavePlayerScore        // client sends whenever it wants to save a score for a game
+		// bullethell stuff
+		, BHSaveParamTrace			// client sends server information on parameter changes
 	};
 	
 	static NetworkClient _instance;

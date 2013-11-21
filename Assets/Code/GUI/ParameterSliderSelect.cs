@@ -26,8 +26,8 @@ public class ParameterSliderSelect : ParameterSlider {
         GameObject[] objs = GameObject.FindGameObjectsWithTag(entity);
         Debug.Log("[ParameterSliderSelect] objects found: ");
         foreach (GameObject o in objs) {
-            Debug.Log("[ParameterSliderSelect] object " + o.name);
-            Debug.Log("[ParameterSliderSelect] parameter type " + ptype);
+//            Debug.Log("[ParameterSliderSelect] object " + o.name);
+//            Debug.Log("[ParameterSliderSelect] parameter type " + ptype);
             if (ptype == ParamType.BULLET_SIZE ||
                 ptype == ParamType.BULLET_SPEED ||
                 ptype == ParamType.FIRERATE) {
