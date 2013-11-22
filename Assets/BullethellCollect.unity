@@ -1018,6 +1018,7 @@ GameObject:
   - 114: {fileID: 1131612267}
   - 114: {fileID: 1131612266}
   - 114: {fileID: 1131612268}
+  - 114: {fileID: 1131612269}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1094,7 +1095,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1131612256}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c56337d204f4b8840b9f0e16ff494030, type: 3}
   m_Name: 
@@ -1145,7 +1146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff6da5b0e0d035a43b21592826e07b60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boundingObject: {fileID: 1698286401}
+  screenPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &1131612266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1186,6 +1187,17 @@ MonoBehaviour:
   tagSet:
   - Blocker
   pointChange: -20
+--- !u!114 &1131612269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1131612256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cddef3a1d2d48a7489b8c142cbcc6e7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1143206094
 GameObject:
   m_ObjectHideFlags: 0

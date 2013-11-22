@@ -10,7 +10,7 @@ public class DestroyTagSelf : MonoBehaviour {
     /// </summary>
     /// <param name="col"></param>
     void OnTriggerEnter(Collider col) {
-        //Debug.Log("destroy : entered trigger");
+        Debug.Log("destroy : entered trigger");
         if (col.CompareTag(destroyTag)) {
             Destroy(this.gameObject);
         }
