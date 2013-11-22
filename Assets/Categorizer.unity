@@ -1017,7 +1017,7 @@ Transform:
   m_GameObject: {fileID: 1131612256}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: .271220922, y: 4.04012156, z: -1}
-  m_LocalScale: {x: 1, y: .5, z: 1}
+  m_LocalScale: {x: 3, y: 1, z: .5}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!114 &1131612261
@@ -1361,9 +1361,9 @@ GameObject:
   - 114: {fileID: 1418646961}
   - 114: {fileID: 1418646964}
   - 114: {fileID: 1418646962}
-  - 114: {fileID: 1418646963}
   - 114: {fileID: 1418646965}
   - 114: {fileID: 1418646966}
+  - 114: {fileID: 1418646963}
   m_Layer: 0
   m_Name: GlobalState
   m_TagString: Untagged
@@ -1439,13 +1439,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1418646958}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7b6ad2c41e8e544da72da88938556e6, type: 3}
+  m_Script: {fileID: 11500000, guid: d1c58867c1e8ee24295258ae72ac1e1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   barDisplay: 0
-  progressBarEmpty: {fileID: 2800000, guid: 66d0b1060f1263748aaa24b917861f3d, type: 3}
-  progressBarFull: {fileID: 2800000, guid: 4c86ac4639b24f24bb598c0d75a3828a, type: 3}
-  MaxTime: 7
+  size: {x: 0, y: 0}
+  progressBarEmpty: {r: 0, g: 0, b: 0, a: 0}
+  progressBarFull: {r: .970588207, g: .214100316, b: .214100316, a: .97647059}
+  maxtime: 7
 --- !u!114 &1418646964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1672,7 +1673,7 @@ Transform:
   m_GameObject: {fileID: 1421885385}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: .271220922, y: -3.76026392, z: -1}
-  m_LocalScale: {x: 1, y: .5, z: 1}
+  m_LocalScale: {x: 3, y: 1, z: .5}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!1 &1448264898
