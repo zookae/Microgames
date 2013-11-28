@@ -2,13 +2,19 @@
 using System.Collections;
  
 [RequireComponent(typeof(Collider))]
-public class ClickDragMouse : MonoBehaviour 
+public class ClickDragMouseReturnSmooth : MonoBehaviour 
 {
  
 private Vector3 screenPoint;
 private Vector3 offset;
+private Vector3 origin;
 
+private bool isReturning = false;
+public float returnTime = 0.03f;
 
+void Start() {
+    origin = transform.position;
+}
 void OnMouseDown()
 {
     screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
@@ -26,5 +32,17 @@ void OnMouseDrag()
  
 }
 
+void OnMouseUp() {
+    isReturning = true;
+}
+
+void Update() {
+    if (isReturning) {
+        transform.position = Vector3.Lerp(transform.position, origin, Time.deltaTime/returnTime);
+    }
+    if (Mathf.Abs(Vector3.Distance(transform.position, origin)) < 0.1) {
+        isReturning = false;
+    }
+}
  
 }

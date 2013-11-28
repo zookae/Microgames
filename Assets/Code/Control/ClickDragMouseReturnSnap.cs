@@ -2,12 +2,17 @@
 using System.Collections;
  
 [RequireComponent(typeof(Collider))]
-public class ClickDragMouse : MonoBehaviour 
+public class ClickDragMouseReturnSnap : MonoBehaviour 
 {
  
 private Vector3 screenPoint;
 private Vector3 offset;
+private Vector3 origin;
 
+
+void Start() {
+    origin = transform.position;
+}
 
 void OnMouseDown()
 {
@@ -26,5 +31,8 @@ void OnMouseDrag()
  
 }
 
+void OnMouseUp() {
+    transform.position = origin;
+}
  
 }
