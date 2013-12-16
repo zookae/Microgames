@@ -19,6 +19,7 @@ GameObject:
   - 114: {fileID: 11400008}
   - 114: {fileID: 11400010}
   - 114: {fileID: 11400012}
+  - 114: {fileID: 11400014}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -55,6 +56,9 @@ Renderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
 --- !u!33 &3300000
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -193,6 +197,25 @@ MonoBehaviour:
   targetTag: Bullet
   rtype: 1
   rchange: -1
+--- !u!114 &11400014
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d363b5aa715819041a7f4a8456f85ca3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawn: {fileID: 100000, guid: b8305c140ea2f4d4da503de7fa33df80, type: 2}
+  assignTag: BulletBad
+  haveGravity: 0
+  bulletSpeed: 0
+  frequency: 5
+  bulletBounds: {fileID: 0}
+  bulletLife: 5
+  moveTarget: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

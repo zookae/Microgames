@@ -4,13 +4,12 @@
 SceneSettings:
   m_ObjectHideFlags: 0
   m_PVSData: 
-  m_QueryMode: 1
   m_PVSObjectsArray: []
   m_PVSPortalsArray: []
   m_OcclusionBakeSettings:
-    viewCellSize: 1
-    bakeMode: 2
-    memoryUsage: 10485760
+    smallestOccluder: 5
+    smallestHole: .25
+    backfaceThreshold: 100
 --- !u!104 &2
 RenderSettings:
   m_Fog: 0
@@ -23,6 +22,7 @@ RenderSettings:
   m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: .5
   m_FlareStrength: 1
+  m_FlareFadeSpeed: 3
   m_HaloTexture: {fileID: 0}
   m_SpotCookie: {fileID: 0}
   m_ObjectHideFlags: 0
@@ -142,6 +142,7 @@ Camera:
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_HDR: 0
+  m_OcclusionCulling: 1
 --- !u!4 &252043995
 Transform:
   m_ObjectHideFlags: 0
@@ -232,6 +233,7 @@ GameObject:
   - 114: {fileID: 740268413}
   - 114: {fileID: 740268412}
   - 114: {fileID: 740268421}
+  - 114: {fileID: 740268410}
   - 114: {fileID: 740268422}
   m_Layer: 0
   m_Name: Enemy
@@ -240,6 +242,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &740268410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400014, guid: 4e511e70134259e46bdbb9f39bb03c7a,
+    type: 2}
+  m_PrefabInternal: {fileID: 1204450628}
+  m_GameObject: {fileID: 740268409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d363b5aa715819041a7f4a8456f85ca3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawn: {fileID: 100000, guid: b8305c140ea2f4d4da503de7fa33df80, type: 2}
+  assignTag: BulletBad
+  haveGravity: 0
+  bulletSpeed: 0
+  frequency: 5
+  bulletBounds: {fileID: 0}
+  bulletLife: 5
+  moveTarget: {fileID: 0}
 --- !u!114 &740268412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -345,6 +367,9 @@ Renderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
 --- !u!65 &740268418
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -474,6 +499,7 @@ GameObject:
   - 114: {fileID: 1003462389}
   - 114: {fileID: 1003462391}
   - 114: {fileID: 1003462394}
+  - 114: {fileID: 1003462395}
   - 114: {fileID: 1003462392}
   - 114: {fileID: 1003462393}
   m_Layer: 0
@@ -502,6 +528,9 @@ Renderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
 --- !u!65 &1003462385
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -653,6 +682,26 @@ MonoBehaviour:
   targetTag: Bullet
   rtype: 1
   rchange: -1
+--- !u!114 &1003462395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400014, guid: 4e511e70134259e46bdbb9f39bb03c7a,
+    type: 2}
+  m_PrefabInternal: {fileID: 908732477}
+  m_GameObject: {fileID: 1003462383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d363b5aa715819041a7f4a8456f85ca3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawn: {fileID: 100000, guid: b8305c140ea2f4d4da503de7fa33df80, type: 2}
+  assignTag: BulletBad
+  haveGravity: 0
+  bulletSpeed: 0
+  frequency: 5
+  bulletBounds: {fileID: 0}
+  bulletLife: 5
+  moveTarget: {fileID: 0}
 --- !u!1 &1131612256
 GameObject:
   m_ObjectHideFlags: 0
@@ -695,6 +744,9 @@ Renderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
 --- !u!136 &1131612258
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -876,7 +928,6 @@ GameObject:
   - 114: {fileID: 1418646961}
   - 114: {fileID: 1418646963}
   - 114: {fileID: 1418646964}
-  - 114: {fileID: 1418646962}
   m_Layer: 0
   m_Name: GlobalState
   m_TagString: Untagged
@@ -930,19 +981,6 @@ MonoBehaviour:
   - Player
   gainPoints: 50
   losePoints: 5
---- !u!114 &1418646962
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1418646958}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5dc9e6b708eebe042a7a4de9a2cf52f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  countTag: Enemy
-  countAmount: 0
 --- !u!114 &1418646963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -985,6 +1023,7 @@ GameObject:
   - 114: {fileID: 1678319874}
   - 114: {fileID: 1678319875}
   - 114: {fileID: 1678319876}
+  - 114: {fileID: 1678319877}
   m_Layer: 0
   m_Name: StoredState
   m_TagString: Untagged
@@ -1147,7 +1186,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1678319866}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16fb2dffb1b382443a5d875a16b6f048, type: 3}
   m_Name: 
@@ -1191,6 +1230,22 @@ MonoBehaviour:
   ySize: 30
   fontSize: 30
   fontColor: {r: 1, g: .976267755, b: .139705896, a: 1}
+--- !u!114 &1678319877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1678319866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdd65bf74c5123042b57a20e9802dc43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 400000, guid: 4e511e70134259e46bdbb9f39bb03c7a, type: 2}
+  enemyPositions:
+  - {x: -3, y: 2}
+  - {x: 3.29999995, y: 2}
+  - {x: 0, y: 3}
 --- !u!1 &1698286401
 GameObject:
   m_ObjectHideFlags: 0
@@ -1229,6 +1284,9 @@ Renderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
 --- !u!64 &1698286403
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1357,6 +1415,7 @@ GameObject:
   - 114: {fileID: 2051483793}
   - 114: {fileID: 2051483792}
   - 114: {fileID: 2051483801}
+  - 114: {fileID: 2051483791}
   - 114: {fileID: 2051483802}
   - 114: {fileID: 2051483794}
   - 114: {fileID: 2051483790}
@@ -1386,6 +1445,26 @@ MonoBehaviour:
   bulletBounds: {fileID: 1698286401}
   bulletLife: 5
   moveTarget: {fileID: 1131612260}
+--- !u!114 &2051483791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400014, guid: 4e511e70134259e46bdbb9f39bb03c7a,
+    type: 2}
+  m_PrefabInternal: {fileID: 2030128852}
+  m_GameObject: {fileID: 2051483789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d363b5aa715819041a7f4a8456f85ca3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawn: {fileID: 100000, guid: b8305c140ea2f4d4da503de7fa33df80, type: 2}
+  assignTag: BulletBad
+  haveGravity: 0
+  bulletSpeed: 0
+  frequency: 5
+  bulletBounds: {fileID: 0}
+  bulletLife: 5
+  moveTarget: {fileID: 0}
 --- !u!114 &2051483792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1490,6 +1569,9 @@ Renderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
 --- !u!65 &2051483798
 BoxCollider:
   m_ObjectHideFlags: 0

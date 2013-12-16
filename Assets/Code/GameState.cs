@@ -66,6 +66,11 @@ public class GameState : MonoBehaviour {
     public List<ParamChange> actionTrace = new List<ParamChange>();
 
     /// <summary>
+    /// Retains most recent action setting
+    /// </summary>
+    public ParamChange currentAction;
+
+    /// <summary>
     /// Tags this game instance uses for blocking
     /// </summary>
     public List<string> blockTags = new List<string>();

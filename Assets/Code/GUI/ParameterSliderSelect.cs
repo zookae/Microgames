@@ -45,6 +45,7 @@ public class ParameterSliderSelect : ParameterSlider {
                 entity,
                 newValue);
         GameState.Singleton.actionTrace.Add(pch);
+        GameState.Singleton.currentAction = pch;
     }
 
     
@@ -62,6 +63,8 @@ public class ParameterSliderSelect : ParameterSlider {
                 newValue);
             Debug.Log(pch.ToString());
             GameState.Singleton.actionTrace.Add(pch);
+            GameState.Singleton.currentAction = pch;
+            Debug.Log("param change: " + pch);
 
             prevTime = GameState.Singleton.TimeUsed;
         }
@@ -70,6 +73,17 @@ public class ParameterSliderSelect : ParameterSlider {
             if (p == null)
                 continue;
             SetParameter(ptype, p, newValue);
+        }
+    }
+
+    public void DBSendTrace() {
+        if (Network.isClient) {
+            string paramHist = "";
+            foreach (ParamChange pch in GameState.Singleton.actionTrace) {
+                paramHist += "; " + pch.ToString();
+            }
+            Debug.Log("[ParameterSliderSelect] sending trace to DB: " + paramHist);
+            //NetworkClient.Instance.SendServerMess(NetworkClient.MessType_ToServer.BHSaveParamTrace, paramHist);
         }
     }
 
